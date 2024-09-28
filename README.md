@@ -30,6 +30,10 @@
   - [Commit Examples](#Examples)
   - [Tailwind Config and CSS](#TailwindCSS)
   - [Folder Structure](#Folders)
+  - [Types and Interfaces](#Types)
+  - [Integration](#Integration)
+
+
 
 ## Commits
 1.Commits must be made not fir every minor changes but a group of changes must be batched togeteher and committed to the repo at once, same goes for sending a PR to the main upstream repository or the main branch from any other branch.
@@ -117,6 +121,84 @@ extend: {
 3.In react, every component must have it's first letter capitalised to avoid errors
 4.Unimportant or non necessary folders/files (locally required files) must be mentioned appropriately in the .gitignore file.
 5.Again, ensure tailwind config is updated for any folder structure changes.
+
+## Types
+All custom user types that are non-primitive must be defined in a seperate folder in the **src** folder called **types** which contains necessary files for all the user defined types used in the project.
+Eg:
+```bash
+interface User {
+  name: string;
+  age: number;
+  login(): void;
+}
+
+type User = {
+  name: string;
+  age: number;
+  login: () => void;
+};
+```
+
+## Integration
+1.All the response data must be stored as in varaibles of their respective types/interfaces, all the netowrk requests must be handled for runtime-errors using try/catch and finally blocks.
+2.The state of each netowkr request must be stored in a state and that state must be updated depending on the response.status recieved from the API.
+3. Loadiing states and error message states must be used to handle loading phases and error messages (if any, after the request is completed successfully)
+3. For polling based requests, a maximum upper limit must be set after which the polling must cease and an appropriate error message me set
+
+There are different ways to fetch data:
+
+1. getServerSideProps:
+  Server-Side Data Fetching: Use getServerSideProps when you need to fetch data on the server side before rendering the page.
+  Real-Time Data: Use it when the data should be fetched on every request (e.g., real-time data, personalized content, or ensuring data is always fresh).
+  SEO Considerations: When you need the data to be available for search engines (since the data is pre-rendered).
+  Sensitive Data: If you're fetching sensitive data (e.g., authentication tokens, database queries), which should not be exposed to the client.
+
+```bash
+export const getServerSideProps = async () => {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+
+  return { props: { data } };
+};
+
+```
+2. useEffect:
+   Client-Side Data Fetching: Use useEffect when the data can be fetched after the page has been rendered on the client side.
+   Static or Non-Critical Data: If the data doesn’t need to be fetched before the page renders (e.g., less critical or optional data like paginated comments, client-specific data).
+   Dynamic or User-Driven Events: When data should be fetched based on user interactions, such as button clicks or scroll events.
+   Lighter Initial Load: When you want the page to load quickly and fetch data later.
+   
+```bash
+import { useState, useEffect } from 'react';
+const Page = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);  // State for tracking errors
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('https://api.example.com/data');
+        
+        // Check if the response is OK
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
+        const result = await res.json();
+        setData(result);  // Set the fetched data to state
+      } catch (err) {
+        setError(err.message);  // Capture and set error message
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (error) return <div>Error: {error}</div>;  // Display error message
+  if (!data) return <div>Loading...</div>;  // Display loading state if data isn't fetched yet
+  return <div>{data.title}</div>;  // Render the fetched data
+};
+export default Page;
+```
+   
 
 
 <!-- LICENSE -->
