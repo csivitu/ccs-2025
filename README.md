@@ -32,6 +32,7 @@
   - [Folder Structure](#Folders)
   - [Types and Interfaces](#Types)
   - [Integration](#Integration)
+  - [Cookies](#Cookies)
 
 
 
@@ -199,7 +200,30 @@ const Page = () => {
 export default Page;
 ```
    
+## Cookies
+Use Secure and SameSite: Always use the secure option (only for HTTPS sites) and set SameSite to strict or lax to mitigate CSRF attacks.
+Consider HttpOnly for Server-Side Cookies: If you're setting cookies on the server (via HTTP headers), use the HttpOnly flag to make them inaccessible to JavaScript, protecting against XSS.
 
+expires: Defines how long the cookie will be valid. In this case, it's set to 7 days.
+secure: Ensures the cookie is only sent over HTTPS, improving security on production environments.
+sameSite: Restricts the cookie from being sent with cross-origin requests, protecting against CSRF attacks. Possible values are strict, lax, or none.
+path: Defines the URL path the cookie is valid for. Setting it to / makes the cookie accessible across the entire site.
+
+First, install the js-cookie package:
+```bash
+npm install js-cookie
+```
+Example code:
+```bash
+import Cookies from 'js-cookie';
+Cookies.set('jwt_token', 'your-jwt-token', {
+  expires: 1, // expires in 1 day, set this is per the backend 
+  secure: true, // only over HTTPS
+  sameSite: 'Strict', // protect against CSRF
+});
+const token = Cookies.get('jwt_token');
+Cookies.remove('jwt_token');
+```
 
 <!-- LICENSE -->
 ## License
