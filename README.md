@@ -99,7 +99,7 @@ Sample:
 in globals.css
 ```bash
 @font-face {
-  font-family: 'Averia Sans Libre';
+  font-family: 'Alegreya';
   src: url('/fonts/AveriaSansLibre-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
