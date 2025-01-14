@@ -1,7 +1,30 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+//import type { Metadata } from "next";
+//import localFont from "next/font/local";
 import "./globals.css";
+import { Inter } from 'next/font/google'
 
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+// src/app/layout.tsx
+import { AuthProvider } from "@/components/AuthProvider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
+    </html>
+  );
+}
+/*
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,4 +55,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+}*/
