@@ -1,5 +1,6 @@
-import React from 'react';
-import { BookMarked, Star, Network } from 'lucide-react';
+import React from "react";
+import { FaRegStar } from "react-icons/fa";
+import { IoMdGitNetwork } from "react-icons/io";
 
 const ProjectPage = () => {
   return (
@@ -52,7 +53,11 @@ const ProjectPage = () => {
               <div className="flex justify-between items-start">
                 <div className="flex-grow">
                   <span className="text-[rgba(88,166,255,1)] text-2xl flex items-center">
-                    <BookMarked className="mr-2 text-gray-500" />
+                    <img
+                      src="/bookmark.webp" // Replace with the actual path of your image
+                      alt="Bookmark"
+                      className="w-6 h-6 mr-2"
+                    />
                     projectTitle / <span className="font-semibold">projectName</span>
                   </span>
                   <p className="text-gray-500 text-xl mt-2">
@@ -63,10 +68,10 @@ const ProjectPage = () => {
                     <span className="w-3 h-3 mr-3 rounded-full" style={{ backgroundColor: 'rgba(218, 91, 11, 1)' }}></span>
                     <span className="text-xl text-gray-500">Tech Domain</span>
 
-                    <Star className="ml-10 text-gray-500" />
+                    <FaRegStar size={24} className="ml-10 text-gray-500" /> {/* Updated icon size */}
                     <span className="ml-1 text-xl text-gray-500">Popular</span>
 
-                    <Network className="ml-10 text-gray-500" />
+                    <IoMdGitNetwork size={24} className="ml-10 text-gray-500" /> {/* Updated icon size */}
                     <span className="ml-1 text-xl text-gray-500">HTML CSS React</span>
 
                     <div className="ml-10 flex items-center text-xl text-gray-500">

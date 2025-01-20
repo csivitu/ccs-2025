@@ -1,5 +1,6 @@
 import React from 'react';
-import { Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { FaInstagram, FaFacebook, FaLinkedin, } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 
 const AlumniPage = () => {
   return (
@@ -66,15 +67,15 @@ const AlumniPage = () => {
                 </div>
 
                 {/* Instagram Icon on the right */}
-                <Instagram className="w-8 h-8 text-white cursor-pointer" />
+                <FaInstagram className="w-8 h-8 text-white cursor-pointer" />
                 <img
                     alt="Placeholder"
                     src="/git.webp"
                     className="w-8 h-8 rounded-full ml-4"
                   />
-                  <Facebook className="w-8 h-8 text-white cursor-pointer ml-4" />
-                  <Linkedin className="w-8 h-8 text-white cursor-pointer ml-4" />
-                  <Twitter className="w-8 h-8 text-white cursor-pointer ml-4" />
+                  <FaFacebook className="w-8 h-8 text-white cursor-pointer ml-4" />
+                  <FaLinkedin className="w-8 h-8 text-white cursor-pointer ml-4" />
+                  <FaXTwitter className="w-8 h-8 text-white cursor-pointer ml-4" />
               </div>
               
             </div>
