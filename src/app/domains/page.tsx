@@ -58,7 +58,7 @@ export default function DomainsPage() {
         <h1 className="md:text-3xl text-xl font-semibold ">
           Welcome to CSI! Let's get started.
         </h1>
-        <p className="text-slate-500 md:text-xl text-md ">
+        <p className="text-slate-500 md:text-xl text-md mb-6">
           Choose your domains and start answering the questions. Remember once
           chosen you <span className="text-slate-300">CAN NOT</span> pause. Max
           2 domains to be chosen.
