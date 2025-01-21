@@ -99,6 +99,8 @@ model QuestionAttempt {
   ccsUserId  String
   answer     String?
 
+  @@unique([questionId, ccsUserId])
+
   question            Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   ccsUser             CcsUser  @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
   techAttempted       CcsUser? @relation("TechAttempt", fields: [ccsUserId], references: [id], map: "TechAttempt_ccsUserId_fkey")
