@@ -6,18 +6,18 @@ const AlumniPage = () => {
   return (
     <div className="min-h-screen w-full bg-[#010409] flex">
       {/* Left Section */}
-      <div className="fixed left-12 p-6 text-white mt-32">
-        <h1 className="text-6xl font-bold mb-6">Alumni</h1>
+      <div className="fixed left-12 p-6 text-white mt-48">
+        <h1 className="text-5xl font-semibold mb-6">Alumni</h1>
         <hr className="border-t-2 border-gray-500 mb-6" />
-        <p className="text-xl mb-6">
+        <p className="text-xl mb-6 text-gray-400">
           Lorem ipsum about seniors and<br />
           superseniors Lorem ipsum about<br />
           seniors and superseniors
         </p>
-        <h2 className="text-4xl mt-10">Domains of our Alumni</h2>
+        <h2 className="text-3xl mt-10">Domains of our Alumni</h2>
 
         {/* Single Rectangle Divided into Unequal Parts with Rounded Corners and Gaps Between */}
-        <div className="mt-5 w-[110%] max-w-4xl h-3 bg-gray-800 flex rounded-lg overflow-hidden gap-x-2 relative">
+        <div className="mt-4 w-[110%] max-w-4xl h-3 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1 relative">
           <div className="flex-[5] bg-[#F5502A]"></div>
           <div className="flex-[4] bg-[#6541B2]"></div>
           <div className="flex-[3] bg-[#FFB249]"></div>
@@ -48,7 +48,7 @@ const AlumniPage = () => {
       </div>
 
       {/* Right Section - Rectangular Box with invisible scrollbar */}
-      <div className="fixed right-12 top-32 my-6 w-[65%] h-[calc(80vh-3rem)] border-4 border-gray-700 rounded-lg bg-[#010409] overflow-hidden">
+      <div className="fixed right-12 top-40 my-6 w-[65%] h-[calc(80vh-3rem)] border-4 border-gray-700 rounded-lg bg-[#010409] overflow-hidden">
         <div className="h-full overflow-y-auto scrollbar-hide">
           {[...Array(7)].map((_, index) => (
             <div
@@ -67,15 +67,31 @@ const AlumniPage = () => {
                 </div>
 
                 {/* Instagram Icon on the right */}
-                <FaInstagram className="w-8 h-8 text-white cursor-pointer" />
                 <img
-                    alt="Placeholder"
-                    src="/git.webp"
-                    className="w-8 h-8 rounded-full ml-4"
+                    alt="Instagram"
+                    src="/insta.webp"
+                    className="w-8 h-8 ml-4 mt-5"
                   />
-                  <FaFacebook className="w-8 h-8 text-white cursor-pointer ml-4" />
-                  <FaLinkedin className="w-8 h-8 text-white cursor-pointer ml-4" />
-                  <FaXTwitter className="w-8 h-8 text-white cursor-pointer ml-4" />
+                <img
+                    alt="Github"
+                    src="/github.webp"
+                    className="w-8 h-8 ml-4 mt-5"
+                  />
+                  <img
+                    alt="Github"
+                    src="/facebook.webp"
+                    className="w-8 h-8 ml-4 mt-5"
+                  />
+                  <img
+                    alt="Github"
+                    src="/linkedIn.webp"
+                    className="w-8 h-8 ml-4 mt-5"
+                  />
+                  <img
+                    alt="Github"
+                    src="/twitter.webp"
+                    className="w-8 h-8 ml-4 mt-5"
+                  />
               </div>
               
             </div>
