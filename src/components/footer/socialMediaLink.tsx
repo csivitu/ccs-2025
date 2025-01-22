@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import Logo from "@/app/domains/assets/designLogo.svg";
 
 export default function SocialMediaLink({
-  name = "test",
-  href = "https://github.com/csivitu/ccs-2025/tree/dev",
-  icon = Logo,
+  name,
+  href,
+  icon,
 }: {
   name: string;
   href: string;
