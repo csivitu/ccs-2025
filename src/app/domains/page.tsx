@@ -2,11 +2,11 @@ import Image from "next/image";
 import DomainCard from "@/components/domain-page/domainCard";
 
 import { domainCardProps } from "@/types/domain-card-props";
-import techLogo from "@/app/domains/assets/techLogo.svg";
-import designLogo from "@/app/domains/assets/designLogo.svg";
-import videoLogo from "@/app/domains/assets/videoLogo.svg";
-import managementLogo from "@/app/domains/assets/managementLogo.svg";
-import csiLogo from "@/app/domains/assets/csiLogoOnDark.svg";
+import techLogo from "public/logos/techLogo.svg";
+import designLogo from "public/logos/designLogo.svg";
+import videoLogo from "public/logos/videoLogo.svg";
+import managementLogo from "public/logos/managementLogo.svg";
+import csiLogo from "public/logos/csiLogoOnDark.svg";
 import Footer from "@/components/footer/footer";
 
 const content: domainCardProps[] = [

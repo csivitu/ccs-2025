@@ -1,8 +1,8 @@
 import SocialMediaLink from "./socialMediaLink";
-import githubLogo from "@/app/domains/assets/gitHubLogo.svg";
-import linkedInLogo from "@/app/domains/assets/linkedinLogo.svg";
-import instagramLogo from "@/app/domains/assets/instagramLogo.svg";
-import xLogo from "@/app/domains/assets/xLogo.svg";
+import githubLogo from "public/logos/gitHubLogo.svg";
+import linkedInLogo from "public/logos/linkedinLogo.svg";
+import instagramLogo from "public/logos/instagramLogo.svg";
+import xLogo from "public/logos/xLogo.svg";
 
 export default function Footer() {
   return (
