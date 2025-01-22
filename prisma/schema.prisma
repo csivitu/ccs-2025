@@ -35,7 +35,7 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  access_token      String? @db.Text
+  accessToken       String? @db.Text
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -81,14 +81,14 @@ model CcsUser {
   taskId          String?
   taskSubmissions TaskSubmission[]
   portfolio       Portfolio[]
-  checked         Checked?          @relation(map: "Checked_CcsUser_fkey")
+  checked         Checked?          @relation(map: "CheckedCcsUserFkey")
   checkedId       String?           @unique
-  isChecking      IsChecking?       @relation(map: "IsChecking_CcsUser_fkey")
+  isChecking      IsChecking?       @relation(map: "IsCheckingCcsUserFkey")
   isCheckingId    String?           @unique
   checkedBy       String[]
-  emailR2         EmailR2?          @relation(fields: [emailR2Id], references: [id], onDelete: Cascade, map: "EmailR2_CcsUser_fkey")
+  emailR2         EmailR2?          @relation(fields: [emailR2Id], references: [id], onDelete: Cascade, map: "EmailR2CcsUserFkey")
   emailR2Id       String?           @unique
-  QuestionAttempt QuestionAttempt[]
+  questionAttempt QuestionAttempt[]
 
   @@index([username])
 }
@@ -101,12 +101,12 @@ model QuestionAttempt {
 
   question            Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   ccsUser             CcsUser  @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  techAttempted       CcsUser? @relation("TechAttempt", fields: [ccsUserId], references: [id], map: "TechAttempt_ccsUserId_fkey")
-  managementAttempted CcsUser? @relation("ManagementAttempt", fields: [ccsUserId], references: [id], map: "ManagementAttempt_ccsUserId_fkey")
-  designAttempted     CcsUser? @relation("DesignAttempt", fields: [ccsUserId], references: [id], map: "DesignAttempt_ccsUserId_fkey")
-  videoAttempted      CcsUser? @relation("VideoAttempt", fields: [ccsUserId], references: [id], map: "VideoAttempt_ccsUserId_fkey")
+  techAttempted       CcsUser? @relation("TechAttempt", fields: [ccsUserId], references: [id], map: "TechAttemptCcsUserIdFkey")
+  managementAttempted CcsUser? @relation("ManagementAttempt", fields: [ccsUserId], references: [id], map: "ManagementAttemptCcsUserIdFkey")
+  designAttempted     CcsUser? @relation("DesignAttempt", fields: [ccsUserId], references: [id], map: "DesignAttemptCcsUserIdFkey")
+  videoAttempted      CcsUser? @relation("VideoAttempt", fields: [ccsUserId], references: [id], map: "VideoAttemptCcsUserIdFkey")
 
-  CcsUser CcsUser[] @relation("QuestionAttempt")
+  ccsUsersWhoAttempted CcsUser[] @relation("QuestionAttempt")
 }
 
 model Question {
@@ -143,7 +143,7 @@ model Comment {
 
 model TaskSubmission {
   id        String    @id @default(cuid())
-  subdomain SubDomain
+  subDomain SubDomain
   task      String
   ccsUserId String
 
@@ -160,11 +160,11 @@ model Portfolio {
 }
 
 enum Gender {
-  M
-  F
-  NB
-  O
-  P
+  MALE
+  FEMALE
+  NON_BINARY
+  OTHER
+  PREFER_NOT_TO_SAY
 }
 
 enum Round {
@@ -175,27 +175,27 @@ enum Round {
 }
 
 enum Difficulty {
-  Easy
-  Medium
-  Hard
+  EASY
+  MEDIUM
+  HARD
 }
 
 enum DomainType {
-  tech
-  design
-  management
-  video
+  TECH
+  DESIGN
+  MANAGEMENT
+  VIDEO
 }
 
 enum PortfolioCategory {
-  tech
-  design
-  management
-  video
-  github
-  linkedin
-  instagram
-  spotify
+  TECH
+  DESIGN
+  MANAGEMENT
+  VIDEO
+  GITHUB
+  LINKEDIN
+  INSTAGRAM
+  SPOTIFY
 }
 
 model Domain {
@@ -248,12 +248,12 @@ model EmailR2 {
 }
 
 enum SubDomain {
-  WebDev
-  AppDev
+  WEB_DEV
+  APP_DEV
   ML
-  CyberSec
-  UIUX
-  Graphic
-  IoT
-  GenProg
+  CYBER_SEC
+  UI_UX
+  GRAPHIC
+  IOT
+  GEN_PROG
 }
