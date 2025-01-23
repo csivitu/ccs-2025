@@ -9,7 +9,7 @@ const inter = Inter({
 })
 
 // src/app/layout.tsx
-import { AuthProvider } from "@/components/AuthProvider";
+import { AuthProvider } from "@/components/authProvider";
 
 export default function RootLayout({
   children,

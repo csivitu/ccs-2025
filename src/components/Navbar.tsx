@@ -6,33 +6,28 @@ import { LuTable2 } from "react-icons/lu";
 import { FaRegStar } from "react-icons/fa";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(""); // State to track the selected link
+  const [activeLink, setActiveLink] = useState("");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-black text-white py-4 px-6 z-50">
-      <div className="container mx-auto flex flex-col">
-        {/* Top row with Logo and Navigation */}
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-8">
+      <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
-          {/* Left side - Logo with Image and Text */}
           <div className="flex items-center space-x-2">
             <img src="/git.webp" alt="Logo" className="h-12 w-auto" />
             <span className="text-3xl">csivitu</span>
           </div>
-
-          {/* Right side - Home, FAQs, and Git Icon */}
-          <div className="flex items-center space-x-8">
-            <a href="#home" className="font-bold text-2xl">
+          <div className="flex items-center space-x-4">
+            <a href="#home" className="font-bold text-xl">
               Home
             </a>
-            <a href="#faqs" className="font-bold text-2xl">
+            <a href="#faqs" className="font-bold text-xl">
               FAQs
             </a>
             <img src="/giticon.webp" alt="FAQs Icon" className="h-12 w-auto" />
           </div>
         </div>
 
-        {/* Bottom row - Links */}
-        <div className="flex space-x-12 mt-3">
+        <div className="flex space-x-12 mt-6 ml-3">
           {[
             { id: "about", label: "About Us", Icon: IoBookOutline },
             { id: "projects", label: "Projects", Icon: LuTable2 },
@@ -42,20 +37,21 @@ const Navbar = () => {
             <div key={item.id} className="relative">
               <a
                 href={`#${item.id}`}
-                className={`text-xl flex items-center space-x-2 ${
+                className={`text-lg flex items-center space-x-2 ${
                   activeLink === item.id
-                    ? "text-white"
-                    : "text-white hover:text-white transition-colors"
+                    ? "text-[#C9D1D9]"
+                    : "text-[#C9D1D9] hover:text-white transition-colors"
                 }`}
                 onClick={() => setActiveLink(item.id)}
               >
                 <item.Icon
-                  size={28} /* Increased icon size */
+                  size={28}
                   color={
                     activeLink === item.id
                       ? "rgba(139, 148, 158, 1)"
                       : "rgba(139, 148, 158, 1)"
                   }
+                  className="mr-2" // Added margin-right to the icon
                 />
                 <span className="relative">
                   {item.label}
@@ -71,10 +67,8 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-
-        {/* Gray horizontal lines at the bottom, shifted to the left */}
-        <div className="mt-5 h-0.5 w-[109.5%] ml-[-4.75%] bg-gray-800" />
-        <div className="mt-1 h-0.5 w-[109.5%] ml-[-4.75%] bg-gray-800" />
+        <div className="mt-2 h-0.5 w-full bg-gray-800" />
+        <div className="mt-1 h-0.5 w-full bg-gray-800" />
       </div>
     </nav>
   );
