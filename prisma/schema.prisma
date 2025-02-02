@@ -7,28 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id                     String    @id @default(cuid())
-  name                   String
-  username               String    @unique
-  email                  String    @unique
-  phone                  String
-  password               String
-  regNo                  String?   @unique
-  gender                 Gender
-  emailVerificationToken String
-  verificationStatus     Boolean   @default(false)
-  passwordResetToken     String?
-  scope                  String[]
-  createdAt              DateTime  @default(now())
-  updatedAt              DateTime  @updatedAt
-  accounts               Account[]
-  sessions               Session[]
-  ccsUser                CcsUser?
-
-  @@index([email, username])
-}
-
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -54,109 +32,113 @@ model Session {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model CcsUser {
-  id          String    @id @default(cuid())
-  username    String    @unique
-  userId      String    @unique
-  description String?
-  startTime   DateTime?
-  endTime     DateTime?
+model User {
+  id String @id @default(cuid())
 
-  user            User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  techRound       Round @default(ONE)
-  managementRound Round @default(ONE)
-  designRound     Round @default(ONE)
-  videoRound      Round @default(ONE)
+  // Provided by Google OAuth
+  name  String
+  email String @unique
 
-  domainsAttempted    Domain[]
-  techAttempted       QuestionAttempt[] @relation("TechAttempt")
-  managementAttempted QuestionAttempt[] @relation("ManagementAttempt")
-  designAttempted     QuestionAttempt[] @relation("DesignAttempt")
-  videoAttempted      QuestionAttempt[] @relation("VideoAttempt")
-  questionAttempts    QuestionAttempt[] @relation("QuestionAttempt")
+  // Additional details to ask
+  phoneNumber String @unique
+  gender      Gender
+  aboutUs     String
 
-  comments        Comment[]
-  marks           Marks?
-  taskAssigned    Task?             @relation(fields: [taskId], references: [id], onDelete: Cascade)
-  taskId          String?
-  taskSubmissions TaskSubmission[]
-  portfolio       Portfolio[]
-  checked         Checked?          @relation(map: "CheckedCcsUserFkey")
-  checkedId       String?           @unique
-  isChecking      IsChecking?       @relation(map: "IsCheckingCcsUserFkey")
-  isCheckingId    String?           @unique
-  checkedBy       String[]
-  emailR2         EmailR2?          @relation(fields: [emailR2Id], references: [id], onDelete: Cascade, map: "EmailR2CcsUserFkey")
-  emailR2Id       String?           @unique
-  questionAttempt QuestionAttempt[]
+  attemptedDomains   AttemptedDomain[]
+  attemptedQuestions AttempedQuestion[]
+  attemptedTasks     AttemptedTask[]
 
-  @@index([username])
+  portfolios Portfolio[]
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model QuestionAttempt {
-  id         String  @id @default(cuid())
-  questionId String
-  ccsUserId  String
+model AttempedQuestion {
+  id String @id @default(cuid())
+
   answer     String?
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
-  question            Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  ccsUser             CcsUser  @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  techAttempted       CcsUser? @relation("TechAttempt", fields: [ccsUserId], references: [id], map: "TechAttemptCcsUserIdFkey")
-  managementAttempted CcsUser? @relation("ManagementAttempt", fields: [ccsUserId], references: [id], map: "ManagementAttemptCcsUserIdFkey")
-  designAttempted     CcsUser? @relation("DesignAttempt", fields: [ccsUserId], references: [id], map: "DesignAttemptCcsUserIdFkey")
-  videoAttempted      CcsUser? @relation("VideoAttempt", fields: [ccsUserId], references: [id], map: "VideoAttemptCcsUserIdFkey")
+  ccsUserId String
+  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
 
-  ccsUsersWhoAttempted CcsUser[] @relation("QuestionAttempt")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Question {
-  id         String            @id @default(cuid())
-  quesId     Int               @unique
-  text       String
-  images     String[]
-  links      String[]
-  difficulty Difficulty
+  id String @id @default(cuid())
+
+  question String
+
+  images String[]
+  links  String[]
+
+  difficulty QuestionDifficulty
   domain     DomainType
-  attempts   QuestionAttempt[]
+
+  attempts AttempedQuestion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Task {
-  id         String     @id @default(cuid())
-  taskId     Int        @unique
-  text       String
-  images     String[]
-  links      String[]
-  domain     DomainType
-  subDomain  SubDomain
-  assignedTo CcsUser[]
-}
+  id String @id @default(cuid())
 
-model Comment {
-  id        String     @id @default(cuid())
-  author    String
-  text      String
+  title       String
+  description String
+
+  images String[]
+  links  String[]
+
   domain    DomainType
-  ccsUserId String
+  subDomain SubDomain
 
-  ccsUser CcsUser @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model TaskSubmission {
+model AttemptedTask {
   id        String    @id @default(cuid())
   subDomain SubDomain
   task      String
   ccsUserId String
 
-  ccsUser CcsUser @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  ccsUser User @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Portfolio {
-  id        String            @id @default(cuid())
-  category  PortfolioCategory
-  link      String
+  id       String            @id @default(cuid())
+  category PortfolioCategory
+  link     String
+
+  ccsUserId String
+  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttemptedDomain {
+  id     String     @id @default(cuid())
+  domain DomainType
+
+  submitted Boolean @default(false)
+
+  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
   ccsUserId String
 
-  ccsUser CcsUser @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Gender {
@@ -167,14 +149,7 @@ enum Gender {
   PREFER_NOT_TO_SAY
 }
 
-enum Round {
-  ZERO
-  ONE
-  TWO
-  THREE
-}
-
-enum Difficulty {
+enum QuestionDifficulty {
   EASY
   MEDIUM
   HARD
@@ -198,62 +173,14 @@ enum PortfolioCategory {
   SPOTIFY
 }
 
-model Domain {
-  id        String     @id @default(cuid())
-  domain    DomainType
-  endTime   DateTime?
-  submitted Boolean    @default(false)
-  ccsUser   CcsUser    @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  ccsUserId String
-}
-
-model Marks {
-  id         String  @id @default(cuid())
-  tech       Float?
-  management Float?
-  design     Float?
-  video      Float?
-  ccsUser    CcsUser @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  ccsUserId  String  @unique
-}
-
-model Checked {
-  id         String   @id @default(cuid())
-  tech       Boolean  @default(false)
-  management Boolean  @default(false)
-  design     Boolean  @default(false)
-  video      Boolean  @default(false)
-  ccsUser    CcsUser? @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  ccsUserId  String?  @unique
-}
-
-model IsChecking {
-  id         String   @id @default(cuid())
-  tech       Boolean  @default(false)
-  management Boolean  @default(false)
-  design     Boolean  @default(false)
-  video      Boolean  @default(false)
-  ccsUser    CcsUser? @relation(fields: [ccsUserId], references: [id])
-  ccsUserId  String?  @unique
-}
-
-model EmailR2 {
-  id         String   @id @default(cuid())
-  tech       Boolean  @default(false)
-  management Boolean  @default(false)
-  design     Boolean  @default(false)
-  video      Boolean  @default(false)
-  ccsUser    CcsUser? @relation
-  ccsUserId  String?  @unique
-}
-
 enum SubDomain {
   WEB_DEV
   APP_DEV
-  ML
-  CYBER_SEC
+  MACHINE_LEARNING
+  CYBER_SECURITY
   UI_UX
-  GRAPHIC
-  IOT
-  GEN_PROG
+  GRAPHIC_DESIGN
+  INTERNET_OF_THINGS
+  BLOCKCHAIN
+  GENERAL_PROGRAMMING
 }
