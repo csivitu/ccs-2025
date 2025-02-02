@@ -1,13 +1,14 @@
-import { PrismaClient, SubDomain } from '@prisma/client';
+import { DomainType, PrismaClient, SubDomain } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function getQuestions() {
-  if (!prisma.question) {
-    return { status: 500, error: 'Question model is not available' };
-  }
+export async function getQuestions( domain: DomainType) {
   try {
-    const questions = await prisma.question.findMany();
+    const questions = await prisma.question.findMany({
+      where: {
+        domain
+      }
+    });
     return { status: 200, data: questions };
   } catch (error: any) {
     return { status: 500, error: error.message };
@@ -15,9 +16,6 @@ export async function getQuestions() {
 }
 
 export async function getQuestion(id: string) {
-  if (!prisma.question) {
-    return { status: 500, error: 'Question model is not available' };
-  }
   if (!id || id.trim() === '') {
     return { status: 400, error: 'Question ID is required' };
   }
@@ -34,9 +32,6 @@ export async function getQuestion(id: string) {
 }
 
 export async function submitQuestion(data: { questionId: string; ccsUserId: string; answer: string }) {
-  if (!prisma.question) {
-    return { status: 500, error: 'Question model is not available' };
-  }
   const missingFields = [];
   if (!data.questionId || data.questionId.trim() === '') missingFields.push('questionId');
   if (!data.ccsUserId || data.ccsUserId.trim() === '') missingFields.push('ccsUserId');
@@ -63,9 +58,6 @@ export async function submitQuestion(data: { questionId: string; ccsUserId: stri
 }
 
 export async function submitTask(data: { ccsUserId: string; task: string; subdomain: SubDomain }) {
-  if (!prisma.question) {
-    return { status: 500, error: 'Question model is not available' };
-  }
   const missingFields = [];
   if (!data.ccsUserId || data.ccsUserId.trim() == '') missingFields.push('ccsUserId');
   if (!data.task || data.task.trim()== '') missingFields.push('task');
