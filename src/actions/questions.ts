@@ -25,7 +25,7 @@ export async function getQuestion(id: string) {
   try {
     const question = await prisma.question.findUnique({
       where: {
-        quesId: parseInt(id),
+        id: id,
       },
     });
     return { status: 200, data: question };
@@ -43,15 +43,15 @@ export async function submitQuestion(data: { questionId: string; ccsUserId: stri
     return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
   }
   try {
-    const question = await prisma.question.findUnique({ where: { quesId: parseInt(data.questionId) } });
+    const question = await prisma.question.findUnique({ where: { id: data.questionId } });
     if (!question) {
       return { status: 404, error: 'Question not found' };
     }
-    const attempt = await prisma.questionAttempt.findUnique({ where: { questionId_ccsUserId: { questionId: data.questionId, ccsUserId: data.ccsUserId } } });
+    const attempt = await prisma.attempedQuestion.findUnique({ where: { questionId_ccsUserId: { questionId: data.questionId, ccsUserId: data.ccsUserId } } });
     if (attempt) {
       return { status: 409, error: 'Attempt already exists' };
     }
-    const questionAttempt = await prisma.questionAttempt.create({
+    const questionAttempt = await prisma.attempedQuestion.create({
       data,
     });
     return { status: 201, data: questionAttempt };
@@ -60,16 +60,16 @@ export async function submitQuestion(data: { questionId: string; ccsUserId: stri
   }
 }
 
-export async function submitTask(data: { ccsUserId: string; task: string; subdomain: SubDomain }) {
+export async function submitTask(data: { ccsUserId: string; task: string; subDomain: SubDomain }) {
   const missingFields = [];
   if (!data.ccsUserId || data.ccsUserId.trim() == '') missingFields.push('ccsUserId');
   if (!data.task || data.task.trim()== '') missingFields.push('task');
-  if (!data.subdomain || data.subdomain.trim()== '') missingFields.push('subdomain');
+  if (!data.subDomain || data.subDomain.trim()== '') missingFields.push('subDomain');
   if (missingFields.length > 0) {
     return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
   }
   try {
-    const taskSubmission = await prisma.taskSubmission.create({
+    const taskSubmission = await prisma.attemptedTask.create({
       data,
     });
     return { status: 201, data: taskSubmission };
