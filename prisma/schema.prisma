@@ -64,8 +64,8 @@ model AttempedQuestion {
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
-  ccsUserId String
-  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -107,10 +107,10 @@ model Task {
 model AttemptedTask {
   id        String    @id @default(cuid())
   subDomain SubDomain
-  task      String
-  ccsUserId String
+  task      String[]
+  userId String
 
-  ccsUser User @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -121,8 +121,8 @@ model Portfolio {
   category PortfolioCategory
   link     String
 
-  ccsUserId String
-  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,8 +134,8 @@ model AttemptedDomain {
 
   submitted Boolean @default(false)
 
-  ccsUser   User   @relation(fields: [ccsUserId], references: [id], onDelete: Cascade)
-  ccsUserId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
