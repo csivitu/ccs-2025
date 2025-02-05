@@ -2,7 +2,10 @@ import { DomainType, PrismaClient, SubDomain } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function getQuestions( domain: DomainType) {
+export async function getQuestionsByDomain(domain: DomainType) {
+  if (!domain || domain.trim() === '') {
+    return { status: 400, error: 'Domain is required' };
+  }
   try {
     const questions = await prisma.question.findMany({
       where: {
