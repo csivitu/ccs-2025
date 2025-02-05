@@ -9,7 +9,7 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-8">
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-8 border-b-[1px] border-slate-600 sticky">
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -67,8 +67,8 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-        <div className="mt-2 h-0.5 w-full bg-gray-800" />
-        <div className="mt-1 h-0.5 w-full bg-gray-800" />
+        {/* <div className="mt-2 h-0.5 w-full bg-gray-800" /> */}
+        {/* <div className="mt-1 h-0.5 w-full bg-gray-800" /> */}
       </div>
     </nav>
   );
