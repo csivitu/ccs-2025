@@ -1,3 +1,5 @@
 node_modules
 .next
 .env
+src/.DS_Store
+src/app/.DS_Store
