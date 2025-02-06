@@ -1,11 +1,10 @@
-import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
+import { auth } from "../(auth)/auth";
 export default async function ProtectedPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
-  if (!session) {
-    redirect("/api/auth/signin");
+  if (!session?.user) {
+    redirect("/unprotected");
   }
   return (
     <div>
