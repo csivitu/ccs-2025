@@ -80,3 +80,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.gradient-icon {
+  background: linear-gradient(271.72deg, #A2FACF 7.09%, #64ACFF 96.61%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
