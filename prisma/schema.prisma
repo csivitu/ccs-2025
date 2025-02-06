@@ -38,6 +38,7 @@ model User {
   // Provided by Google OAuth
   name  String
   email String @unique
+  emailVerified DateTime?
 
   // Additional details to ask
   phoneNumber String @unique
