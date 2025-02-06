@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { IoBookOutline, IoCubeOutline } from "react-icons/io5";
-import { LuTable2 } from "react-icons/lu";
-import { FaRegStar } from "react-icons/fa";
-
 import Image from "next/image";
+import React, { useState } from "react";
+import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg"
+import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg"
+import LuTable from "public/logos/navbar-logos/LuTable.svg"
+import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg"
+
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
@@ -25,20 +26,20 @@ const Navbar = () => {
             <span className="text-2xl text-center px-2">csivitu</span>
           </div>
           <div className="flex items-center space-x-4">
-            <a href="#home" className="font-bold text-xl">
+            <a href="#home" className="font-semibold text-xl">
               Home
             </a>
-            <a href="#faqs" className="font-bold text-xl">
+            <a href="#faqs" className="font-semibold text-xl">
               FAQs
             </a>
             <Image src="/giticon.webp" width={50} height={50} alt="FAQs Icon" className="h-8 w-auto" />
           </div>
         </div>
 
-        <div className="flex space-x-12 mt-6 ml-3">
+        <div className="flex space-x-12 mt-6">
           {[
             { id: "about", label: "About Us", Icon: IoBookOutline },
-            { id: "projects", label: "Projects", Icon: LuTable2 },
+            { id: "projects", label: "Projects", Icon: LuTable },
             { id: "domains", label: "Domains", Icon: IoCubeOutline },
             { id: "alumni", label: "Alumni", Icon: FaRegStar },
           ].map((item) => (
@@ -52,14 +53,16 @@ const Navbar = () => {
                 }`}
                 onClick={() => setActiveLink(item.id)}
               >
-                <item.Icon
-                  size={22}
+                <Image
+                  src={item.Icon}
+                  alt={item.id}
+                  style={{ width: "1.25em", height: "1.25em" }}
                   color={
                     activeLink === item.id
                       ? "rgba(139, 148, 158, 1)"
                       : "rgba(139, 148, 158, 1)"
                   }
-                  className="mr-2" // Added margin-right to the icon
+                  className="mr-1" // Added margin-right to the icon
                 />
                 <span className="relative">
                   {item.label}
