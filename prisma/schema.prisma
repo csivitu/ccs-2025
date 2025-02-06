@@ -62,7 +62,7 @@ model AttempedQuestion {
 
   answer     String?
 
-  @@unique([questionId, ccsUserId])
+  @@unique([questionId, userId])
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 

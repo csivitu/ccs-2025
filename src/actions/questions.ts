@@ -1,4 +1,4 @@
-import { DomainType, PrismaClient, SubDomain } from '@prisma/client';
+import { DomainType, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -18,7 +18,7 @@ export async function getQuestionsByDomain(domain: DomainType) {
   }
 }
 
-export async function getQuestion(id: string) {
+export async function getQuestionById(id: string) {
   if (!id || id.trim() === '') {
     return { status: 400, error: 'Question ID is required' };
   }
@@ -34,10 +34,10 @@ export async function getQuestion(id: string) {
   }
 }
 
-export async function submitQuestion(data: { questionId: string; ccsUserId: string; answer: string }) {
+export async function submitQuestion(data: { questionId: string; userId: string; answer: string }) {
   const missingFields = [];
   if (!data.questionId || data.questionId.trim() === '') missingFields.push('questionId');
-  if (!data.ccsUserId || data.ccsUserId.trim() === '') missingFields.push('ccsUserId');
+  if (!data.userId || data.userId.trim() === '') missingFields.push('UserId');
   if (!data.answer || data.answer.trim() === '') missingFields.push('answer');
   if (missingFields.length > 0) {
     return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
@@ -47,7 +47,7 @@ export async function submitQuestion(data: { questionId: string; ccsUserId: stri
     if (!question) {
       return { status: 404, error: 'Question not found' };
     }
-    const attempt = await prisma.attempedQuestion.findUnique({ where: { questionId_ccsUserId: { questionId: data.questionId, ccsUserId: data.ccsUserId } } });
+    const attempt = await prisma.attempedQuestion.findUnique({ where: { questionId_userId: { questionId: data.questionId, userId: data.userId } } });
     if (attempt) {
       return { status: 409, error: 'Attempt already exists' };
     }
@@ -55,24 +55,6 @@ export async function submitQuestion(data: { questionId: string; ccsUserId: stri
       data,
     });
     return { status: 201, data: questionAttempt };
-  } catch (error: any) {
-    return { status: 500, error: error.message };
-  }
-}
-
-export async function submitTask(data: { ccsUserId: string; task: string; subDomain: SubDomain }) {
-  const missingFields = [];
-  if (!data.ccsUserId || data.ccsUserId.trim() == '') missingFields.push('ccsUserId');
-  if (!data.task || data.task.trim()== '') missingFields.push('task');
-  if (!data.subDomain || data.subDomain.trim()== '') missingFields.push('subDomain');
-  if (missingFields.length > 0) {
-    return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
-  }
-  try {
-    const taskSubmission = await prisma.attemptedTask.create({
-      data,
-    });
-    return { status: 201, data: taskSubmission };
   } catch (error: any) {
     return { status: 500, error: error.message };
   }
