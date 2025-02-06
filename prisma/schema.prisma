@@ -13,7 +13,13 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  accessToken       String? @db.Text
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -21,15 +27,10 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  userId       String
   sessionToken String   @unique
+  userId       String
   expires      DateTime
-  valid        Boolean  @default(true)
-  userAgent    String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -38,11 +39,13 @@ model User {
   // Provided by Google OAuth
   name  String
   email String @unique
+  emailVerified DateTime?
+  image String?
 
   // Additional details to ask
-  phoneNumber String @unique
-  gender      Gender
-  aboutUs     String
+  phoneNumber String? @unique
+  gender      Gender?
+  aboutUs     String?
 
   attemptedDomains   AttemptedDomain[]
   attemptedQuestions AttempedQuestion[]
