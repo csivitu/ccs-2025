@@ -15,3 +15,5 @@ const faq: FAQ[] = [
     { question: "What are your business hours?", answer: "Our support team is available from 9 AM to 6 PM, Monday to Friday." },
     { question: "Do you provide warranty on your products?", answer: "Yes, all our products come with a 1-year warranty against manufacturing defects." }
 ];
+
+export default faq;
