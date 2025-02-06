@@ -22,7 +22,7 @@ const FAQ = () => {
           Contact Us
         </button>
         <div className="w-full max-w-4xl">
-          {faqData.map((item, index) => (
+          {faq.map((item, index) => (
             <div key={index} className="border-b border-gray-700">
               <button
                 className="w-full py-4 px-6 flex items-center text-xl font-semibold focus:outline-none"
