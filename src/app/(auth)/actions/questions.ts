@@ -1,92 +1,89 @@
 import { DomainType, PrismaClient } from '@prisma/client';
 import { handlePrismaError } from '@/helpers/prismaerror';
+import {z} from 'zod'
+import { error } from 'console';
 const prisma = new PrismaClient();
 
+const handlerequest=async<T>(operation:()=>Promise<T>)=>
+{
+  try{
+    return{status:200,data:await operation()}
+  }
+  catch(error){
+    return handlePrismaError(error)
+  }
+}
+const domainSchema=z.string().min(1,"domain is required") as unknown as z.ZodType<DomainType>;
+const questionIdSchema=z.string().min(1,"Question Id is required");
+const userIdSchema = z.string().min(1, "User ID is required");
+const answerSchema = z.string().min(1, "Answer is required");
+const submitSchema=z.object({
+  questionId:questionIdSchema,
+  userId:userIdSchema,
+  answer:answerSchema,
+});
+
 export async function getQuestionsByDomain(domain: DomainType) {
-  if (!domain || domain.trim() === '') {
-    return { status: 400, error: 'Domain is required' };
+  const parsed=questionIdSchema.safeParse(domain);
+  if (!parsed.success) {
+    return { status: 400, error: parsed.error.format() };
   }
-  try {
-    const questions = await prisma.question.findMany({
-      where: {
-        domain
-      }
-    });
-    return { status: 200, data: questions };
-  } catch (error) {
-    throw(handlePrismaError(error))
-  }
+
+  return handlerequest(() => prisma.question.findMany({ where: { domain } }));
+  
 }
 
 export async function getQuestionById(id: string) {
-  if (!id || id.trim() === '') {
-    return { status: 400, error: 'Question ID is required' };
-  }
-  try {
-    const question = await prisma.question.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    if(!question) throw new Error("Question not found");
-    return { status: 200, data: question };
-  } catch (error) {
-    console.error("Error fetching question:",error);
-    throw (handlePrismaError(error));
-  }
+  const parsed=questionIdSchema.safeParse(id);
+  if(!parsed.success)
+    return {status:400, error: parsed.error.format()};
+  return handlerequest(async()=>{
+    const question=await prisma.question.findUnique({where:{id}})
+    if(!question)
+      throw new Error("Question not found")
+    return question;
+  });
 }
 
 export async function submitQuestion(data: { questionId: string; userId: string; answer: string }) {
-  const missingFields = [];
-  if (!data.questionId || data.questionId.trim() === '') missingFields.push('questionId');
-  if (!data.userId || data.userId.trim() === '') missingFields.push('UserId');
-  if (!data.answer || data.answer.trim() === '') missingFields.push('answer');
-  if (missingFields.length > 0) {
-    return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
-  }
-  try {
-    const question = await prisma.question.findUnique({ where: { id: data.questionId } });
-    if (!question) {
-      return { status: 404, error: 'Question not found' };
-    }
-    const attempt = await prisma.attempedQuestion.findUnique({ where: { questionId_userId: { questionId: data.questionId, userId: data.userId } } });
-    if (attempt) {
-      return { status: 409, error: 'Attempt already exists' };
-    }
-    const questionAttempt = await prisma.attempedQuestion.create({
-      data,
-    });
-    return { status: 201, data: questionAttempt };
-  } catch (error) {
-    throw (handlePrismaError(error));
-  }
+  const parsed=submitSchema.safeParse(data);
+  if(!parsed.success)
+    return{status:400, error:parsed.error.format()};
+  return handlerequest(async()=>{
+    const [question,attempt]=await Promise.all([
+      prisma.question.findUnique({ where: { id: data.questionId } }),
+      prisma.attempedQuestion.findUnique({
+        where: { questionId_userId: { questionId: data.questionId, userId: data.userId } },
+      }),
+    ]);
+    if (!question) throw new Error('Question not found');
+    if (attempt) throw new Error('Attempt already exists');
+    return prisma.attempedQuestion.create({ data });
+  });
 }
 
 export function autoSaveAnswer(userId: string, questionId: string, answer: string) {
-  setTimeout(async () => {
-      try {
-          await prisma.attempedQuestion.upsert({
-              where: { questionId_userId: { questionId, userId } },
-              update: { answer },
-              create: { questionId, userId, answer },
-          });
-      } catch (error) {
-          console.error("Error auto-saving answer:", error);
-      }
+  setTimeout(() => {
+    handlerequest(() =>
+      prisma.attempedQuestion.upsert({
+        where: { questionId_userId: { questionId, userId } },
+        update: { answer },
+        create: { questionId, userId, answer },
+      })
+    );
   }, 10000);
-}
+};
 
 export async function verifyUserSession(userId: string)
 {
-  try{
-    const session=await prisma.session.findFirst({where:{userId}})
-    if(!session) throw new Error ("Session not found");
-    return session;
+const parsed = userIdSchema.safeParse(userId);
+  if (!parsed.success) {
+    return { status: 400, error: parsed.error.format() };
+  }
 
-  }
-  catch(error)
-  {
-    console.error("Error Verifying session",error);
-    throw (handlePrismaError(error));
-  }
-}
+  return handlerequest(async () => {
+    const session = await prisma.session.findFirst({ where: { userId } });
+    if (!session) throw new Error("Session not found");
+    return session;
+  });
+};
