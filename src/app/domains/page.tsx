@@ -8,6 +8,7 @@ import videoLogo from "public/logos/videoLogo.svg";
 import managementLogo from "public/logos/managementLogo.svg";
 import csiLogo from "public/logos/csiLogoOnDark.svg";
 import Footer from "@/components/footer/footer";
+import Navbar from "@/components/Navbar";
 
 const content: domainCardProps[] = [
   {
@@ -42,10 +43,9 @@ const content: domainCardProps[] = [
 
 export default function DomainsPage() {
   return (
+
     <div className="bg-[#0D1117] min-w-full">
-      <div className="flex flex-row min-h-full justify-center">
-        NavBar Comes Here
-      </div>
+      <Navbar/>
 
       <div className="flex flex-col items-center gap-2 my-12 mx-4 text-center">
         <Image
@@ -55,7 +55,7 @@ export default function DomainsPage() {
           height={92}
           className="md:pb-8 pb-4"
         />
-        <h1 className="md:text-3xl text-xl font-semibold ">
+        <h1 className="md:text-2xl text-xl font-semibold ">
           Welcome to CSI! Let's get started.
         </h1>
         <p className="text-slate-500 md:text-xl text-md mb-6">
