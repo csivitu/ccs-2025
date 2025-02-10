@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface domainCardProps {
   domainName: string;
   domainIcon: StaticImageData;
