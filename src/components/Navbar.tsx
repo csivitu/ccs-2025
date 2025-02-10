@@ -1,57 +1,68 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
-import { IoBookOutline, IoCubeOutline } from "react-icons/io5";
-import { LuTable2 } from "react-icons/lu";
-import { FaRegStar } from "react-icons/fa";
+import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg"
+import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg"
+import LuTable from "public/logos/navbar-logos/LuTable.svg"
+import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg"
+
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-8">
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-8 border-b-[1px] border-slate-600 sticky">
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <img src="/git.webp" alt="Logo" className="h-12 w-auto" />
-            <span className="text-3xl">csivitu</span>
+            <Image
+              src="/git.webp"
+              width={25}
+              height={25}
+              alt="Logo"
+              className="h-8 w-auto"
+            />
+            <span className="text-2xl text-center px-2">csivitu</span>
           </div>
           <div className="flex items-center space-x-4">
-            <a href="#home" className="font-bold text-xl">
+            <a href="#home" className="font-semibold text-xl">
               Home
             </a>
-            <a href="#faqs" className="font-bold text-xl">
+            <a href="#faqs" className="font-semibold text-xl">
               FAQs
             </a>
-            <img src="/giticon.webp" alt="FAQs Icon" className="h-12 w-auto" />
+            <Image src="/giticon.webp" width={50} height={50} alt="FAQs Icon" className="h-8 w-auto" />
           </div>
         </div>
 
-        <div className="flex space-x-12 mt-6 ml-3">
+        <div className="flex space-x-12 mt-6">
           {[
             { id: "about", label: "About Us", Icon: IoBookOutline },
-            { id: "projects", label: "Projects", Icon: LuTable2 },
+            { id: "projects", label: "Projects", Icon: LuTable },
             { id: "domains", label: "Domains", Icon: IoCubeOutline },
             { id: "alumni", label: "Alumni", Icon: FaRegStar },
           ].map((item) => (
             <div key={item.id} className="relative">
               <a
                 href={`#${item.id}`}
-                className={`text-lg flex items-center space-x-2 ${
+                className={`text-md flex items-center space-x-2 ${
                   activeLink === item.id
                     ? "text-[#C9D1D9]"
                     : "text-[#C9D1D9] hover:text-white transition-colors"
                 }`}
                 onClick={() => setActiveLink(item.id)}
               >
-                <item.Icon
-                  size={28}
+                <Image
+                  src={item.Icon}
+                  alt={item.id}
+                  style={{ width: "1.25em", height: "1.25em" }}
                   color={
                     activeLink === item.id
                       ? "rgba(139, 148, 158, 1)"
                       : "rgba(139, 148, 158, 1)"
                   }
-                  className="mr-2" // Added margin-right to the icon
+                  className="mr-1" // Added margin-right to the icon
                 />
                 <span className="relative">
                   {item.label}
@@ -67,8 +78,6 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-        <div className="mt-2 h-0.5 w-full bg-gray-800" />
-        <div className="mt-1 h-0.5 w-full bg-gray-800" />
       </div>
     </nav>
   );
