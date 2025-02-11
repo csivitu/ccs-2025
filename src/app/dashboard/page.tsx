@@ -19,42 +19,48 @@ export default function Dashboard() {
     <div className="min-h-screen bg-zinc-950">
       <Navbar />
       <SidebarProvider>
-        <div className="p-4 mx-32">
+        <div className="p-4 mx-4 lg:mx-32">
           {/* Header */}
-          <div className="flex items-start gap-4 mb-4">
+          <div className="flex items-start gap-4 lg:mb-4">
             <Image
               src="/logo.png"
               alt="CSI Logo"
               width={150}
               height={150}
-              className="rounded-lg"
+              className="rounded-lg w-24 h-24 md:w-24 md:h-24 lg:w-40 lg:h-40"
             />
-            <div className="flex flex-col justify-between h-[150px]">
+            <div className="flex flex-col justify-between h-auto md:h-[90px] lg:h-[150px]">
               <div>
-                <h1 className="text-4xl font-semibold text-white">
+                <h1 className="text-2xl lg:text-4xl font-semibold text-white">
                   Computer Society of India - VIT University
                 </h1>
                 <p className="text-xl text-zinc-400">
                   When we build, it matters.
                 </p>
               </div>
-              <div className="flex items-center gap-6 text-base text-zinc-400">
+              <div className="flex flex-col lg:flex-row items-start gap-2 lg:gap-6 text-base text-zinc-400 mt-4 md:mt-0">
                 <div className="flex items-center gap-2">
                   <Users className="h-6 w-6" />
-                  <span>4.2k Followers</span>
+                  <span className="text-sm md:text-base lg:text-lg">
+                    4.2k Followers
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-6 w-6" />
-                  <span>Vellore, India</span>
+                  <span className="text-sm md:text-base lg:text-lg">
+                    Vellore, India
+                  </span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
                   <a
                     href="https://csvit.com"
                     className="hover:text-white transition-colors flex items-center gap-2"
                     aria-label="Website"
                   >
                     <Globe className="h-6 w-6" />
-                    <span>https://csvit.com</span>
+                    <span className="text-sm md:text-base lg:text-lg">
+                      https://csvit.com
+                    </span>
                   </a>
                   <a
                     href="https://github.com/csivitu"
@@ -62,7 +68,9 @@ export default function Dashboard() {
                     aria-label="GitHub"
                   >
                     <Github className="h-6 w-6" />
-                    <span>github.com/csivitu</span>
+                    <span className="text-sm md:text-base lg:text-lg">
+                      github.com/csivitu
+                    </span>
                   </a>
                   <a
                     href="mailto:outreach@csivit.com"
@@ -70,7 +78,9 @@ export default function Dashboard() {
                     aria-label="Email"
                   >
                     <Mail className="h-6 w-6" />
-                    <span>outreach@csivit.com</span>
+                    <span className="text-sm md:text-base lg:text-lg">
+                      outreach@csivit.com
+                    </span>
                   </a>
                 </div>
               </div>
@@ -79,7 +89,7 @@ export default function Dashboard() {
 
           <div className="w-full border-t border-gray-800 my-4"></div>
 
-          <div className="flex flex-col lg:flex-row lg:gap-4 text-white">
+          <div className="flex flex-col md:flex-row md:gap-4 text-white">
             <main className="flex-1 space-y-4">
               {/* Main Content */}
               <Card className="border-zinc-800 bg-zinc-900/50">
@@ -97,12 +107,12 @@ export default function Dashboard() {
                       objectFit="cover"
                     />
                   </div>
-                  <div className="prose prose-invert max-w-none px-20">
-                    <h1 className="text-4xl mt-8 font-bold text-center text-white">
+                  <div className="prose prose-invert max-w-none px-2 xl:px-20">
+                    <h1 className="text-xl md:text-4xl mt-8 font-bold text-center text-white">
                       Computer Society of India - VIT University
                     </h1>
                     <div className="w-full border-t-4 border-gray-800 my-4"></div>
-                    <p className="text-3xl text-center text-zinc-400">
+                    <p className="text-lg md:text-3xl text-center text-zinc-400">
                       When we build, it matters.
                     </p>
                     <p className="mt-8 text-lg">
@@ -117,19 +127,19 @@ export default function Dashboard() {
                     </p>
                     <div className="w-full border-t-4 border-gray-800 my-4"></div>
                     <p className="mt-12 text-xl">
-                    Visit{" "}
-                    <a href="https://csivit.com" className="underline">
-                      csivit.com
-                    </a>{" "}
-                    to learn more!
-                  </p>
+                      Visit{" "}
+                      <a href="https://csivit.com" className="underline">
+                        csivit.com
+                      </a>{" "}
+                      to learn more!
+                    </p>
                   </div>
                 </div>
               </Card>
             </main>
 
             {/* Sidebar */}
-            <aside className="lg:w-[320px] lg:ml-4">
+            <aside className="w-[320px] lg:ml-4">
               <div className="border-zinc-800 bg-zinc-900/50 p-4">
                 <SidebarHeader>
                   <h2 className="text-lg font-semibold text-white">Our Team</h2>
@@ -209,13 +219,17 @@ export default function Dashboard() {
           height={120}
           className="mx-auto mb-4"
         />
-        <h2 className="text-xl font-semibold text-white mb-2">That's CSI for you!</h2>
-        <p className="text-zinc-400 mb-2">Buckle up for some think tank period.</p>
+        <h2 className="text-xl font-semibold text-white mb-2">
+          That's CSI for you!
+        </h2>
+        <p className="text-zinc-400 mb-2">
+          Buckle up for some think tank period.
+        </p>
         <a href="#" className="text-blue-400 hover:text-blue-300 text-sm">
           Click here for taking the test
         </a>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
