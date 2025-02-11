@@ -1,7 +1,10 @@
 import { PrismaClient, SubDomain } from '@prisma/client';
 import { handlePrismaError } from '@/helpers/prismaerror';
 import {z} from 'zod';
-import { parse } from 'path';
+import { submitTaskSchema,
+  subDomainSchema,
+  getTaskIdSchema
+ } from '@/lib/tasks';
 const prisma = new PrismaClient();
 
 const handlerequest=async<T>(operation:()=>Promise<T>)=>
@@ -13,16 +16,7 @@ const handlerequest=async<T>(operation:()=>Promise<T>)=>
       return handlePrismaError(error)
     }
   }
-  const userIdSchema=z.string().min(1,"UserId missing");
-  const taskschema=z.string().min(1,"Task not found");
-  const subDomainSchema=z.string().min(1,"SubDomain not found") as unknown as z.ZodType<SubDomain>;
-  const getTaskSubmissionSchema=z.string().min(1,"Domain is required");
-  const getTaskIdSchema=z.string().min(1,"TaskID is required");
-  const submitTaskSchema=z.object({
-    userId:userIdSchema,
-    task:taskschema,
-    subDomain:subDomainSchema,
-  })
+ 
 export async function submitTask(data: { userId: string; task: string[]; subDomain: SubDomain }) {
     const parsed=submitTaskSchema.safeParse(data);
     if(!parsed.success)

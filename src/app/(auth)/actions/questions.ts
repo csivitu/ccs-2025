@@ -1,7 +1,13 @@
 import { DomainType, PrismaClient } from '@prisma/client';
 import { handlePrismaError } from '@/helpers/prismaerror';
 import {z} from 'zod'
-import { error } from 'console';
+import { 
+  domainSchema, 
+  questionIdSchema, 
+  userIdSchema, 
+  answerSchema, 
+  submitSchema 
+} from '@/lib/questions';
 const prisma = new PrismaClient();
 
 const handlerequest=async<T>(operation:()=>Promise<T>)=>
@@ -13,15 +19,6 @@ const handlerequest=async<T>(operation:()=>Promise<T>)=>
     return handlePrismaError(error)
   }
 }
-const domainSchema=z.string().min(1,"domain is required") as unknown as z.ZodType<DomainType>;
-const questionIdSchema=z.string().min(1,"Question Id is required");
-const userIdSchema = z.string().min(1, "User ID is required");
-const answerSchema = z.string().min(1, "Answer is required");
-const submitSchema=z.object({
-  questionId:questionIdSchema,
-  userId:userIdSchema,
-  answer:answerSchema,
-});
 
 export async function getQuestionsByDomain(domain: DomainType) {
   const parsed=questionIdSchema.safeParse(domain);
