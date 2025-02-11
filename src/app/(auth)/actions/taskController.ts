@@ -1,52 +1,64 @@
 import { PrismaClient, SubDomain } from '@prisma/client';
 import { handlePrismaError } from '@/helpers/prismaerror';
+import {z} from 'zod';
+import { submitTaskSchema,
+  subDomainSchema,
+  getTaskIdSchema
+ } from '@/lib/tasks';
 const prisma = new PrismaClient();
 
+const handlerequest=async<T>(operation:()=>Promise<T>)=>
+  {
+    try{
+      return{status:200,data:await operation()}
+    }
+    catch(error){
+      return handlePrismaError(error)
+    }
+  }
+ 
 export async function submitTask(data: { userId: string; task: string[]; subDomain: SubDomain }) {
-    const missingFields = [];
-    if (!data.userId || data.userId.trim() == '') missingFields.push('ccsUserId');
-    if (!data.task || data.task.length==0) missingFields.push('task');
-    if (!data.subDomain || data.subDomain.trim()== '') missingFields.push('subDomain');
-    if (missingFields.length > 0) {
-      return { status: 400, error: `Missing fields: ${missingFields.join(', ')}` };
+    const parsed=submitTaskSchema.safeParse(data);
+    if(!parsed.success)
+    {
+      return{status:400, error: parsed.error.format()}
     }
-    try {
-      const taskSubmission = await prisma.attemptedTask.create({
-        data,
-      });
-      return { status: 201, data: taskSubmission };
-    } catch (error) {
-      return (handlePrismaError(error));
-    }
+    return handlerequest(async()=>{
+      const taskSubmission=await prisma.attemptedTask.create({data});
+      if(!taskSubmission)
+        throw new Error("Task not Submitted")
+      return taskSubmission;
+    });
   }
 
 export async function getTasksBySubDomain(subDomain: SubDomain) {
-    if (!subDomain ) {
-        return { status: 400, error: 'Domain is required' };
+  const parsed=subDomainSchema.safeParse(subDomain);
+    if (!parsed.success ) {
+        return { status: 400, error: parsed.error.format() };
       }
-    try {
+      return handlerequest(async () => {
         const tasks = await prisma.task.findMany({
-            where: { subDomain },
+          where: { subDomain },
         });
-        return { status: 200, data: tasks };
-    } catch (error) {
-        return (handlePrismaError(error));
-    }
+    
+        if (!tasks || tasks.length === 0) {
+          throw new Error("No tasks found for the given subdomain");
+        }
+    
+        return tasks;
+      });
 }
 
 export async function getTaskById(id: string) {
-    if (!id || id.trim() == '') {
-        return { status: 400, error: 'Task ID is required' };
+  const parsed = getTaskIdSchema.safeParse(id);
+  if (!parsed.success) {
+    return { status: 400, error: parsed.error.flatten() };
+  }
+  return handlerequest(async () => {
+    const task = await prisma.task.findUnique({ where: { id } });
+    if (!task) {
+      throw new Error("Task not found");
     }
-    try {
-        const task = await prisma.task.findUnique({
-            where: {
-                id: id,
-            },
-        });
-        return { status: 200, data: task };
-    } catch (error) {
-        console.error("Error fetching task",error);
-        return (handlePrismaError(error));
-    }
+    return task;
+  });
 }
