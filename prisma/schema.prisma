@@ -73,7 +73,8 @@ model AttempedQuestion {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
+  @@unique([userId, questionId])
 }
 
 model Question {
@@ -104,6 +105,7 @@ model Task {
 
   domain    DomainType
   subDomain SubDomain
+  attempts AttemptedTask[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -111,14 +113,17 @@ model Task {
 
 model AttemptedTask {
   id        String    @id @default(cuid())
-  subDomain SubDomain
-  task      String[]
+  taskId   String
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskSubmission      String[]
   userId String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([userId, taskId])
 }
 
 model Portfolio {
