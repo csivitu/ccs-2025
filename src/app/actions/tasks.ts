@@ -14,7 +14,7 @@ export async function submitTask(data: { userId: string; task: string[]; taskId:
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to auth page
     }
     const parsed=submitTaskSchema.safeParse(data);
     if(!parsed.success)
@@ -46,7 +46,7 @@ export async function getTaskById(id: string) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to auth page
     }
     const parsed = getTaskIdSchema.safeParse(id);
     if (!parsed.success) {
@@ -67,7 +67,7 @@ export async function getTasksBySubDomain(subDomain: SubDomain) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to auth page
     }
     const parsed=subDomainSchema.safeParse(subDomain);
     if (!parsed.success ) {
