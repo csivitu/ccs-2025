@@ -143,6 +143,7 @@ model AttemptedDomain {
   domain DomainType
 
   submitted Boolean @default(false)
+  status   EnrollmentStatus @default(QUESTION_ROUND)
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
@@ -193,4 +194,11 @@ enum SubDomain {
   INTERNET_OF_THINGS
   BLOCKCHAIN
   GENERAL_PROGRAMMING
+}
+
+enum EnrollmentStatus {
+  QUESTION_ROUND
+  QUALIFIED_FOR_TASKS
+  ELIMINATED
+  COMPLETED
 }
