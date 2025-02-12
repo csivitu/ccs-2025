@@ -9,9 +9,10 @@ import { prisma } from '@/lib/db'
 import ActionResponse from '@/lib/action-response';
 import { auth } from '../(auth)/auth';
 import { redirect } from 'next/navigation'
+import { requestHandler } from '@/helpers/request-handler';
 
 export async function submitTask(data: { userId: string; task: string[]; taskId: string }) {
-  try {
+  return requestHandler(async () => {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -20,7 +21,7 @@ export async function submitTask(data: { userId: string; task: string[]; taskId:
     const parsed=submitTaskSchema.safeParse(data);
     if(!parsed.success)
     {
-      return ActionResponse.error(400, parsed.error.message);
+      throw new Error("Invalid data");
     }
   
     const taskSubmission = await prisma.attemptedTask.upsert({
@@ -36,15 +37,12 @@ export async function submitTask(data: { userId: string; task: string[]; taskId:
       create: {userId:data.userId, taskId: data.taskId, taskSubmission:data.task },
     })
     
-    return ActionResponse.success(taskSubmission, 201);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error submitting task");
-  }
+    return taskSubmission;
+  })
 }
 
 export async function getTaskById(id: string) {
-  try {
+  return requestHandler(async () => {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -52,21 +50,18 @@ export async function getTaskById(id: string) {
     }
     const parsed = getTaskIdSchema.safeParse(id);
     if (!parsed.success) {
-      return ActionResponse.error(400, parsed.error.message);
+      throw new Error("Invalid data");
     }
     const task = await prisma.task.findUnique({ where: { id } });
     if (!task) {
-      return ActionResponse.error(404, "Task not found");
+      throw new Error("Task not found");
     }
-    return ActionResponse.success(task, 200);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error fetching task");
-  }
+    return task;
+  })
 }
 
 export async function getTasksBySubDomain(subDomain: SubDomain) {
-  try {
+  return requestHandler(async () => {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -74,22 +69,18 @@ export async function getTasksBySubDomain(subDomain: SubDomain) {
     }
     const parsed=subDomainSchema.safeParse(subDomain);
     if (!parsed.success ) {
-        return { success:false, error: parsed.error.format() };
+        throw new Error("Invalid data");
       }
     const tasks = await prisma.task.findMany({
       where: { subDomain },
     });
 
     if (!tasks || tasks.length === 0) {
-      return ActionResponse.error(404, "Tasks not found");
+      throw new Error("Tasks not found");
     }
 
-    return ActionResponse.success(tasks, 200);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error fetching tasks");
-    
-  }
+    return tasks;
+  })
 }
 
 
