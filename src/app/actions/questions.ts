@@ -9,7 +9,7 @@ import {
   submitSchema
 } from '@/lib/questions';
 import { auth } from '../(auth)/auth';
-import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import ActionResponse from '@/lib/action-response';
 import { prisma } from '@/lib/db';
 
@@ -17,7 +17,8 @@ export async function getQuestionsByDomain(domain: DomainType) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const parsed = questionIdSchema.safeParse(domain);
     if (!parsed.success) {
@@ -37,7 +38,8 @@ export async function getQuestionById(id: string) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const parsed = questionIdSchema.safeParse(id);
     if (!parsed.success)
@@ -60,7 +62,8 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const userId = session?.user.id || '';
     const parsed = submitSchema.safeParse(data);
