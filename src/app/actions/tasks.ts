@@ -8,13 +8,14 @@ import { submitTaskSchema,
 import { prisma } from '@/lib/db'
 import ActionResponse from '@/lib/action-response';
 import { auth } from '../(auth)/auth';
-import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation'
 
 export async function submitTask(data: { userId: string; task: string[]; taskId: string }) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const parsed=submitTaskSchema.safeParse(data);
     if(!parsed.success)
@@ -46,7 +47,8 @@ export async function getTaskById(id: string) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const parsed = getTaskIdSchema.safeParse(id);
     if (!parsed.success) {
@@ -67,7 +69,8 @@ export async function getTasksBySubDomain(subDomain: SubDomain) {
   try {
     const session = await auth();
     if (!session?.user) {
-      revalidatePath('/auth')
+      //todo redirect to login
+      redirect("/unprotected");
     }
     const parsed=subDomainSchema.safeParse(subDomain);
     if (!parsed.success ) {
