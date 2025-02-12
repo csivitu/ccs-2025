@@ -7,6 +7,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			"sans-code": ['"Google Sans Code"', "cursive"],
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
