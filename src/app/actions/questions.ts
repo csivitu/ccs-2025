@@ -1,20 +1,18 @@
 "use server"
 
-import { DomainType, PrismaClient } from '@prisma/client';
+import { DomainType } from '@prisma/client';
 import {
-  domainSchema,
   questionIdSchema,
-  userIdSchema,
-  answerSchema,
   submitSchema
 } from '@/lib/questions';
 import { auth } from '../(auth)/auth';
 import { redirect } from 'next/navigation';
 import ActionResponse from '@/lib/action-response';
 import { prisma } from '@/lib/db';
+import { requestHandler } from '@/helpers/request-handler';
 
 export async function getQuestionsByDomain(domain: DomainType) {
-  try {
+  return requestHandler(async () =>{
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -22,20 +20,15 @@ export async function getQuestionsByDomain(domain: DomainType) {
     }
     const parsed = questionIdSchema.safeParse(domain);
     if (!parsed.success) {
-      return ActionResponse.error(400, parsed.error.message, "Invalid domain");
+      throw new Error("Invalid Domain");
     }
-
     const questions = await prisma.question.findMany({ where: { domain } });
-
-    return ActionResponse.success(questions, 200);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error fetching questions");
-  }
+    return questions;
+  })
 }
 
 export async function getQuestionById(id: string) {
-  try {
+  return requestHandler(async () => {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -48,18 +41,15 @@ export async function getQuestionById(id: string) {
     const question = await prisma.question.findUnique({ where: { id } })
   
     if (!question) {
-      return ActionResponse.error(404, "Question not found");
+      throw new Error("Question not found");
     }
   
-    return ActionResponse.success(question, 200);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error fetching question");
-  }
+    return question
+  })
 }
 
 export async function submitQuestion(data:{questionId: string, answer: string}) {
-  try {
+  return requestHandler(async () => {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
@@ -73,7 +63,7 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
     const question = await prisma.question.findUnique({ where: { id: data.questionId } });
 
     if (!question) {
-      return ActionResponse.error(404, "Question not found");
+      throw new Error("Question not found");
     }
 
     const questionAttempt = await prisma.attempedQuestion.upsert({
@@ -87,9 +77,6 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
       create: { questionId: data.questionId, userId: userId, answer: data.answer },
     })
 
-    return ActionResponse.success(questionAttempt, 200);
-  } catch (err) {
-    const error = err as Error;
-    return ActionResponse.error(500, error?.message, "Error submitting question");
-  }
+    return questionAttempt;
+  })
 }
