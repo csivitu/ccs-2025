@@ -75,7 +75,7 @@ model AttempedQuestion {
   updatedAt DateTime @updatedAt
 
 @@unique([questionId, userId])
-
+}
 model Question {
   id String @id @default(cuid())
 
@@ -87,7 +87,7 @@ model Question {
   difficulty QuestionDifficulty
   domain     DomainType
 
-  attempts AttempedQuestion[]
+  attempts AttempedQuestion[] 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
