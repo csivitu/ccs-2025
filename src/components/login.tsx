@@ -3,10 +3,10 @@ import SlNavbar from '../components/slNavbar';
 
 export default function Login() {
   return (
-    <div className="h-screen bg-black sticky overflow-hidden">
+    <div className="h-screen bg-black sticky overflow-hidden flex flex-col">
       <SlNavbar />
-      <div className="relative h-full flex flex-col items-center pt-8 space-y-6"> {/* Add space-y-6 to provide vertical spacing */}
-        <div className="absolute left-0 bottom-7 transform origin-bottom-left sm:scale-100 scale-75">
+      <div className="relative flex flex-col items-center justify-center h-full space-y-6 px-4">
+        <div className="absolute left-0 bottom-20 sm:bottom-7 transform origin-bottom-left sm:scale-100 scale-75 -z-10">
           <Image 
             src="/cat_left.webp" 
             alt="Left Cat" 
@@ -15,7 +15,7 @@ export default function Login() {
             className="w-[70vw] max-w-[400px] h-auto" 
           />
         </div>
-        <div className="absolute right-0 top-0 transform origin-top-right sm:scale-100 scale-75">
+        <div className="absolute right-0 bottom-20 sm:top-0 transform origin-top-right sm:scale-100 scale-75 -z-10">
           <Image 
             src="/cat_right.webp" 
             alt="Right Cat" 
@@ -32,14 +32,14 @@ export default function Login() {
             height={70} 
             className="mb-3"
           />
-          <h2 className="text-white text-3xl sm:text-4xl font-semibold text-center px-4">
+          <h2 className="text-white text-2xl sm:text-4xl font-semibold text-center px-4">
             Sign up for Core-Committee Selection
           </h2>
         </div>
-        <div className="w-[90%] sm:w-[630px] h-auto bg-[#151B23] border border-gray-600 rounded-[10px] flex flex-col items-center p-6">
+        <div className="w-full max-w-[630px] bg-[#151B23] border border-gray-600 rounded-[10px] flex flex-col items-center p-6">
           <div className="w-full space-y-3">
             <div className="flex flex-col">
-              <label className="text-white mb-3 text-lg">Email Address*</label>
+              <label className="text-white mb-2 text-lg">Email Address*</label>
               <input 
                 type="email" 
                 placeholder="Email" 
@@ -47,7 +47,7 @@ export default function Login() {
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-white mb-3 text-lg">Password*</label>
+              <label className="text-white mb-2 text-lg">Password*</label>
               <input 
                 type="password" 
                 placeholder="Password" 
@@ -57,9 +57,10 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <button className="w-[90%] sm:w-[630px] h-[60px] bg-[#238636] border border-gray-600 text-white font-semibold rounded-[10px] mt-4 mb-2">
+        <button className="w-full max-w-[630px] h-[60px] bg-[#238636] border border-gray-600 text-white font-semibold rounded-[10px] mt-4 mb-2">
           Sign In
         </button>
+        
         <p className="text-white text-lg">
           New to CSI? 
           <a href="#" className="text-[#1F6FEB] ml-1">
