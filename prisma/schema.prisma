@@ -73,8 +73,8 @@ model AttempedQuestion {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-}
+
+@@unique([questionId, userId])
 
 model Question {
   id String @id @default(cuid())
@@ -104,6 +104,7 @@ model Task {
 
   domain    DomainType
   subDomain SubDomain
+  attempts AttemptedTask[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -111,14 +112,17 @@ model Task {
 
 model AttemptedTask {
   id        String    @id @default(cuid())
-  subDomain SubDomain
-  task      String[]
+  taskId   String
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskSubmission      String[]
   userId String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([userId, taskId])
 }
 
 model Portfolio {
@@ -138,6 +142,7 @@ model AttemptedDomain {
   domain DomainType
 
   submitted Boolean @default(false)
+  status   EnrollmentStatus @default(QUESTION_ROUND)
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
@@ -188,4 +193,11 @@ enum SubDomain {
   INTERNET_OF_THINGS
   BLOCKCHAIN
   GENERAL_PROGRAMMING
+}
+
+enum EnrollmentStatus {
+  QUESTION_ROUND
+  QUALIFIED_FOR_TASKS
+  ELIMINATED
+  COMPLETED
 }
