@@ -53,21 +53,21 @@ export default function DomainsPage() {
           alt="CSI Logo"
           width={480}
           height={92}
-          className="md:pb-8 pb-4"
+          className="md:pb-8 pb-4 mt-12"
         />
-        <h1 className="md:text-2xl text-xl font-semibold ">
+        <h1 className="text-white font-sans-code text-[36px] font-[600] leading-[21px] mt-2">
           Welcome to CSI! Let's get started.
         </h1>
-        <p className="text-slate-500 md:text-xl text-md mb-6">
-          Choose your domains and start answering the questions. Remember once
-          chosen you <span className="text-slate-300">CAN NOT</span> pause. Max
-          2 domains to be chosen.
-        </p>
+        <p className="text-[#9198A1] font-sans-code text-[24px] font-normal leading-[21px] mb-6 mt-4">
+  Choose your domains and start answering the questions. Remember once chosen you can't pause. Max 2 domains to be chosen.
+</p>
+
       </div>
 
-      <p className="text-2xl text-slate-500 flex justify-center">
-        Choose a domain
-      </p>
+      <p className="text-[24px] text-[#9198A1] font-sans-code font-normal leading-[21px] flex justify-center">
+  Choose a domain
+</p>
+
       <div
         className={`grid justify-center justify-items-center 
           lg:grid-cols-[repeat(2,480px)] md:grid-cols-[repeat(2,1fr)] gridgrid-cols-1 
