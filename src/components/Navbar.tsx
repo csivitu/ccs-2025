@@ -27,10 +27,10 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[1px] border-slate-600 sticky">
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[1px] border-[#21262D] sticky">
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-[8px]">
             <button
               className="sm:hidden mr-4 p-[2px] border-[1px] rounded-[6px] border-slate-600"
               onClick={handleToggleNavbar}
@@ -40,48 +40,59 @@ const Navbar = () => {
 
             <Image
               src="/git.webp"
-              width={25}
-              height={25}
+              width={35}
+              height={34}
               alt="Logo"
-              className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12"
+              className="flex-shrink-0"
             />
-            <span className="text-lg md:text-2xl text-center px-2">
+            <span className="text-[#C9D1D9] text-center font-[400] text-2xl leading-[30px] font-sans-code">
               csivitu
             </span>
           </div>
           <div className="hidden sm:flex items-center space-x-4">
-            <a href="#home" className="font-semibold text-base md:text-xl">
+            <a href="#home" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
               Home
             </a>
-            <a href="#faqs" className="font-semibold text-base md:text-xl">
+            <a href="#faqs" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
               FAQs
             </a>
             <Image
               src="/giticon.webp"
-              width={50}
-              height={50}
+              width={44}
+              height={45}
               alt="FAQs Icon"
-              className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
+              className="flex-shrink-0"
             />
           </div>
         </div>
 
-        <div className="hidden sm:flex flex-row gap-6 md:gap-12 mt-6 text-center">
-          {navLinks.map((item) => (
-            <NavLink
-              key={item.id}
-              {...item}
-              isActive={activeLink === item.id}
-              onLinkClick={() => setActiveLink(item.id)}
-            />
-          ))}
+        {/* Shifted icons to the right using ml-4 */}
+{/* Shifted icons to the right using ml-4 */}
+<div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center ml-4 text-[#C9D1D9] text-center font-sans-code text-[16px] font-normal leading-[30px]">
+  {navLinks.map((item) => (
+    <div key={item.id} className="flex items-center gap-2">
+      <NavLink
+        {...item}
+        isActive={activeLink === item.id}
+        onLinkClick={() => setActiveLink(item.id)}
+      />
+      {item.id === "domains" && (
+        <div
+          className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
+                     text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
+        >
+          4
         </div>
+      )}
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* for mobile */}
       <div
-        className={`
-          sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
+        className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
           transform transition-transform duration-300 ease-in-out
           border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-3xl border-slate-600
           ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -107,10 +118,10 @@ const Navbar = () => {
                 />
                 <span>Username</span>
               </div>
-              <a href="Home" className="font-semibold text-lg mb-2">
+              <a href="#home" className="font-semibold text-lg mb-2">
                 Home
               </a>
-              <a href="Home" className="font-semibold text-lg mb-2">
+              <a href="#faqs" className="font-semibold text-lg mb-2">
                 FAQs
               </a>
             </div>
