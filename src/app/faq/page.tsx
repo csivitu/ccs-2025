@@ -18,7 +18,7 @@ const FAQ = () => {
         <h1 className="text-6xl font-bold my-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#A2FACF] to-[#64ACFF] font-sans code">
           CSI's Frequently Asked <br /> Questions
         </h1>
-        <div className="mt-10 w-full max-w-4xl">
+        <div className="mt-1 w-full max-w-4xl">
           {faq.map((item, index) => (
             <div key={index} className="border-b border-gray-700">
               <button
