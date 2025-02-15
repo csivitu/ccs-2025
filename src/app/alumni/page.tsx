@@ -65,7 +65,7 @@ const AlumniPage = () => {
                     <div className="flex-grow relative">
                       <div className="flex justify-between items-start p-2 ml-4">
                         <div className="flex items-center">
-                          <div className="w-[85px] h-[85px] bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
+                          <div className="w-[75px] h-[75px] bg-[#D9D9D9] rounded-full flex-shrink-0"></div>
                           <div className="ml-4 mt-2">
                             <div className="text-white font-sans-code text-[24px] font-normal leading-[30px]">
                               Elon Musk
@@ -80,12 +80,12 @@ const AlumniPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="p-8 flex gap-x-3 text-[#727477]">
-    <FaInstagram className="w-[37.447px] h-[37.447px] cursor-pointer hover:text-[#E1306C]" />
-    <FaFacebook className="w-[37.447px] h-[37.447px] cursor-pointer hover:text-[#1877F2]" />
-    <FaLinkedin className="w-[37.447px] h-[37.447px] cursor-pointer hover:text-[#0077B5]" />
-    <FaGithub className="w-[37.447px] h-[37.447px] cursor-pointer hover:text-gray-400" />
-    <FaXTwitter className="w-[37.447px] h-[37.447px] cursor-pointer hover:text-gray-500" />
+                    <div className="p-8 mt-2 flex gap-x-3 text-[#727477]">
+    <FaInstagram className="w-[27px] h-[27px] cursor-pointer hover:text-[#E1306C]" />
+    <FaFacebook className="w-[27px] h-[27px] cursor-pointer hover:text-[#1877F2]" />
+    <FaLinkedin className="w-[27px] h-[27px] cursor-pointer hover:text-[#0077B5]" />
+    <FaGithub className="w-[27px] h-[27px] cursor-pointer hover:text-gray-400" />
+    <FaXTwitter className="w-[27px] h-[27px] cursor-pointer hover:text-gray-500" />
 </div>
 
                   </div>

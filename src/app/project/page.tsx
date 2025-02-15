@@ -6,12 +6,12 @@ import Footer from "@/components/footer/footer";
 
 const ProjectPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[]">
+    <div className="min-h-screen w-full bg-[#010409]">
       <div className="fixed top-0 left-0 w-full bg-[#010409] bg-opacity-90 z-50 backdrop-blur-md">
-      <Navbar />
+        <Navbar />
       </div>
       <div className="lg:flex px-4 lg:px-10 mt-44">
-        <div className="lg:w-1/4 text-white lg:sticky lg:top-0 h-full">
+        <div className="lg:w-1/4 text-white lg:sticky lg:top-0 h-screen">
           <h1 className="text-white font-sans-code text-[36px] font-semibold leading-[30px] mb-4">
             Projects
           </h1>
@@ -55,8 +55,9 @@ const ProjectPage = () => {
           </div>
         </div>
 
-        <div className="lg:w-[70%] mt-6 lg:mt-[-8px]">
-          <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409] h-[calc(100vh-28rem)] lg:h-[calc(125vh-3rem)]">
+        {/* Right Section - Scrollable */}
+        <div className="lg:w-[70%] mt-6 lg:mt-[-8px]  h-screen lg:h-[calc(100vh-10rem)]">
+          <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409]">
             <div className="h-full">
               {[...Array(7)].map((_, index) => (
                 <div
@@ -111,7 +112,7 @@ const ProjectPage = () => {
                     <img
                       src="/giticon.webp"
                       alt="Project Preview"
-                      className="hidden lg:block lg:w-[103px] lg:h-[103px] rounded-[10px] lg:self-start"
+                      className="hidden lg:block lg:w-[84px] lg:h-[84px] rounded-[10px] mt-2 lg:self-start"
                     />
                   </div>
                 </div>
@@ -121,7 +122,7 @@ const ProjectPage = () => {
         </div>
       </div>
       
-      <div className="mt-[80px]">
+      <div className="mt-[180px]">
         <Footer />
       </div>
     </div>
