@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { domainCardProps } from "@/types/domain-card-props";
 
 const DomainCard: FC<domainCardProps> = ({
@@ -15,9 +16,11 @@ const DomainCard: FC<domainCardProps> = ({
         <span className="text-[28px] text-[#C9D1D9] font-sans-code font-semibold leading-[20px] text-center">{domainName}</span>
       </div>
       <p className="text-[14px] text-[#9198A1] font-sans-code font-normal leading-[18px] ml-1">{description}</p>
-      <button className="mt-4 py-1.5 px-5 w-full max-w-[200px] h-[40px] border border-[rgba(240,246,252,0.10)] bg-[#21262D] rounded-[6px] transition-colors duration-150 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] text-[#C9D1D9] font-sans font-medium leading-[20px] text-center">
-        {buttonLabel}
-      </button>
+      <Link href="/question">
+  <button className="mt-4 py-1.5 px-5 w-full max-w-[200px] h-[40px] border border-[rgba(240,246,252,0.10)] bg-[#21262D] rounded-[6px] transition-colors duration-150 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] text-[#C9D1D9] font-sans font-medium leading-[20px] text-center">
+    {buttonLabel}
+  </button>
+</Link>
     </div>
   );
 };

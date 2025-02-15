@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg";
@@ -12,10 +13,10 @@ import NavLink from "./nav-link";
 import { MenuIcon, X } from "lucide-react";
 
 const navLinks = [
-  { id: "about", label: "About Us", Icon: IoBookOutline },
-  { id: "projects", label: "Projects", Icon: LuTable },
-  { id: "domains", label: "Domains", Icon: IoCubeOutline },
-  { id: "alumni", label: "Alumni", Icon: FaRegStar },
+  { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
+  { id: "projects", label: "Projects", Icon: LuTable, href: "/project" },
+  { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/domains" },
+  { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/alumni" },
 ];
 
 const Navbar = () => {
@@ -53,7 +54,7 @@ const Navbar = () => {
             <a href="#home" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
               Home
             </a>
-            <a href="#faqs" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
+            <a href="/faq" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
               FAQs
             </a>
             <Image
@@ -66,31 +67,31 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Shifted icons to the right using ml-4 */}
-{/* Shifted icons to the right using ml-4 */}
-<div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center ml-4 text-[#C9D1D9] text-center font-sans-code text-[16px] font-normal leading-[30px]">
-  {navLinks.map((item) => (
-    <div key={item.id} className="flex items-center gap-2">
-      <NavLink
-        {...item}
-        isActive={activeLink === item.id}
-        onLinkClick={() => setActiveLink(item.id)}
-      />
-      {item.id === "domains" && (
-        <div
-          className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
-                     text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
-        >
-          4
+        {/* Navigation Links */}
+        <div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center ml-4 text-[#C9D1D9] font-sans-code text-[16px] font-normal leading-[30px]">
+          {navLinks.map((item) => (
+            <div key={item.id} className="flex items-center gap-2">
+              <Link href={item.href} passHref>
+                <NavLink
+                  {...item}
+                  isActive={activeLink === item.id}
+                  onLinkClick={() => setActiveLink(item.id)}
+                />
+              </Link>
+              {item.id === "domains" && (
+                <div
+                  className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
+                            text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
+                >
+                  4
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      )}
-    </div>
-  ))}
-</div>
-
       </div>
 
-      {/* for mobile */}
+      {/* Mobile Navbar */}
       <div
         className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
           transform transition-transform duration-300 ease-in-out
@@ -127,21 +128,22 @@ const Navbar = () => {
             </div>
 
             {navLinks.map((item) => (
-              <NavLink
-                key={item.id}
-                {...item}
-                isActive={activeLink === item.id}
-                onLinkClick={() => {
-                  setActiveLink(item.id);
-                  setIsNavbarOpen(false);
-                }}
-              />
+              <Link key={item.id} href={item.href} passHref>
+                <NavLink
+                  {...item}
+                  isActive={activeLink === item.id}
+                  onLinkClick={() => {
+                    setActiveLink(item.id);
+                    setIsNavbarOpen(false);
+                  }}
+                />
+              </Link>
             ))}
           </nav>
         </div>
       </div>
 
-      {/* mobile bg overlay on nav open */}
+      {/* Mobile Background Overlay */}
       {isNavbarOpen && (
         <div
           className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-40"

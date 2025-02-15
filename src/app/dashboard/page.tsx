@@ -208,7 +208,7 @@ export default function Dashboard() {
         />
         <h2 className="text-xl mb-1 font-semibold text-white  font-sans-code">That's CSI for you!</h2>
         <p className="text-zinc-400  font-sans-code">Buckle up for some think tank period.</p>
-        <a href="#" className="text-blue-400 hover:text-blue-300 text-sm font-sans-code">
+        <a href="/domains" className="text-blue-400 hover:text-blue-300 text-sm font-sans-code">
           Click here for taking the test
         </a>
       </div>

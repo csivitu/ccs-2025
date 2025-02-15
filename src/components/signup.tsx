@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import SlNavbar from '../components/slNavbar';
 
 export default function Signup() {
   return (
     <div className="h-screen bg-black sticky overflow-auto flex flex-col">
-      <SlNavbar />
+  
       <div className="relative flex flex-col items-center pt-8 space-y-6 px-4 sm:px-0 flex-1"> 
         <div className="absolute left-0 bottom-7 transform origin-bottom-left sm:scale-100 scale-75 hidden sm:block">
           <Image 
