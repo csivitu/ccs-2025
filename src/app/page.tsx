@@ -1,12 +1,29 @@
 import Image from "next/image";
 import { AuthButtons } from "@/components/component"
+import FAQ from "./faq/page";
+import AlumniPage from "./alumni/page";
+import QuestionsPage from "./question/page";
+import ProjectPage from "./project/page";
+import DomainsPage from "./domains/page";
+import Dashboard from "./dashboard/page";
+import ProtectedPage from "./protected/page";
+import ProtectedQuestionsPage from "./question/protected";
+import Unprotected from "./unprotected/page";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-8">Test OAuth</h1>
-      <AuthButtons />
-    </main>
+    // <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    //   <h1 className="text-4xl font-bold mb-8">Test OAuth</h1>
+      // <AuthButtons />
+    // </main>
+    // <Dashboard></Dashboard>
+    // <FAQ></FAQ>
+    // <DomainsPage></DomainsPage>
+    // <ProjectPage></ProjectPage>
+    // <QuestionsPage></QuestionsPage>
+    <ProtectedQuestionsPage />
+    // <Unprotected />
+    // <ProtectedPage></ProtectedPage>
   )
 }
 /*

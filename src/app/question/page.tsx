@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import QuestionPanel from "@/components/questions-page/question-panel";
 import AnswerPanel from "@/components/questions-page/answer-panel";
 import { Button } from "@/components/ui/button";
+import { auth } from "../(auth)/auth";
 
 const questions = [
   "Develop an object-oriented design for a board game like Chess or Monopoly. How would you use classes to represent the board, pieces, and players? How could inheritance handle different types of pieces?",
@@ -13,9 +14,9 @@ const questions = [
   "What are the differences between React’s useState and useReducer hooks? When should you use each?",
 ];
 
-export default function QuestionsPage() {
+export default function QuestionsPage({ session }: { session: any }) {
+  
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
