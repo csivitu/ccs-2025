@@ -9,6 +9,8 @@ const config: Config = {
       fontFamily: {
         "sans-code": ['"Google Sans Code"', "sans-serif"],
         "apro": ['"Anonymous Pro"', "sans-serif"],
+        "inter": ['"Google Sans Code"', "serif"],
+        "ubuntu-mono": ['"Google Sans Code"', "serif"],
         "kodchasan": ['"Kodchasan"', "sans-serif"], 
       },
       colors: {

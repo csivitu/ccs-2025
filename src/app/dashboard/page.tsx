@@ -39,38 +39,38 @@ export default function Dashboard() {
                 </p>
               </div>
               <div className=" flex items-center gap-6 text-base text-zinc-400 ">
-                <div className="mt-[-84px] flex items-center gap-2">
-                  <Users className="h-6 w-6" />
-                  <span className="font-sans-code text-white">4.2k Followers</span>
+                <div className="mt-[-76px] flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  <span className="font-sans-code text-white text-[14px]">4.2k Followers</span>
                 </div>
-                <div className="mt-[-84px] flex items-center gap-2">
-                  <MapPin className="h-6 w-6" />
-                  <span className="font-sans-code text-white">Vellore, India</span>
+                <div className="mt-[-76px] flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  <span className="font-sans-code text-white text-[14px]">Vellore, India</span>
                 </div>
-                <div className="mt-[-84px] flex items-center gap-4">
+                <div className="mt-[-76px] flex items-center gap-4">
                   <a
                     href="https://csvit.com"
                     className="hover:text-white transition-colors flex items-center gap-2"
                     aria-label="Website"
                   >
-                    <Globe className="h-6 w-6" />
-                    <span className="font-sans-code text-white">https://csvit.com</span>
+                    <Globe className="h-4 w-4" />
+                    <span className="font-sans-code text-white text-[14px]">https://csvit.com</span>
                   </a>
                   <a
                     href="https://github.com/csivitu"
                     className="hover:text-white transition-colors flex items-center gap-2"
                     aria-label="GitHub"
                   >
-                    <Github className="h-6 w-6" />
-                    <span className="font-sans-code text-white">github.com/csivitu</span>
+                    <Github className="h-4 w-4" />
+                    <span className="font-sans-code text-white text-[14px]">github.com/csivitu</span>
                   </a>
                   <a
                     href="mailto:outreach@csivit.com"
                     className="hover:text-white transition-colors flex items-center gap-2"
                     aria-label="Email"
                   >
-                    <Mail className="h-6 w-6" />
-                    <span className="font-sans-code text-white">outreach@csivit.com</span>
+                    <Mail className="h-4 w-4" />
+                    <span className="font-sans-code text-white text-[14px]">outreach@csivit.com</span>
                   </a>
                 </div>
               </div>
@@ -82,21 +82,19 @@ export default function Dashboard() {
 
           <div className="flex flex-col lg:flex-row lg:gap-4 text-white">
             <main className="flex-1 space-y-4">
-              {/* Main Content */}
-              <Card className="border-[3px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-[1000px] mx-auto ml-[2px]">
+              <Card className="border-[3px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-[920px] mx-auto ml-[2px]">
                 <div className="p-6 space-y-4">
                   <h2 className="text-[18px] font-[400] text-white font-apro">
                     README.md
                   </h2>
                   <div className="relative w-full h-96">
                     {" "}
-                    {/* Set a fixed height for the container */}
                     <Image
   src="/test.png"
   alt="Test Image"
-  width={1000}  // Adjust the width as needed
-  height={300} // Adjust the height as needed
-  className="rounded-lg" // Optional styling
+  width={1000}  
+  height={300} 
+  className="rounded-lg" 
 />
                   </div>
                   <div className="prose prose-invert max-w-none px-20">
@@ -126,18 +124,17 @@ export default function Dashboard() {
               </Card>
             </main>
 
-            {/* Sidebar */}
-            <aside className="lg:w-[400px] lg:ml-4">
+            <aside className="lg:w-[440px] lg:ml-4">
               <div className="border-zinc-800 bg-zinc-900/50 p-2">
                 <SidebarHeader>
                   <h2 className="text-[18px] font-[400] font-sans-code text-white">Our Team</h2>
                 </SidebarHeader>
                 <SidebarContent>
-                  <div className="mt-[-12px] ml-[-10px] grid grid-cols-6 gap-2 p-4">
+                  <div className="mt-[-12px] ml-[-10px] grid grid-cols-6 gap-3 p-4">
                     {Array.from({ length: 15 }).map((_, i) => (
                       <div
                         key={i}
-                        className="w-12 h-12 aspect-square rounded-full bg-[#D9D9D9]"
+                        className="w-14 h-14 aspect-square rounded-full bg-[#D9D9D9]"
                       />
                     ))}
                   </div>

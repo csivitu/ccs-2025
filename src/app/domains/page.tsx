@@ -63,7 +63,7 @@ export default function DomainsPage() {
           </p>
         </div>
 
-        <p className="text-xl sm:text-2xl text-[#9198A1] font-sans-code font-normal text-center mb-8">
+        <p className="text-xl sm:text-4xl text-[#9198A1] font-sans-code font-[600] text-center mb-8">
           Choose a domain
         </p>
 
