@@ -10,8 +10,8 @@ const ProjectPage = () => {
       <div className="fixed top-0 left-0 w-full bg-[#010409] bg-opacity-90 z-50 backdrop-blur-md">
         <Navbar />
       </div>
-      <div className="lg:flex px-4 lg:px-10 mt-44">
-        <div className="lg:w-1/4 text-white lg:sticky lg:top-0 h-screen">
+      <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44">
+        <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 h-screen">
           <h1 className="text-white font-sans-code text-[36px] font-semibold leading-[30px] mb-4">
             Projects
           </h1>
@@ -56,73 +56,74 @@ const ProjectPage = () => {
         </div>
 
         {/* Right Section - Scrollable */}
-        <div className="lg:w-[70%] mt-6 lg:mt-[-8px]  h-screen lg:h-[calc(100vh-10rem)]">
-          <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409]">
-            <div className="h-full">
-              {[...Array(7)].map((_, index) => (
-                <div
-                  key={index}
-                  className={`p-3 lg:p-4 relative border-gray-700 ${index !== 6 ? "border-b-2 lg:border-b-3 w-full" : ""}`}
-                >
-                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-2 lg:gap-4">
-                    <div className="flex-grow relative">
-                      <div className="flex justify-between items-start">
-                        <span className="text-[19px] text-[rgba(88,166,255,1)] flex items-center font-sans-code font-normal leading-[25px]">
-                          <img
-                            src="/bookmark.webp"
-                            alt="Bookmark"
-                            className="mt-4 w-3 h-3 lg:w-6 lg:h-6 mr-2"
-                          />
-                          <span className="mt-4 font-normal">projectTitle</span>
-                          <span className="mt-4 mx-1">/</span>
-                          <span className="mt-4 font-semibold">projectName</span>
-                        </span>
-                        <img
-                          src="/giticon.webp"
-                          alt="Project Preview"
-                          className="w-10 lg:hidden h-auto rounded-[10px] ml-2"
-                        />
-                      </div>
-                      <p className="text-[13px] text-[#8B949E] font-normal leading-[21px] mt-1 font-sans-code">
-                        project description lorem ipsum content name
-                      </p>
-                      <div className="flex flex-wrap items-center mt-2 gap-6">
-                        <div className="flex items-center">
-                          <span className="w-2 h-2 mr-1 rounded-full" style={{ backgroundColor: "rgba(218, 91, 11, 1)" }}></span>
-                          <span className="mt-1 text-[12px] text-[#8B949E] font-sans-code">Tech Domain</span>
-                        </div>
-                        <div className="flex items-center">
-                          <FaRegStar size={16} className="text-gray-500" />
-                          <span className="ml-1 mt-1 text-[12px] text-[#8B949E] font-sans-code">Popular</span>
-                        </div>
-                        <div className="flex items-center">
-                          <IoMdGitNetwork size={16} className="text-[#8B949E]" />
-                          <span className="ml-1 mt-1 text-[12px] text-[#8B949E] font-sans-code">HTML CSS React</span>
-                        </div>
-                        <div className="flex items-center mt-1 text-[12px] text-[#8B949E] font-sans-code">
-                          <span>Built By: Raju Rastogi</span>
-                          <img
-                            src="/github.webp"
-                            alt="Raju Rastogi"
-                            className="w-4 h-4 lg:w-13 lg:h-13 rounded-full ml-2"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <img
-                      src="/giticon.webp"
-                      alt="Project Preview"
-                      className="hidden lg:block lg:w-[84px] lg:h-[84px] rounded-[10px] mt-2 lg:self-start"
-                    />
-                  </div>
+        <div className="lg:w-[70%] mt-[-480px] lg:mt-[-8px] h-screen lg:h-[calc(100vh-10rem)]">
+  <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409]">
+    <div className="h-full">
+      {[...Array(7)].map((_, index) => (
+        <div
+          key={index}
+          className={`p-2 lg:p-3 relative border-gray-700 ${index !== 6 ? "border-b-2 lg:border-b-3 w-full" : ""}`}
+        >
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-2 lg:gap-3">
+            <div className="flex-grow relative">
+              <div className="flex justify-between items-start">
+                <span className="text-[19px] text-[rgba(88,166,255,1)] flex items-center font-sans-code font-normal leading-[25px]">
+                  <img
+                    src="/bookmark.webp"
+                    alt="Bookmark"
+                    className="mt-2 w-3 h-3 lg:w-6 lg:h-6 mr-2"
+                  />
+                  <span className="mt-1 font-normal">projectTitle</span>
+                  <span className="mt-2 mx-1">/</span>
+                  <span className="mt-2 font-semibold">projectName</span>
+                </span>
+                <img
+                  src="/giticon.webp"
+                  alt="Project Preview"
+                  className="w-10 lg:hidden h-auto rounded-[10px] ml-2"
+                />
+              </div>
+              <p className="text-[13px] text-[#8B949E] font-normal leading-[21px] mt-1 font-sans-code">
+                project description lorem ipsum content name
+              </p>
+              <div className="flex flex-wrap items-center mt-1 gap-4">
+                <div className="flex items-center">
+                  <span className="w-2 h-2 mr-1 rounded-full" style={{ backgroundColor: "rgba(218, 91, 11, 1)" }}></span>
+                  <span className="text-[12px] text-[#8B949E] font-sans-code">Tech Domain</span>
                 </div>
-              ))}
+                <div className="flex items-center">
+                  <FaRegStar size={16} className="text-gray-500" />
+                  <span className="ml-1 text-[12px] text-[#8B949E] font-sans-code">Popular</span>
+                </div>
+                <div className="flex items-center">
+                  <IoMdGitNetwork size={16} className="text-[#8B949E]" />
+                  <span className="ml-1 text-[12px] text-[#8B949E] font-sans-code">HTML CSS React</span>
+                </div>
+                <div className="flex items-center text-[12px] text-[#8B949E] font-sans-code">
+                  <span>Built By: Raju Rastogi</span>
+                  <img
+                    src="/github.webp"
+                    alt="Raju Rastogi"
+                    className="w-4 h-4 lg:w-13 lg:h-13 rounded-full ml-2"
+                  />
+                </div>
+              </div>
             </div>
+            <img
+              src="/giticon.webp"
+              alt="Project Preview"
+              className="hidden lg:block lg:w-[84px] lg:h-[84px] rounded-[10px] mt-1 lg:self-start"
+            />
           </div>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
+
       </div>
       
-      <div className="mt-[180px]">
+      <div className="mt-[300px] lg:mt-[180px]">
         <Footer />
       </div>
     </div>
