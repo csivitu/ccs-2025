@@ -11,13 +11,13 @@ const AlumniPage = () => {
         <Navbar />
       </div>
       <div className="lg:flex px-4 lg:px-10 mt-44">
-        <div className="lg:w-1/4 text-white lg:sticky lg:top-0 h-full">
+        <div className="lg:w-1/4 text-white lg:sticky lg:top-0 h-screen">
           <h1 className="text-white font-sans-code text-[36px] font-semibold leading-[30px] mb-4">
             Alumni
           </h1>
           <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-4" />
           <p className="text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code mb-6">
-            Lorem ipsum about seniors and <br /> superseniors Lorem ipsum about <br /> seniors and superseniors
+            Lorem ipsum about seniors and <br className="hidden lg:block"/> superseniors Lorem ipsum about <br className="hidden lg:block"/> seniors and superseniors
           </p>
           <h2 className="text-[24px] text-white font-normal font-sans-code mt-6 lg:mt-10">
             Domains of our Alumni

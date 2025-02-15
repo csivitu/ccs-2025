@@ -1,73 +1,142 @@
 "use client";
+
 import Image from "next/image";
-import dynamic from 'next/dynamic';
-import Particles from "@/components/particles";
+import React, { useState } from "react";
+import Link from "next/link"; // Ensure this is used correctly
 
-const Globe = dynamic(() => import('../components/globe'), { ssr: false });
+import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg";
+import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg";
+import LuTable from "public/logos/navbar-logos/LuTable.svg";
+import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg";
 
-export default function Home() {
+import NavLink from "./nav-link";
+import { MenuIcon, X } from "lucide-react";
+
+// Navigation links
+const navLinks = [
+  { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" },
+  { id: "projects", label: "Projects", Icon: LuTable, href: "/projects" },
+  { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/domains" },
+  { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/alumni" },
+];
+
+const Navbar = () => {
+  const [activeLink, setActiveLink] = useState("");
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+  function handleToggleNavbar() {
+    setIsNavbarOpen(!isNavbarOpen);
+  }
+
   return (
-    <main className="min-h-screen w-full bg-[#070B14] relative overflow-hidden">
-      
-      <div className="absolute inset-0">
-        <Particles className="relative top-0 left-0 w-screen h-screen" quantity={1000}/>
-      </div>
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[1px] border-[#21262D] sticky">
+      <div className="mx-auto flex flex-col">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-[8px]">
+            {/* Mobile Menu Button */}
+            <button
+              className="sm:hidden mr-4 p-[2px] border-[1px] rounded-[6px] border-slate-600"
+              onClick={handleToggleNavbar}
+            >
+              <MenuIcon className="text-slate-200 p-[2px]" />
+            </button>
 
-      <div className="relative min-h-screen flex flex-col justify-between">
-        <div className="p-4 flex flex-col">
-          <nav className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-            <div className="flex items-center">
-              <Image
-                src="/csigit.webp"
-                alt="CSI VIT Github"
-                width={155}
-                height={62}
-                className="w-[120px] sm:w-[155px] h-auto"
-              />
-            </div>
+            {/* Logo */}
+            <Image src="/git.webp" width={35} height={34} alt="Logo" className="flex-shrink-0" />
+            <span className="text-[#C9D1D9] text-center font-[400] text-2xl leading-[30px] font-sans-code">
+              csivitu
+            </span>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex gap-2">
-                <button className="text-white px-3 sm:px-4 py-1 rounded-xl hover:bg-white/10 transition-colors text-sm sm:text-base font-medium border border-white bg-transparent whitespace-nowrap">
-                  About us
-                </button>
-                <button className="text-white px-3 sm:px-4 py-1 rounded-xl hover:bg-white/20 transition-colors text-sm sm:text-base font-medium border border-white bg-transparent whitespace-nowrap">
-                  Sign in
-                </button>
-              </div>
-              <Image
-                src="/csilogo.webp"
-                alt="CSI Logo"
-                width={250}
-                height={50}
-                className="w-[200px] sm:w-[250px] h-auto"
-              />
-            </div>
-          </nav>
-
-          <div className="text-center sm:text-right mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-5xl font-bold sm:pr-[50px] font-kodchasan text-[#B9B8EF] glow-text">
-            When we build,
-            <br />
-            it matters.
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex items-center space-x-4">
+            <Link href="#home" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
+              Home
+            </Link>
+            <Link href="#faqs" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
+              FAQs
+            </Link>
+            <Image src="/giticon.webp" width={44} height={45} alt="FAQs Icon" className="flex-shrink-0" />
           </div>
         </div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px]">
-          <Globe />
-        </div>
-
-        <div className="flex flex-col items-center sm:items-start px-4 pb-8 sm:px-8 font-kodchasan mt-auto">
-          <p className="text-3xl sm:text-5xl max-w-xl text-[#B9B8EF] font-bold text-center sm:text-left sm:pr-[50px] glow-text mb-4">
-            Welcome
-          </p>
-          <p className="text-lg sm:text-xl md:text-2xl max-w-xl text-[#7675A1] text-center sm:text-left leading-relaxed">
-            Make sure to Sign Up and create an account to start your journey— choose your domain, answer key questions and take the first step toward joining our committee.
-          </p>
-        </div>
-
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[120px] sm:w-[200px] md:w-[250px] aspect-square">
+        {/* Desktop Navbar Links */}
+        <div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center ml-4 text-[#C9D1D9] font-sans-code text-[16px] font-normal leading-[30px]">
+          {navLinks.map((item) => (
+            <div key={item.id} className="flex items-center gap-2">
+              <NavLink
+                id={item.id}
+                label={item.label}
+                Icon={item.Icon}
+                href={item.href}
+                isActive={activeLink === item.id}
+                onLinkClick={() => setActiveLink(item.id)}
+              />
+              {item.id === "domains" && (
+                <div className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center">
+                  4
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
-    </main>
+
+      {/* Mobile Navbar */}
+      <div
+        className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
+          transform transition-transform duration-300 ease-in-out
+          border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-3xl border-slate-600
+          ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}`}
+      >
+        <div className="p-4">
+          {/* Close Button */}
+          <button
+            onClick={handleToggleNavbar}
+            className="mb-8 p-[2px] border-[1px] rounded-[6px] border-slate-600"
+          >
+            <X className="text-slate-200 p-[2px]" />
+          </button>
+
+          {/* Mobile Links */}
+          <nav className="space-y-6 mb-auto">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2 mb-2 items-center font-light">
+                <Image src="/giticon.webp" width={50} height={50} alt="FAQs Icon" className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto" />
+                <span>Username</span>
+              </div>
+              <Link href="#home" className="font-semibold text-lg mb-2">
+                Home
+              </Link>
+              <Link href="#faqs" className="font-semibold text-lg mb-2">
+                FAQs
+              </Link>
+            </div>
+
+            {navLinks.map((item) => (
+              <NavLink
+                key={item.id}
+                id={item.id}
+                label={item.label}
+                Icon={item.Icon}
+                href={item.href}
+                isActive={activeLink === item.id}
+                onLinkClick={() => {
+                  setActiveLink(item.id);
+                  setIsNavbarOpen(false);
+                }}
+              />
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile Background Overlay */}
+      {isNavbarOpen && (
+        <div className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-40" onClick={handleToggleNavbar} />
+      )}
+    </nav>
   );
-}
+};
+
+export default Navbar;
