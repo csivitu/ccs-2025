@@ -1,22 +1,21 @@
 "use client"
 import { useState, useRef, useEffect } from "react";
 
-export default function TextEditor() {
-  const [text, setText] = useState<string>("");
+export default function TextEditor({ currentIndex, answers, setAnswers }: { currentIndex: number; answers: string[]; setAnswers: React.Dispatch<React.SetStateAction<string[]>> }) {
   const [lines, setLines] = useState<number[]>([1]); // Start with line 1
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Calculate actual line count based on newline characters
-    const newLines = text.split('\n').length;
+    const newLines = answers[currentIndex].split('\n').length;
     
     // Only update lines if the number of actual newline-separated lines has changed
     if (newLines !== lines.length) {
       const newLinesArray = Array.from({ length: newLines }, (_, i) => i + 1);
       setLines(newLinesArray);
     }
-  }, [text]);
+  }, [answers[currentIndex]]);
 
   return (
     <div className="flex w-full h-[93.5%] bg-[#23272f]">
@@ -31,8 +30,13 @@ export default function TextEditor() {
 
       <textarea
         ref={textAreaRef}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={answers[currentIndex]}
+        onChange={(e) => setAnswers(prevAnswers => {
+          const newAnswers = [...prevAnswers];
+          newAnswers[currentIndex] = e.target.value;
+          console.log(answers)
+          return newAnswers;
+        })}
         onScroll={(e) => {
           if (lineNumbersRef.current) {
             lineNumbersRef.current.scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
