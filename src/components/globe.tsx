@@ -1,13 +1,14 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export default function Globe() {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const val=useIsMobile();
   useEffect(() => {
     if (!containerRef.current) return;
-
+    console.log(val)
     const scene = new THREE.Scene();
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -45,13 +46,13 @@ export default function Globe() {
           'varying vec3 vNormal;',
           'void main() {',
           'float intensity = pow( 0.99 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 6.0 );',
-          'gl_FragColor = vec4( .28, .48, 1.0, 1.0 ) * intensity;',
+          'gl_FragColor = vec4( 1.0, 1.0, 1.0, 0.3 ) * intensity;',
           '}'
         ].join('\n')
       }
     };
-
-    const atmosphereGeometry = new THREE.SphereGeometry(2, 64, 64);
+    let atmRad=val?2.2:2;
+    const atmosphereGeometry = new THREE.SphereGeometry(atmRad, 64, 64);
     const atmosphereMaterial = new THREE.ShaderMaterial({
       uniforms: THREE.UniformsUtils.clone(atmosphereShader['atmosphere'].uniforms),
       vertexShader: atmosphereShader['atmosphere'].vertexShader,
@@ -67,9 +68,7 @@ export default function Globe() {
     scene.add(atm);
 
     const sphereGeometry = new THREE.SphereGeometry(2, 64, 64);
-    const sphereMaterial = new THREE.MeshLambertMaterial({
-      color: 0xeeeeee
-    });
+    const sphereMaterial = new THREE.MeshDepthMaterial();
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere.castShadow = true;
     sphere.receiveShadow = true;
@@ -79,10 +78,12 @@ export default function Globe() {
     const loader = new THREE.TextureLoader();
     const overlayMaterial = new THREE.MeshBasicMaterial({
       map: loader.load('/globe.png'),
-      transparent: true
+      transparent: true,
+      color:0xffffff,
+
     });
     
-    const overlaySphereGeometry = new THREE.SphereGeometry(2.003, 64, 64);
+    const overlaySphereGeometry = new THREE.SphereGeometry(2, 64, 64);
     const overlaySphere = new THREE.Mesh(overlaySphereGeometry, overlayMaterial);
     overlaySphere.castShadow = true;
     overlaySphere.receiveShadow = true;
@@ -148,7 +149,8 @@ export default function Globe() {
     });
 
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    camera.position.z = 6;
+
+    camera.position.z = val?3.6:5;
 
     let isDragging = false;
     let previousMousePosition = {
@@ -298,7 +300,7 @@ export default function Globe() {
       container.removeEventListener('mouseleave', handleMouseUp);
       renderer.dispose();
     };
-  }, []);
+  }, [val]);
 
   return <div ref={containerRef} className="w-full h-full" id="globeCanvas" />;
 }
