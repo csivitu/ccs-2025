@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className= {`${notoSans.className}`}>
+      <body className= {`${notoSans.className} bg-[#0D1117]`}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
