@@ -75,8 +75,9 @@ model AttempedQuestion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-@@unique([userId, taskId])
+  @@unique([userId, questionId]) // Fix: Replacing `taskId` with `questionId`
 }
+
 model Question {
   id String @id @default(cuid())
 
@@ -200,5 +201,5 @@ enum EnrollmentStatus {
   QUESTION_ROUND
   QUALIFIED_FOR_TASKS
   ELIMINATED
-  COMPLETED
+  COMPLETED
 }
