@@ -75,7 +75,7 @@ model AttempedQuestion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId, questionId]) // Fix: Replacing `taskId` with `questionId`
+@@unique([userId,questionId])
 }
 
 model Question {
