@@ -1,0 +1,204 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id String @id @default(cuid())
+
+  // Provided by Google OAuth
+  name  String
+  email String @unique
+  emailVerified DateTime?
+  image String?
+
+  // Additional details to ask
+  phoneNumber String? @unique
+  gender      Gender?
+  aboutUs     String?
+
+  attemptedDomains   AttemptedDomain[]
+  attemptedQuestions AttempedQuestion[]
+  attemptedTasks     AttemptedTask[]
+
+  portfolios Portfolio[]
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttempedQuestion {
+  id String @id @default(cuid())
+  
+  answer     String?
+  
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+@@unique([userId, taskId])
+}
+model Question {
+  id String @id @default(cuid())
+
+  question String
+
+  images String[]
+  links  String[]
+
+  difficulty QuestionDifficulty
+  domain     DomainType
+
+  attempts AttempedQuestion[] 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Task {
+  id String @id @default(cuid())
+
+  title       String
+  description String
+
+  images String[]
+  links  String[]
+
+  domain    DomainType
+  subDomain SubDomain
+  attempts AttemptedTask[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttemptedTask {
+  id        String    @id @default(cuid())
+  taskId   String
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskSubmission      String[]
+  userId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, taskId])
+}
+
+model Portfolio {
+  id       String            @id @default(cuid())
+  category PortfolioCategory
+  link     String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AttemptedDomain {
+  id     String     @id @default(cuid())
+  domain DomainType
+
+  submitted Boolean @default(false)
+  status   EnrollmentStatus @default(QUESTION_ROUND)
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+enum QuestionDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum DomainType {
+  TECH
+  DESIGN
+  MANAGEMENT
+  VIDEO
+}
+
+enum PortfolioCategory {
+  TECH
+  DESIGN
+  MANAGEMENT
+  VIDEO
+  GITHUB
+  LINKEDIN
+  INSTAGRAM
+  SPOTIFY
+}
+
+enum SubDomain {
+  WEB_DEV
+  APP_DEV
+  MACHINE_LEARNING
+  CYBER_SECURITY
+  UI_UX
+  GRAPHIC_DESIGN
+  INTERNET_OF_THINGS
+  BLOCKCHAIN
+  GENERAL_PROGRAMMING
+}
+
+enum EnrollmentStatus {
+  QUESTION_ROUND
+  QUALIFIED_FOR_TASKS
+  ELIMINATED
+  COMPLETED
+}
