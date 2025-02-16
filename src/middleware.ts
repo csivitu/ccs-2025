@@ -3,10 +3,10 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
     
-    if (process.env.CCS_PROCCESS_COMPLETION === "true") {
-        return NextResponse.redirect(new URL("/ccs-ended", request.url));
-    }
-    console.log("Middleware applied to:", request.nextUrl.pathname);
+    // if (process.env.CCS_PROCCESS_COMPLETION === "true") {
+    //     return NextResponse.redirect(new URL("/ccs-ended", request.url));
+    // }
+    // console.log("Middleware applied to:", request.nextUrl.pathname);
 
     const authCheckResponse = await fetch(`${request.nextUrl.origin}/api/auth/check`, {
         method: "GET",
