@@ -6,7 +6,7 @@ import xLogo from "../../../public/logos/xLogo.svg";
 
 export default function Footer() {
   return (
-    <footer className="relative flex flex-row min-w-full bg-slate-800 py-6 mt-auto items-center">
+    <footer className="relative flex flex-row min-w-full bg-slate-800 py-6 mt-24 items-center">
       <div className="flex flex-row gap-4">
         <SocialMediaLink
           name="@csivitu"
@@ -21,8 +21,8 @@ export default function Footer() {
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 text-center">
-        <p className="text-2xl">When we build, it matters.</p>
-        <p className="text-slate-500">© 2025. Made with 🤍 @CSI</p>
+        <p className="text-[21.6px] text-white font-sans-code font-[400] leading-normal">When we build, it matters.</p>
+        <p className="text-[#727477] font-sans-code text-[18px] font-[400] leading-[27px] text-center mr-2">© 2025. Made with 🤍 @CSI</p>
       </div>
 
       <div className="flex flex-row gap-4 ml-auto">

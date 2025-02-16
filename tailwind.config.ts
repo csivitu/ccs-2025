@@ -7,7 +7,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        "sans-code": ['"Google Sans Code"', "cursive"],
+        "sans-code": ['"Google Sans Code"', "sans-serif"],
+        "apro": ['"Anonymous Pro"', "sans-serif"],
+        "inter": ['"Google Sans Code"', "serif"],
+        "ubuntu-mono": ['"Google Sans Code"', "serif"],
         "kodchasan": ['"Kodchasan"', "sans-serif"], 
       },
       colors: {
