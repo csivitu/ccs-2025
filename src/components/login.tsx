@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import SlNavbar from '../components/slNavbar';
+import Link from "next/link";
 
 export default function Login() {
   return (
@@ -57,13 +58,15 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <button className="w-full max-w-[630px] h-[60px] bg-[#238636] border border-gray-600 text-white font-semibold rounded-[10px] mt-4 mb-2">
-          Sign In
-        </button>
+        <Link href="/dashboard">
+          <button className="w-full max-w-[630px] h-[60px] bg-[#238636] border border-gray-600 text-white font-semibold rounded-[10px] mt-4 mb-2">
+            Sign In
+          </button>
+        </Link>
         
         <p className="text-white text-lg">
           New to CSI? 
-          <a href="#" className="text-[#1F6FEB] ml-1">
+          <a href="./signup.tsx" className="text-[#1F6FEB] ml-1">
             Create an account
           </a>
         </p>
