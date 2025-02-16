@@ -1,7 +1,30 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+//import type { Metadata } from "next";
+//import localFont from "next/font/local";
 import "./globals.css";
+import { Noto_Sans } from "next/font/google";
 
+const notoSans = Noto_Sans({ 
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+// src/app/layout.tsx
+import { AuthProvider } from "@/components/authProvider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className= {`${notoSans.className}`}>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
+    </html>
+  );
+}
+/*
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,4 +55,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+}*/
