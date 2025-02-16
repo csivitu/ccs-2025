@@ -6,18 +6,22 @@ import QuestionPanel from "@/components/questions-page/question-panel";
 import AnswerPanel from "@/components/questions-page/answer-panel";
 import { Button } from "@/components/ui/button";
 import { VscExtensions } from "react-icons/vsc";
+import { submitQuestion } from "../actions/questions";
+import { Question } from "@prisma/client";
 
-const questions = [
-  "The question is when not how.. If you were tasked with designing a futuristic transportation system for a city of 10 million people, where the main goal is to minimize environmental impact while maximizing efficiency and accessibility, how would you integrate various technologies like autonomous vehicles, renewable energy, AI-driven traffic management, and underground transit systems? Additionally, how would you address challenges related to urban planning, public acceptance, and the economic feasibility of such a project in both the short and long term?",
-  "Explain the concept of polymorphism in object-oriented programming. Provide examples in JavaScript and TypeScript.",
-  "How would you design a URL shortener like Bit.ly? Describe the database schema and logic behind it.",
-  "What are the differences between React's useState and useReducer hooks? When should you use each?",
-];
+// const questions = [
+//   "The question is when not how.. If you were tasked with designing a futuristic transportation system for a city of 10 million people, where the main goal is to minimize environmental impact while maximizing efficiency and accessibility, how would you integrate various technologies like autonomous vehicles, renewable energy, AI-driven traffic management, and underground transit systems? Additionally, how would you address challenges related to urban planning, public acceptance, and the economic feasibility of such a project in both the short and long term?",
+//   "Explain the concept of polymorphism in object-oriented programming. Provide examples in JavaScript and TypeScript.",
+//   "How would you design a URL shortener like Bit.ly? Describe the database schema and logic behind it.",
+//   "What are the differences between React's useState and useReducer hooks? When should you use each?",
+// ];
 
-export default function QuestionsPage() {
+
+export default function QuestionsPage({ questions }: { questions: Question[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [answers, setAnswers] = useState<string[]>(questions.map(() => ""));
   const handlePrevious = () => {
+    console.log(answers)
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
@@ -27,6 +31,10 @@ export default function QuestionsPage() {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
+    submitQuestion({
+      questionId: questions[currentIndex].id,
+      answer: answers[currentIndex],
+    });
   };
 
   return (
@@ -92,18 +100,18 @@ export default function QuestionsPage() {
             {/* Question Panel with min-height */}
             <div className="md:hidden mb-4 min-h-[150px] max-h-[300px] overflow-y-auto">
               <QuestionPanel 
-                question={questions[currentIndex]} 
+                question={questions[currentIndex].question} 
               />
             </div>
             
             {/* Desktop Question Panel */}
             <div className="hidden md:block">
-              <QuestionPanel question={questions[currentIndex]} />
+              <QuestionPanel question={questions[currentIndex].question} />
             </div>
 
             {/* Answer Panel with flex-grow */}
             <div className="flex-grow">
-              <AnswerPanel />
+              <AnswerPanel currentIndex={currentIndex} answers={answers} setAnswers={setAnswers} />
             </div>
           </div>
         </section>
