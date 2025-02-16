@@ -42,7 +42,7 @@ const content: domainCardProps[] = [
 
 export default function DomainsPage() {
   return (
-    <div className="bg-[#0D1117] min-w-full min-h-screen flex flex-col">
+    <>
       <Navbar />
 
       <main className="flex-1 px-4 sm:px-6 lg:px-8">
@@ -77,6 +77,6 @@ export default function DomainsPage() {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }
