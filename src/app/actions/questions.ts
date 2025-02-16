@@ -68,7 +68,7 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
 
     const questionAttempt = await prisma.attempedQuestion.upsert({
       where: {
-        userId_questionId: {
+        questionId_userId: {
           questionId: data.questionId,
           userId: userId,
         },
