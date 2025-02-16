@@ -75,7 +75,7 @@ model AttempedQuestion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-@@unique([questionId,userId])
+@@unique([userId,questionId])
 }
 model Question {
   id String @id @default(cuid())
