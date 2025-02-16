@@ -18,8 +18,8 @@ export default function SocialMediaLink({
         rounded-md opacity-75 hover:bg-slate-700 transition-colors`}
       target="__blank"
     >
-      <Image src={icon} alt="logo" width={24} height={24} />
-      <span className="text-slate-500">{name}</span>
+      <Image src={icon} alt="logo" width={37.447} height={37.447} />
+      <span className="text-[16px] text-[#727477] text-center font-[400] leading-[30px] font-sans-code">{name}</span>
     </a>
   );
 }
