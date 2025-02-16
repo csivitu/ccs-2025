@@ -28,7 +28,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[1px] border-[#21262D] sticky z-[1000]">
+    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[1px] border-[#21262D] sticky">
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-[8px]">

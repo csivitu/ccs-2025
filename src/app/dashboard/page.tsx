@@ -92,7 +92,7 @@ export default function Dashboard() {
                   <h2 className="text-[18px] font-[400] text-white font-apro">
                     README.md
                   </h2>
-                  <div className="relative w-full h-auto md:h-96 z-0">
+                  <div className="relative w-full h-auto md:h-96">
                     <Image
                       src="/test.png"
                       alt="Test Image"
