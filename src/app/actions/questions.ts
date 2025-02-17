@@ -23,6 +23,9 @@ export async function getQuestionsByDomain(domain: DomainType) {
       throw new Error("Invalid Domain");
     }
     const questions = await prisma.question.findMany({ where: { domain } });
+    if (!questions) {
+      throw new Error("No questions found");
+    }
     return questions;
   })
 }
@@ -56,10 +59,9 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
       redirect("/unprotected");
     }
     const userId = session?.user.id || '';
-    const parsed = submitSchema.safeParse(data);
+    const parsed = submitSchema.safeParse({...data,userId});
     if (!parsed.success)
       return ActionResponse.error(400, parsed.error.message, "Invalid data");
-
     const question = await prisma.question.findUnique({ where: { id: data.questionId } });
 
     if (!question) {
