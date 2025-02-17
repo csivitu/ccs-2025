@@ -27,7 +27,7 @@ export default function NotFoundPage() {
           </nav>
         </div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] sm:w-[200px] sm:h-[200px] md:w-[350px] md:h-[350px] xl:w-[450px] xl:h-[450px]">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] xl:w-[500px] xl:h-[500px]">
           <Globe />
         </div>
 
