@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/footer/footer";
 import faq from "../data/faq";
 
 const FAQ = () => {
@@ -15,13 +15,10 @@ const FAQ = () => {
     <div className="min-h-screen bg-zinc-950 text-white">
       <Navbar />
       <div className="flex justify-center items-center flex-col px-4 py-12">
-        <h1 className="text-3xl md:text-6xl font-bold my-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#A2FACF] to-[#64ACFF]">
+        <h1 className="text-6xl font-bold my-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#A2FACF] to-[#64ACFF] font-sans code">
           CSI's Frequently Asked <br /> Questions
         </h1>
-        <button className="bg-white text-black py-2 px-6 rounded-xl text-xl font-bold mb-8">
-          Contact Us
-        </button>
-        <div className="w-full md:max-w-4xl">
+        <div className="mt-1 w-full max-w-4xl">
           {faq.map((item, index) => (
             <div key={index} className="border-b border-gray-700">
               <button
@@ -38,7 +35,7 @@ const FAQ = () => {
                   </span>
                 </span>
                 <span className="flex items-center">
-                  <span className="text-md md:text-2xl ml-4">
+                  <span className="text-[20px] ml-4 font-sans code">
                     {item.question}
                   </span>
                 </span>
@@ -51,12 +48,15 @@ const FAQ = () => {
                 <p className="px-6 pb-4 text-md md:text-lg text-[#76C3F1] ml-6">
                   {item.answer}
                 </p>
+                <p className="px-6 pb-4 text-lg text-[#76C3F1] ml-12 font-sans code">{item.answer}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <div className="mt-[-60px]">
       <Footer />
+      </div>
     </div>
   );
 };
