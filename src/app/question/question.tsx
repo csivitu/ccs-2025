@@ -45,7 +45,7 @@ export default function QuestionsPage({ questions }: { questions: Question[] }) 
       
       <main className="flex-1 px-4 md:px-14 relative flex flex-col">
         {/* Sidebar - Hidden on mobile, visible on desktop */}
-        <aside className="hidden md:flex flex-col gap-2 fixed left-1 top-20 z-10">
+        <aside className="hidden md:flex flex-col gap-2 fixed left-1 z-10">
           {[
             "/explorer.webp",
             "/search.webp",
@@ -139,9 +139,7 @@ export default function QuestionsPage({ questions }: { questions: Question[] }) 
           </div>
         </div>
       </main>
-          <div className="mt-[-70px]">
-      <Footer />
-      </div>
+          
     </div>
   );
 }
