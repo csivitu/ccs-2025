@@ -85,14 +85,14 @@ export default function Dashboard() {
 
           <div className="w-full md:w-[1250px] h-[3px] bg-[#30363D] my-4 mt-4 md:mt-[-2px] mb-8"></div>
 
-          <div className="flex flex-col lg:flex-row lg:gap-4 text-white">
+          <div className="flex flex-col md:flex-row md:gap-4 text-white">
             <main className="flex-1 space-y-4">
               <Card className="border-[3px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-full md:max-w-[920px] mx-auto">
                 <div className="p-4 md:p-6 space-y-4">
-                  <h2 className="text-[18px] font-[400] text-white font-apro">
+                  <h2 className="text-[16px] lg:text-[18px] font-[400] text-white font-apro">
                     README.md
                   </h2>
-                  <div className="relative w-full h-auto md:h-96">
+                  <div className="relative w-full h-auto md:h-96 z-0">
                     <Image
                       src="/test.png"
                       alt="Test Image"
@@ -102,21 +102,21 @@ export default function Dashboard() {
                     />
                   </div>
                   <div className="prose prose-invert max-w-none px-4 md:px-20">
-                    <h1 className="text-[24px] md:text-[28px] mt-8 md:mt-28 font-[400] text-center text-white font-sans-code">
+                    <h1 className="text-[20px] md:text-[28px] mt-6 md:mt-28 font-[400] text-center text-white font-sans-code">
                       Computer Society of India - VIT University
                     </h1>
-                    <div className="w-full md:w-3/4 mx-auto md:ml-24 border-t-4 border-gray-800 my-4 mt-2 font-sans-code"></div>
-                    <p className="text-[24px] md:text-[28px] text-center text-white mt-[-4px]">
+                    <div className="w-full md:w-3/4 mx-auto md:ml-24 border-t-4 border-gray-800 my-4 mt-1 lg:mt-2 font-sans-code"></div>
+                    <p className="text-[20px] md:text-[28px] text-center text-white -mt-2 lg:mt-[-4px]">
                       When we build, it matters.
                     </p>
-                    <p className="mt-4 text-[16px] md:text-[18px] text-center md:text-left md:ml-8 font-sans-code">
+                    <p className="mt-1 lg:mt-4 text-[14px] md:text-[18px] text-center md:text-left md:ml-8 font-sans-code">
                       We are the largest association of computer professionals
                       in India, composed of skilled designers, developers, and
                       tech enthusiasts. Our workshops, conferences, events, and
                       competitions drive technological innovation.
                     </p>
-                    <div className="w-full md:w-[95%] border-t-4 border-gray-800 my-4 md:ml-6 mt-4"></div>
-                    <p className="mt-6 text-center md:text-left md:ml-8 text-lg md:text-xl">
+                    <div className="w-full md:w-[95%] border-t-4 border-gray-800 my-4 md:ml-6 mt-2 lg:mt-4"></div>
+                    <p className="-mt-2 lg:mt-6 text-center md:text-left md:ml-8 text-sm md:text-xl">
                       Visit{" "}
                       <a href="https://csivit.com" className="underline">
                         csivit.com
@@ -127,25 +127,24 @@ export default function Dashboard() {
                 </div>
               </Card>
             </main>
-
             <aside className="mt-6 lg:mt-0 lg:w-[400px] lg:mr-">
               <div className="border-zinc-800 bg-zinc-900/50 p-2">
                 <SidebarHeader>
-                  <h2 className="text-[18px] font-sans-code text-white font-[600]">Our Team</h2>
+                  <h2 className="-mt-4 lg:mt-0 text-[16px] lg:text-[18px] font-sans-code text-white font-[600]">Our Team</h2>
                 </SidebarHeader>
                 <SidebarContent>
-                  <div className="mt-[-12px] ml-[-10px] grid grid-cols-4 md:grid-cols-6 gap-2 p-4">
-                    {Array.from({ length: 15 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-12 md:w-14 h-12 md:h-14 aspect-square rounded-full bg-[#D9D9D9]"
-                      />
-                    ))}
-                  </div>
-                  <div className="w-[92%] ml-2 border-t-4 border-[#30363D] my-4 mt-[-2px]"></div>
+                <div className="-mt-2 lg:mt-[-12px] ml-[-10px] grid grid-cols-6 gap-y-1 gap-[1px] lg:gap-2 p-4">
+  {Array.from({ length: 15 }).map((_, i) => (
+    <div
+      key={i}
+      className="w-10 md:w-14 h-10 md:h-14 aspect-square rounded-full bg-[#D9D9D9]"
+    />
+  ))}
+</div>
+                  <div className="w-[92%] ml-2 border-t-4 border-[#30363D] my-4 mt-[-2px] -mt-2 lg:mt-0 " ></div>
 
                   <SidebarGroup>
-                    <SidebarGroupLabel className="text-[18px] ml-[-8px] mt-[-12px] font-sans-code font-[600]">
+                    <SidebarGroupLabel className="text-[16px] lg:text-[18px] ml-[-8px] -mt-6 lg:mt-[-12px] font-sans-code font-[600]">
                       Our Projects
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
@@ -174,22 +173,22 @@ export default function Dashboard() {
                   </SidebarGroup>
 
                   <SidebarGroup>
-                    <SidebarGroupLabel className="text-[18px] mt-[-20px] ml-[-6px] font-sans-code font-600">
+                    <SidebarGroupLabel className="text-[16px] lg:text-[18px] -mt-8 lg:mt-[-20px] ml-[-6px] font-sans-code font-600">
                       Most recent events
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
-                      <div className="flex flex-wrap gap-2">
-                        {["ForkThis!", "LaserTag", "DevSpace", "CodeBank", "Riddler"].map(
-                          (event) => (
-                            <span
-                              key={event}
-                              className="rounded-[24px] mt-2 bg-zinc-800 px-4 py-2 text-[14px] md:text-[16px] text-sans-code text-zinc-400"
-                            >
-                              {event}
-                            </span>
-                          )
-                        )}
-                      </div>
+                    <div className="flex flex-wrap gap-1 md:gap-2">
+  {["ForkThis!", "LaserTag", "DevSpace", "CodeBank", "Riddler"].map(
+    (event) => (
+      <span
+        key={event}
+        className="rounded-[24px] mt-2 bg-zinc-800 px-2 md:px-4 py-1 md:py-2 text-[12px] md:text-[16px] text-sans-code text-zinc-400"
+      >
+        {event}
+      </span>
+    )
+  )}
+</div>
                       <div className="w-[96%] ml-[-1px] border-t-4 border-[#30363D] my-4 mt-6"></div>
                     </SidebarGroupContent>
                   </SidebarGroup>
@@ -207,19 +206,22 @@ export default function Dashboard() {
             alt="Party popper emoji"
             width={120}
             height={120}
-            className="w-24 h-24 md:w-[120px] md:h-[120px] mb-4 mt-[-60px]"
+            className="w-20 h-20 md:w-[120px] md:h-[120px] mb-4 -mt-20 lg:mt-[-60px]"
           />
         </div>
-        <h2 className="text-lg md:text-xl mb-1 font-semibold text-white font-sans-code">
-          That's CSI for you!
-        </h2>
-        <p className="text-zinc-400 font-sans-code">Buckle up for some think tank period.</p>
-        <a href="/domains" className="text-blue-400 hover:text-blue-300 text-sm font-sans-code">
-          Click here for taking the test
-        </a>
+        <h2 className="text-base sm:text-lg md:text-xl mb-1 font-semibold text-white font-sans-code">
+  That's CSI for you!
+</h2>
+<p className="text-sm sm:text-base text-zinc-400 font-sans-code">
+  Buckle up for some think tank period.
+</p>
+<a href="/domains" className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 font-sans-code">
+  Click here for taking the test
+</a>
+
       </div>
       
-      <div className="mt-[-70px]">
+      <div className="lg:mt-2">
         <Footer />
       </div>
     </div>
