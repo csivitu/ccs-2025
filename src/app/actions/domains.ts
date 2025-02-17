@@ -76,3 +76,59 @@ export async function selectDomain(domain: DomainType) {
         return selectedDomain
     })
 }
+
+export async function getDomainStats() {
+    return requestHandler(async () => {
+        const session = await auth()
+        if (!session?.user) {
+            redirect("/");
+        }
+        
+        const user = await prisma.user.findUnique({
+            where: {
+                id: session.user.id,
+            },
+            include: {
+                attemptedQuestions: {
+                    include: {
+                        question: true,
+                    },
+                },
+                attemptedTasks: {
+                    include: {
+                        task: true,
+                    },
+                },
+            },
+        });
+
+        if (!user) {
+            throw new Error("User not found");
+        }
+
+        const domains = await Promise.all(
+            Object.values(DomainType).map(async (domain) => {
+                const completedQuestions = user.attemptedQuestions.filter(
+                    (q) => q.question.domain === domain
+                ).length;
+
+                const totalQuestions = await prisma.question.count({
+                    where: {
+                        domain,
+                    },
+                });
+
+                return {
+                    name: domain,
+                    completed: completedQuestions,
+                    total: totalQuestions,
+                };
+            })
+        );
+        return {
+            username: user.name,
+            about: user.aboutUs,
+            stats: domains
+        };
+    })
+}
