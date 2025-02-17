@@ -6,8 +6,8 @@ import xLogo from "../../../public/logos/xLogo.svg";
 
 export default function Footer() {
   return (
-    <footer className="relative flex flex-row min-w-full bg-slate-800 py-6 mt-24 items-center">
-      <div className="flex flex-row gap-4">
+    <footer className="relative flex flex-row min-w-full bg-slate-800 h-18 mt-20 mb-0 items-center">
+      <div className="flex flex-row gap-3">
         <SocialMediaLink
           name="@csivitu"
           href="https://www.instagram.com/csivitu/"
@@ -21,18 +21,22 @@ export default function Footer() {
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 text-center">
-        <p className="text-[21.6px] text-white font-sans-code font-[400] leading-normal">When we build, it matters.</p>
-        <p className="text-[#727477] font-sans-code text-[18px] font-[400] leading-[27px] text-center mr-2">© 2025. Made with 🤍 @CSI</p>
+        <p className="mt-2 text-[18px] text-white font-sans-code font-[400] leading-tight">
+          When we build, it matters.
+        </p>
+        <p className="text-[#727477] font-sans-code text-[14px] font-[400] leading-tight text-center mr-2 mt-1">
+          © 2025. Made with 🤍 @CSI
+        </p>
       </div>
 
-      <div className="flex flex-row gap-4 ml-auto">
+      <div className="flex flex-row gap-3 ml-auto">
         <SocialMediaLink
           name="@csivitu"
           href="https://github.com/csivitu"
           icon={githubLogo}
         />
         <SocialMediaLink
-          name="Computer Society of India"
+          name="CSI"
           href="https://www.linkedin.com/company/csivitu/posts/"
           icon={linkedInLogo}
         />
@@ -40,3 +44,4 @@ export default function Footer() {
     </footer>
   );
 }
+
