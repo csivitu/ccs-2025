@@ -55,13 +55,12 @@ export default function TaskCard({
       </div>
 
       <button
-        className={`sm:block hidden
-          border-2 border-[#30363D] h-fit rounded-full 
-          sm:px-4 sm:py-1 px-2 text-xs sm:text-base 
-          ${isCompleted && "bg-[#2da641]"}`}
-      >
-        {isCompleted ? "Completed" : "Pending"}
-      </button>
+  className={`border-2 border-[#30363D] h-fit rounded-full 
+    px-2 text-xs sm:px-4 sm:py-1 sm:text-base 
+    w-full sm:w-auto ${isCompleted && "bg-[#2da641]"}`}
+>
+  {isCompleted ? "Completed" : "Pending"}
+</button>
     </article>
   );
 }
