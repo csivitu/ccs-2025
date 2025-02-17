@@ -10,7 +10,7 @@
   <h3 align="center">Frontend</h3>
 
   <p align="center">
-    CCS Frontend 2025
+    Boilerplate Code Repository for Next.js frontend
     <br />
     <a href="https://github.com/csivitu/Template"><strong>Explore the docs »</strong></a>
     <br />
