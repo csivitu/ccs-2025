@@ -28,10 +28,10 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-4 px-4 sm:px-8 border-b-[2px] border-[#3c444c] sticky z-[1000]">
+    <nav className="top-0 left-0 right-0 bg-black text-white py-2 px-4 sm:px-8 border-b-[2px] border-[#3c444c] sticky z-[1000]">
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-[8px]">
+          <div className="flex items-center gap-[8px] w-full justify-between">
             <button
               className="sm:hidden mr-4 p-[2px] border-[1px] rounded-[6px] border-slate-600"
               onClick={handleToggleNavbar}
@@ -39,36 +39,38 @@ const Navbar = () => {
               <MenuIcon className="text-slate-200 p-[2px]" />
             </button>
 
-            <Image
+            <a href="https://github.com/csivitu" className="flex gap-2 justify-center items-center">
+              <Image
               src="/git.webp"
               width={35}
-              height={34}
+              height={35}
               alt="Logo"
-              className="flex-shrink-0"
+              className="flex-shrink-0 mobile:w-[32px]"
             />
-            <span className="text-[#C9D1D9] text-center font-[400] text-2xl leading-[30px] font-sans-code">
+            <span className="text-[#C9D1D9] text-center font-[400] tab:text-xl mobile:hidden tab:block leading-[30px] font-sans-code ">
               csivitu
             </span>
+            </a>
           </div>
           <div className="hidden sm:flex items-center space-x-4">
-            <a href="#home" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
+            <a href="#home" className="text-[#F0F6FC] font-sans-code text-[20px]  leading-[21px]">
               Home
             </a>
-            <a href="/faq" className="text-[#F0F6FC] font-sans-code text-[20px] font-semibold leading-[21px]">
+            <a href="/faq" className="text-[#F0F6FC] font-sans-code text-[20px]  leading-[21px]">
               FAQs
             </a>
             <Image
               src="/giticon.webp"
-              width={44}
+              width={45}
               height={45}
               alt="FAQs Icon"
-              className="flex-shrink-0"
+              className="flex-shrink-0 aspect-square w-[42px]"
             />
           </div>
         </div>
 
         {/* Navigation Links */}
-        <div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center ml-4 text-[#C9D1D9] font-sans-code text-[16px] font-normal leading-[30px]">
+        <div className="hidden sm:flex flex-row gap-4 md:gap-8 mt-4 text-center text-[#C9D1D9] font-sans-code text-[16px] font-normal leading-[30px]">
           {navLinks.map((item) => (
             <div key={item.id} className="flex items-center gap-2">
               <Link href={item.href} passHref>
@@ -93,7 +95,7 @@ const Navbar = () => {
 
       {/* Mobile Navbar */}
       <div
-        className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
+        className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-zinc-950 z-50 
           transform transition-transform duration-300 ease-in-out
           border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-3xl border-slate-600
           ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
