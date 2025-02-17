@@ -15,7 +15,7 @@ export default function Footer() {
         />
         <SocialMediaLink
           name="@csivitu"
-          href="https://www.linkedin.com/company/csivitu/posts/"
+          href="https://www.linkedin.com/company/csivitu/"
           icon={linkedInLogo}
         />
      </div>
@@ -27,12 +27,12 @@ export default function Footer() {
      <div className="flex w-full mobile:justify-between tab:justify-end">
      <SocialMediaLink
           name="@csivitu"
-          href="https://github.com/csivitu"
+          href="https://x.com/csivitu"
           icon={xLogo}
         />
         <SocialMediaLink
           name="@csivitu"
-          href="https://www.linkedin.com/company/csivitu/posts/"
+          href="https://www.instagram.com/csivitu/"
           icon={instagramLogo}
         />
      </div>
