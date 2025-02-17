@@ -9,10 +9,7 @@ export default function NotFoundPage() {
   return (
     <main className="min-h-screen w-full bg-[#070B14] relative overflow-hidden">
       <div className="absolute inset-0">
-        <Particles
-          className="relative top-0 left-0 w-screen h-screen"
-          quantity={1000}
-        />
+        <Particles className="relative top-0 left-0 w-screen h-screen" quantity={750} />
       </div>
 
       <div className="relative min-h-screen flex flex-col justify-between">
@@ -30,7 +27,7 @@ export default function NotFoundPage() {
           </nav>
         </div>
 
-        <div className="absolute left-1/2 top-1/2 -mt-16 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[850px] md:h-[850px] z-0">
+        <div className="absolute left-1/2 top-1/2 -mt-16 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[850px] md:h-[850px]">
           <Globe />
         </div>
 
