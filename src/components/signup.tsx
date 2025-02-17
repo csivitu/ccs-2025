@@ -40,26 +40,26 @@ export default function Signup() {
         <div className="w-full max-w-[630px] bg-[#151B23] border border-gray-600 rounded-[10px] flex flex-col items-center p-6 space-y-4">
           <div className="w-full space-y-4">
             <div className="flex flex-col">
-              <label className="text-white mb-2 text-lg">Email*</label>
+              <label className="text-white mb-2 text-lg">Name</label>
               <input 
-                type="email" 
-                placeholder="Email" 
+                type="name" 
+                placeholder="Name" 
                 className="w-full h-[50px] bg-black text-white px-4 rounded-[10px] border border-gray-600 focus:outline-none" 
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-white mb-2 text-lg">Password*</label>
+              <label className="text-white mb-2 text-lg">Gender</label>
               <input 
-                type="password" 
-                placeholder="Password" 
+                type="gender" 
+                placeholder="Gender" 
                 className="w-full h-[50px] bg-black text-white px-4 rounded-[10px] border border-gray-600 focus:outline-none" 
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-white mb-2 text-lg">Confirm Password*</label>
+              <label className="text-white mb-2 text-lg">About us</label>
               <input 
-                type="password" 
-                placeholder="Confirm password" 
+                type="about us" 
+                placeholder="About Us" 
                 className="w-full h-[50px] bg-black text-white px-4 rounded-[10px] border border-gray-600 focus:outline-none" 
               />
             </div>

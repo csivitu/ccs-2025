@@ -6,8 +6,8 @@ import Footer from "@/components/footer/footer";
 
 const ProjectPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[#010409]">
-      <div className="fixed top-0 left-0 w-full bg-[#010409] bg-opacity-90 z-50 backdrop-blur-md">
+    <div className="min-h-screen w-full ">
+      <div className="fixed top-0 left-0 w-full  bg-opacity-90 z-50 backdrop-blur-md">
         <Navbar />
       </div>
       <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44">
@@ -57,7 +57,7 @@ const ProjectPage = () => {
 
         {/* Right Section - Scrollable */}
         <div className="lg:w-[70%] mt-[-480px] lg:mt-[-8px] h-screen lg:h-[calc(100vh-10rem)]">
-  <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409]">
+  <div className="border-[3px] border-[#30363D] rounded-[6px] ">
     <div className="h-full">
       {[...Array(7)].map((_, index) => (
         <div

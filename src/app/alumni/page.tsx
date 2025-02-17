@@ -6,8 +6,8 @@ import Footer from "@/components/footer/footer";
 
 const AlumniPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[#010409]">
-      <div className="fixed top-0 left-0 w-full bg-[#010409] bg-opacity-90 z-50 backdrop-blur-md">
+    <div className="min-h-screen w-full ">
+      <div className="fixed top-0 left-0 w-full  bg-opacity-90 z-50 backdrop-blur-md">
         <Navbar />
       </div>
       <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44">
@@ -43,7 +43,7 @@ const AlumniPage = () => {
 
           <div className="flex flex-wrap mt-1">
             <div className="flex items-center w-1/2 lg:w-auto lg:mr-24">
-              <span className="w-3 h-3 mr-2 rounded-full bg-[#FFB249]"></span>
+              <span className="w-3 h-3 mr-2 rounded-full bg-[#FFB2]"></span>
               <span className="text-sm text-[#9198A1] font-sans-code">Proj3</span>
             </div>
             <div className="flex items-center w-1/2 lg:w-auto">
@@ -54,7 +54,7 @@ const AlumniPage = () => {
         </div>
 
         <div className="lg:w-[70%] mt-3 lg:mt-[-8px]">
-          <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409] h-auto lg:h-[calc(136vh-3rem)]">
+          <div className="border-[3px] border-[#30363D] rounded-[6px]  h-auto lg:h-[calc(140vh-3rem)]">
             <div className="h-full">
               {[...Array(7)].map((_, index) => (
                 <div
@@ -67,7 +67,7 @@ const AlumniPage = () => {
                     {/* Left Section (Profile Info) */}
                     <div className="flex-grow relative">
                       <div className="flex flex-col lg:flex-row items-start lg:items-center p-2">
-                      <div className="flex items-center gap-x-4">
+                        <div className="flex items-center gap-x-4">
   <div className="w-[60px] h-[60px] lg:w-[75px] lg:h-[75px] bg-[#D9D9D9] rounded-full flex-shrink-0 flex justify-center items-center"></div>
   <div>
     <div className="text-white font-sans-code text-[20px] lg:text-[24px] font-normal leading-[24px] lg:leading-[30px]">
@@ -81,7 +81,6 @@ const AlumniPage = () => {
     </div>
   </div>
 </div>
-
                       </div>
                     </div>
 
