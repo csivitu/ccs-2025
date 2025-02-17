@@ -8,20 +8,20 @@ export default async function QuestionsListing({
 }: {
   params: { domain: string };
 }) {
-  const domainStuff = params.domain.toUpperCase();
+  const capitalizedDomain = params.domain.toUpperCase();
 
-  if (!domainStuff || !(domainStuff in DomainType)) {
+  if (!capitalizedDomain || !(capitalizedDomain in DomainType)) {
     return <div>Invalid domain</div>;
   }
 
-  const response = await startOrResumeDomainQuiz(domainStuff as DomainType);
+  const response = await startOrResumeDomainQuiz(capitalizedDomain as DomainType);
   if (response.error) {
     console.error("Error fetching questions:", response.error);
     throw response.error;
   }
 
   if (response.data?.isCompleted) {
-    redirect(`/domains/${params.domain}/completed`);
+    redirect(`/domains?completed=true`);
   }
 
   return (
