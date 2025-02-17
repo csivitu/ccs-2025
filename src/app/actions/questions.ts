@@ -13,11 +13,12 @@ import { requestHandler } from '@/helpers/request-handler';
 
 export async function getQuestionsByDomain(domain: DomainType) {
   return requestHandler(async () =>{
-    const session = await auth();
-    if (!session?.user) {
+    //const session = await auth();
+    //if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
-    }
+      //redirect("/unprotected");
+     // return;
+    //}
     const parsed = questionIdSchema.safeParse(domain);
     if (!parsed.success) {
       throw new Error("Invalid Domain");
@@ -35,7 +36,8 @@ export async function getQuestionById(id: string) {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
+      //redirect("/unprotected");
+      return;
     }
     const parsed = questionIdSchema.safeParse(id);
     if (!parsed.success)
@@ -56,7 +58,8 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
+      //redirect("/unprotected");
+      return;
     }
     const userId = session?.user.id || '';
     const parsed = submitSchema.safeParse({...data,userId});

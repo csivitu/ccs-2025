@@ -14,7 +14,8 @@ export async function getUserDomains() {
         const session = await auth()
         if (!session?.user) {
             //todo redirect to login
-            redirect("/unprotected");
+            //redirect("/unprotected");
+            return;
         }
         const user = await prisma.user.findUnique({
             where: {
@@ -34,7 +35,8 @@ export async function selectDomain(domain: DomainType) {
         const session = await auth()
         if (!session?.user) {
             //todo redirect to login
-            redirect("/unprotected");
+            //redirect("/unprotected");
+            return;
         }
 
         const existingAttempt = await prisma.attemptedDomain.findFirst({

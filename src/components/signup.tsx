@@ -11,7 +11,7 @@ export default function Signup() {
             alt="GitHub Icon"
             width={70}
             height={70}
-            className="mb-3"
+            className="mb-3 sm:w-[70px] sm:h-[70px]"
           />
           <h2 className="text-white text-2xl sm:text-4xl font-semibold">
             Details
