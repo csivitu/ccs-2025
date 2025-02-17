@@ -6,6 +6,9 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        noise: "url(/public/task-page-bg.webp)"
+      },
       fontFamily: {
         "sans-code": ['"Google Sans Code"', "sans-serif"],
         "apro": ['"Anonymous Pro"', "sans-serif"],

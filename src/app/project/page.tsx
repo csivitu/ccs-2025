@@ -6,26 +6,26 @@ import Footer from "@/components/footer/footer";
 
 const ProjectPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[#010409]">
-      <div className="fixed top-0 left-0 w-full bg-[#010409] bg-opacity-90 z-50 backdrop-blur-md">
+    <div className="min-h-screen w-full ">
+      <div className="fixed top-0 left-0 w-full  bg-opacity-90 z-50 backdrop-blur-md">
         <Navbar />
       </div>
       <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44">
         <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 h-screen">
-          <h1 className="text-white font-sans-code text-[36px] font-semibold leading-[30px] mb-4">
+          <h1 className="text-white font-sans-code text-[32px] lg:text-[36px] font-semibold leading-[30px] mb-2 lg:mb-4">
             Projects
           </h1>
-          <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-4" />
-          <p className="text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code mb-6">
+          <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-2 lg:mb-4" />
+          <p className="text-[14px] lg:text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code mb-4 lg:mb-6">
             Lorem ipsum about projects karo <br className="hidden lg:block" />
             projects lorem nahi ipsum nahi projects <br className="hidden lg:block" />
             lorem ipsum
           </p>
-          <h2 className="text-[24px] text-white font-normal font-sans-code mt-6 lg:mt-10">
+          <h2 className="text-[20px] lg:text-[24px] text-white font-normal font-sans-code mt-2 lg:mt-10">
             Our Projects
           </h2>
 
-          <div className="mt-2 w-[90%] lg:w-[85%] max-w-sm lg:max-w-4xl h-3 lg:h-2.5 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1">
+          <div className="mt-2 lg:mt-2 w-[90%] lg:w-[85%] max-w-sm lg:max-w-4xl h-3 lg:h-2.5 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1">
             <div className="flex-[5] bg-[#F5502A] rounded-l-[6px]"></div>
             <div className="flex-[4] bg-[#6541B2]"></div>
             <div className="flex-[3] bg-[#FFB249]"></div>
@@ -55,9 +55,8 @@ const ProjectPage = () => {
           </div>
         </div>
 
-        {/* Right Section - Scrollable */}
-        <div className="lg:w-[70%] mt-[-480px] lg:mt-[-8px] h-screen lg:h-[calc(100vh-10rem)]">
-  <div className="border-[3px] border-[#30363D] rounded-[6px] bg-[#010409]">
+        <div className="lg:w-[70%] mt-[-440px] lg:mt-[-8px] h-screen lg:h-[calc(100vh-10rem)]">
+  <div className="border-[3px] border-[#30363D] rounded-[6px] ">
     <div className="h-full">
       {[...Array(7)].map((_, index) => (
         <div
@@ -74,8 +73,6 @@ const ProjectPage = () => {
                     className="mt-2 w-3 h-3 lg:w-6 lg:h-6 mr-2"
                   />
                   <span className="mt-1 font-normal">projectTitle</span>
-                  <span className="mt-2 mx-1">/</span>
-                  <span className="mt-2 font-semibold">projectName</span>
                 </span>
                 <img
                   src="/giticon.webp"
@@ -123,7 +120,7 @@ const ProjectPage = () => {
 
       </div>
       
-      <div className="mt-[300px] lg:mt-[180px]">
+      <div className="mt-[360px] lg:mt-[180px]">
         <Footer />
       </div>
     </div>

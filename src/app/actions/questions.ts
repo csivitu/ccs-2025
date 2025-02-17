@@ -13,16 +13,20 @@ import { requestHandler } from '@/helpers/request-handler';
 
 export async function getQuestionsByDomain(domain: DomainType) {
   return requestHandler(async () =>{
-    const session = await auth();
-    if (!session?.user) {
+    //const session = await auth();
+    //if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
-    }
+      //redirect("/unprotected");
+     // return;
+    //}
     const parsed = questionIdSchema.safeParse(domain);
     if (!parsed.success) {
       throw new Error("Invalid Domain");
     }
     const questions = await prisma.question.findMany({ where: { domain } });
+    if (!questions) {
+      throw new Error("No questions found");
+    }
     return questions;
   })
 }
@@ -32,7 +36,8 @@ export async function getQuestionById(id: string) {
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
+      //redirect("/unprotected");
+      return;
     }
     const parsed = questionIdSchema.safeParse(id);
     if (!parsed.success)
@@ -53,13 +58,13 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
     const session = await auth();
     if (!session?.user) {
       //todo redirect to login
-      redirect("/unprotected");
+      //redirect("/unprotected");
+      return;
     }
     const userId = session?.user.id || '';
-    const parsed = submitSchema.safeParse(data);
+    const parsed = submitSchema.safeParse({...data,userId});
     if (!parsed.success)
       return ActionResponse.error(400, parsed.error.message, "Invalid data");
-
     const question = await prisma.question.findUnique({ where: { id: data.questionId } });
 
     if (!question) {
@@ -68,7 +73,7 @@ export async function submitQuestion(data:{questionId: string, answer: string}) 
 
     const questionAttempt = await prisma.attempedQuestion.upsert({
       where: {
-        questionId_userId: {
+        userId_questionId: {
           questionId: data.questionId,
           userId: userId,
         },
