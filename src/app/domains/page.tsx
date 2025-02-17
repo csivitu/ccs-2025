@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import DomainCard from "@/components/domain-page/domainCard";
 import { domainCardProps } from "@/types/domain-card-props";
@@ -8,39 +11,71 @@ import managementLogo from "public/logos/managementLogo.svg";
 import csiLogo from "public/logos/csiLogoOnDark.svg";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/Navbar";
-
-const content: domainCardProps[] = [
-  {
-    domainName: "Tech",
-    domainIcon: techLogo,
-    description:
-      "Tech domain lorem ipsum Tech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsum",
-    buttonLabel: "Let's Start Coding",
-  },
-  {
-    domainName: "Design",
-    domainIcon: designLogo,
-    description:
-      "Design domain lorem ipsum Tech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsum",
-    buttonLabel: "Dive Into Design",
-  },
-  {
-    domainName: "Management",
-    domainIcon: managementLogo,
-    description:
-      "Management domain lorem ipsum Tech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsum",
-    buttonLabel: "Get those finances right",
-  },
-  {
-    domainName: "Video",
-    domainIcon: videoLogo,
-    description:
-      "Video domain lorem ipsum Tech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsumTech domain lorem ipsum",
-    buttonLabel: "Live. Camera. Action.",
-  },
-];
+import { getUserDomains, selectDomain } from "@/app/actions/domains";
+import { DomainType } from "@prisma/client";
 
 export default function DomainsPage() {
+  const [selectedDomains, setSelectedDomains] = useState<DomainType[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchDomains() {
+      const userDomains = await getUserDomains();
+      if (userDomains) {
+        setSelectedDomains(userDomains?.data?.map((domain) => domain.domain) || []); 
+      }
+    }
+    fetchDomains();
+  }, []);
+
+  const handleSelectDomain = async (domain: DomainType) => {
+    setLoading(true);
+    try {
+      const selected = await selectDomain(domain);
+      if (selected) {
+        setSelectedDomains((prev) => [...prev, domain]);
+      }
+    } catch (error) {
+      console.error("Error selecting domain:", error);
+    }
+    setLoading(false);
+  };
+
+  const content: domainCardProps[] = [
+    {
+      domainName: "Tech",
+      domainIcon: techLogo,
+      description: "Tech domain lorem ipsum...",
+      buttonLabel: selectedDomains.includes("TECH") ? "Go to Test" : "Let's Start Coding",
+      onClick: () => handleSelectDomain("TECH"),
+      disabled: selectedDomains.includes("TECH") || selectedDomains.length >= 2,
+    },
+    {
+      domainName: "Design",
+      domainIcon: designLogo,
+      description: "Design domain lorem ipsum...",
+      buttonLabel: selectedDomains.includes("DESIGN") ? "Go to Test" : "Dive Into Design",
+      onClick: () => handleSelectDomain("DESIGN"),
+      disabled: selectedDomains.includes("DESIGN") || selectedDomains.length >= 2,
+    },
+    {
+      domainName: "Management",
+      domainIcon: managementLogo,
+      description: "Management domain lorem ipsum...",
+      buttonLabel: selectedDomains.includes("MANAGEMENT") ? "Go to Test" : "Get those finances right",
+      onClick: () => handleSelectDomain("MANAGEMENT"),
+      disabled: selectedDomains.includes("MANAGEMENT") || selectedDomains.length >= 2,
+    },
+    {
+      domainName: "Video",
+      domainIcon: videoLogo,
+      description: "Video domain lorem ipsum...",
+      buttonLabel: selectedDomains.includes("VIDEO") ? "Go to Test" : "Live. Camera. Action.",
+      onClick: () => handleSelectDomain("VIDEO"),
+      disabled: selectedDomains.includes("VIDEO") || selectedDomains.length >= 2,
+    },
+  ];
+
   return (
     <>
       <Navbar />

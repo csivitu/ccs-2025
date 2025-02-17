@@ -8,6 +8,9 @@ const DomainCard: FC<domainCardProps> = ({
   domainIcon,
   description,
   buttonLabel,
+  onClick,
+  disabled
+  
 }) => {
   return (
     <div className="border-4 border-[#30363D] rounded-[6px] shadow-md p-4">
