@@ -4,25 +4,7 @@ import Image from 'next/image';
 export default function Signup() {
   return (
     <div className="h-screen bg-black sticky overflow-auto flex flex-col">
-      <div className="relative flex flex-col items-center pt-8 space-y-6 px-4 sm:px-0 flex-1">
-        <div className="absolute left-0 bottom-7 transform origin-bottom-left sm:scale-100 scale-75 hidden sm:block">
-          <Image
-            src="/cat_left.webp"
-            alt="Left Cat"
-            width={400}
-            height={300}
-            className="w-[50vw] max-w-[300px] h-auto "
-          />
-        </div>
-        <div className="absolute right-0 top-0 transform origin-top-right sm:scale-100 scale-75 hidden sm:block">
-          <Image
-            src="/cat_right.webp"
-            alt="Right Cat"
-            width={400}
-            height={300}
-            className="w-[50vw] max-w-[300px] h-auto"
-          />
-        </div>
+      <div className="relative flex flex-col items-center pt-8 space-y-6 px-4 sm:px-0 flex-1">      
         <div className="flex flex-col items-center space-y-3 text-center">
           <Image
             src="/git.webp"
