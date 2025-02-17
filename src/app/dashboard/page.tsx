@@ -18,22 +18,22 @@ export default function Dashboard() {
     <div className="min-h-screen bg-zinc-950">
       <Navbar />
       <SidebarProvider>
-        <div className="p-4 md:mx-4 lg:mx-32">
+        <div className="p-4 w-full md:w-4/5 mx-auto">
           {/* Header */}
-          <div className="flex flex-row items-center gap-4 mb-4 mt-2 md:flex-row">
+          <div className="flex flex-row items-center w-full gap-4 mb-4 mt-2">
   <Image
     src="/logo.png"
     alt="CSI Logo"
     width={120}
     height={120}
-    className="mt-[-120px] md:mt-2 rounded-lg w-24 h-24 md:w-[120px] md:h-[120px]"
+    className="mt-[-120px] md:mt-2 rounded-lg w-20 aspect-square md:w-[120px] md:h-[120px]"
   />
   <div className="flex flex-col justify-between h-auto text-left">
     <div>
-      <h1 className="mt-2 text-[20px] md:text-[24px] font-[600] text-white font-sans-code">
+      <h1 className="md:mt-2 text-[1.125rem] md:text-[24px] font-[600] text-white font-sans-code">
         Computer Society of India - VIT University
       </h1>
-      <p className="text-[16px] md:text-[18px] text-[#9198A1] font-sans-code font-normal">
+      <p className="text-sm md:text-[18px] text-[#9198A1] font-sans-code font-normal">
         When we build, it matters.
       </p>
     </div>
@@ -83,42 +83,41 @@ export default function Dashboard() {
 
           </div>
 
-          <div className="w-full md:w-[1250px] h-[3px] bg-[#30363D] my-4 mt-4 md:mt-[-2px] mb-8"></div>
+          <div className="w-full md:w-full h-[3px] bg-[#30363D] my-4 mt-4 md:mt-[-2px] mb-4 md:mb-8"></div>
 
           <div className="flex flex-col md:flex-row md:gap-4 text-white">
-            <main className="flex-1 space-y-4">
-              <Card className="border-[3px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-full md:max-w-[920px] mx-auto">
-                <div className="p-4 md:p-6 space-y-4">
-                  <h2 className="text-[16px] lg:text-[18px] font-[400] text-white font-apro">
+            <main className="flex-1 space-y-4 w-full">
+              <Card className="border-[2px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-full w-full mx-auto">
+                <div className="p-4 md:p-6 space-y-4 w-full">
+                  <h2 className="text-[1rem] lg:text-[1.325rem] font-[400] text-white font-apro font-semibold">
                     README.md
                   </h2>
-                  <div className="relative w-full h-auto md:h-96 z-0">
                     <Image
                       src="/test.png"
                       alt="Test Image"
                       width={1000}
-                      height={300}
-                      className="rounded-lg w-full"
+                      height={600}
+                      className=" w-full h-auto"
+                      style={{borderRadius:"5px"}}
                     />
-                  </div>
-                  <div className="prose prose-invert max-w-none px-4 md:px-20">
-                    <h1 className="text-[20px] md:text-[28px] mt-6 md:mt-28 font-[400] text-center text-white font-sans-code">
+                  <div className="w-full md:w-4/5 mx-auto">
+                    <h1 className="text-base md:text-[2rem] my-4 font-semibold text-center text-white font-sans-code">
                       Computer Society of India - VIT University
                     </h1>
-                    <div className="w-full md:w-3/4 mx-auto md:ml-24 border-t-4 border-gray-800 my-4 mt-1 lg:mt-2 font-sans-code"></div>
-                    <p className="text-[20px] md:text-[28px] text-center text-white -mt-2 lg:mt-[-4px]">
+                    <div className="w-full md:w-full mx-auto border-t-4 border-gray-800 my-4 mt-1 lg:mt-2 font-sans-code mb-6 md:mb-12"></div>
+                    <p className="text-sm md:text-[1.25rem]  font-semibold text-center text-white -mt-2 lg:mt-[-4px] italic">
                       When we build, it matters.
                     </p>
-                    <p className="mt-1 lg:mt-4 text-[14px] md:text-[18px] text-center md:text-left md:ml-8 font-sans-code">
+                    <p className="mt-1 lg:mt-4 text-xs md:text-base text-justify md:text-center md:text-left font-sans-code">
                       We are the largest association of computer professionals
                       in India, composed of skilled designers, developers, and
                       tech enthusiasts. Our workshops, conferences, events, and
                       competitions drive technological innovation.
                     </p>
-                    <div className="w-full md:w-[95%] border-t-4 border-gray-800 my-4 md:ml-6 mt-2 lg:mt-4"></div>
-                    <p className="-mt-2 lg:mt-6 text-center md:text-left md:ml-8 text-sm md:text-xl">
+                    <div className="w-full md:w-full border-t-4 border-gray-800 my-4 mt-2 lg:mt-12"></div>
+                    <p className="-mt-2 lg:mt-6 text-center text-sm md:text-xl">
                       Visit{" "}
-                      <a href="https://csivit.com" className="underline">
+                      <a href="https://csivit.com" className="underline text-blue-300 underline-offset-4">
                         csivit.com
                       </a>{" "}
                       to learn more!
@@ -127,13 +126,13 @@ export default function Dashboard() {
                 </div>
               </Card>
             </main>
-            <aside className="mt-6 lg:mt-0 lg:w-[400px] lg:mr-">
+            <aside className="mt-6 lg:mt-0 lg:w-[400px] h-full border-[2px] border-[#30363D] rounded-[6px] lg:mr-">
               <div className="border-zinc-800 bg-zinc-900/50 p-2">
                 <SidebarHeader>
-                  <h2 className="-mt-4 lg:mt-0 text-[16px] lg:text-[18px] font-sans-code text-white font-[600]">Our Team</h2>
+                  <h2 className=" lg:mt-0 text-[1rem] lg:text-[1.325rem] font-sans-code text-white  font-semibold">Our Team</h2>
                 </SidebarHeader>
                 <SidebarContent>
-                <div className="-mt-2 lg:mt-[-12px] ml-[-10px] grid grid-cols-6 gap-y-1 gap-[1px] lg:gap-2 p-4">
+                <div className="-mt-2 lg:mt-[-12px] ml-[-10px] grid grid-cols-6 gap-y-2 md:gap-y-1  lg:gap-2 p-4">
   {Array.from({ length: 15 }).map((_, i) => (
     <div
       key={i}
@@ -144,7 +143,7 @@ export default function Dashboard() {
                   <div className="w-[92%] ml-2 border-t-4 border-[#30363D] my-4 mt-[-2px] -mt-2 lg:mt-0 " ></div>
 
                   <SidebarGroup>
-                    <SidebarGroupLabel className="text-[16px] lg:text-[18px] ml-[-8px] -mt-6 lg:mt-[-12px] font-sans-code font-[600]">
+                    <SidebarGroupLabel className="text-[1rem] lg:text-[1.325rem] ml-[-8px] -mt-6 lg:mt-[-12px] font-sans-code font-[600]">
                       Our Projects
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
@@ -173,16 +172,16 @@ export default function Dashboard() {
                   </SidebarGroup>
 
                   <SidebarGroup>
-                    <SidebarGroupLabel className="text-[16px] lg:text-[18px] -mt-8 lg:mt-[-20px] ml-[-6px] font-sans-code font-600">
+                    <SidebarGroupLabel className="text-[1rem] font-semibold lg:text-[1.325rem] -mt-8 lg:mt-[-20px] ml-[-6px] font-sans-code font-600">
                       Most recent events
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
-                    <div className="flex flex-wrap gap-1 md:gap-2">
+                    <div className="flex flex-wrap gap-1 md:gap-2 mt-2" >
   {["ForkThis!", "LaserTag", "DevSpace", "CodeBank", "Riddler"].map(
     (event) => (
       <span
         key={event}
-        className="rounded-[24px] mt-2 bg-zinc-800 px-2 md:px-4 py-1 md:py-2 text-[12px] md:text-[16px] text-sans-code text-zinc-400"
+        className="rounded-[24px] mt-0 bg-zinc-800 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm text-sans-code text-zinc-400"
       >
         {event}
       </span>
@@ -199,23 +198,23 @@ export default function Dashboard() {
         </div>
       </SidebarProvider>
 
-      <div className="w-full bg-zinc-950 p-4 md:p-8 text-center mt-8">
+      <div className="w-full bg-zinc-950 p-4 md:p-8 text-center ">
         <div className="flex justify-center items-center">
           <Image
             src="/hooter.png"
             alt="Party popper emoji"
             width={120}
             height={120}
-            className="w-20 h-20 md:w-[120px] md:h-[120px] mb-4 -mt-20 lg:mt-[-60px]"
+            className="w-20 h-20 md:w-[120px] md:h-[120px] mb-4 left-4 relative"
           />
         </div>
-        <h2 className="text-base sm:text-lg md:text-xl mb-1 font-semibold text-white font-sans-code">
+        <h2 className="text-base sm:text-lg md:text-2xl mb-1 font-semibold text-white font-sans-code">
   That's CSI for you!
 </h2>
 <p className="text-sm sm:text-base text-zinc-400 font-sans-code">
   Buckle up for some think tank period.
 </p>
-<a href="/domains" className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 font-sans-code">
+<a href="/domains" className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 font-sans-code underline underline-offset-4">
   Click here for taking the test
 </a>
 
