@@ -6,8 +6,8 @@ import xLogo from "../../../public/logos/xLogo.svg";
 
 export default function Footer() {
   return (
-    <footer className="relative flex flex-row min-w-full bg-slate-800 h-18 mt-20 mb-0 items-center">
-      <div className="flex flex-row gap-3">
+    <footer className="relative flex flex-row min-w-full bg-slate-800 py-6 mt-auto items-center">
+      <div className="flex flex-row gap-4">
         <SocialMediaLink
           name="@csivitu"
           href="https://www.instagram.com/csivitu/"
