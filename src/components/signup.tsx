@@ -9,7 +9,7 @@ export default function Signup() {
         <SlNavbar />
         <div className="absolute left-0 bottom-7 transform origin-bottom-left sm:scale-100 scale-75 hidden sm:block">
           <Image 
-            src="/cat_left.webp" 
+            src="/cat-left.webp" 
             alt="Left Cat" 
             width={400} 
             height={300} 
@@ -18,7 +18,7 @@ export default function Signup() {
         </div>
         <div className="absolute right-0 top-0 transform origin-top-right sm:scale-100 scale-75 hidden sm:block">
           <Image 
-            src="/cat_right.webp" 
+            src="/cat-right.webp" 
             alt="Right Cat" 
             width={400} 
             height={300} 
