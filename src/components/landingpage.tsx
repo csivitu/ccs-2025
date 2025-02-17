@@ -2,6 +2,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Particles from "@/components/particles";
+import Signin from "@/app/(auth)/actions/signin";
 
 const Globe = dynamic(() => import("../components/globe"), { ssr: false });
 
@@ -33,7 +34,8 @@ export default function LandingPage() {
                 <button className="text-center sm:text-right  text-md sm:text-lg md:text-xl   font-kodchasan text-[#B9B8EF] glow-text">
                   About us
                 </button>
-                <button className="text-center sm:text-right  text-md sm:text-lg md:text-xl   font-kodchasan text-[#B9B8EF] glow-text">
+                <button
+                onClick={Signin} className="text-center sm:text-right  text-md sm:text-lg md:text-xl   font-kodchasan text-[#B9B8EF] glow-text">
                   Sign in
                 </button>
               </div>
