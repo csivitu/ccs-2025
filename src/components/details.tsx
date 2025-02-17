@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Navbar from '@/components/Navbar'
-import SlNavbar from '../components/slNavbar';
+import SlNavbar from './slNavbar';
 export default function Signup() {
   return (
     <div className="h-screen bg-black sticky overflow-auto flex flex-col">
