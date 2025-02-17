@@ -27,7 +27,8 @@ export default function Home() {
                 <button className="text-white px-3 sm:px-4 py-1  hover:bg-white/10 transition-colors text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px]">
                   About us
                 </button>
-                <button className="text-white px-3 sm:px-4 py-1 hover:bg-white/20 transition-colors text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px]">
+                <button 
+                  className="text-white px-3 sm:px-4 py-1 hover:bg-white/20 transition-colors text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px]">
                   Sign in
                 </button>
               </div>
