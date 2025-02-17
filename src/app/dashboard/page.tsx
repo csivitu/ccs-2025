@@ -85,7 +85,7 @@ export default function Dashboard() {
 
           <div className="w-full md:w-[1250px] h-[3px] bg-[#30363D] my-4 mt-4 md:mt-[-2px] mb-8"></div>
 
-          <div className="flex flex-col lg:flex-row lg:gap-4 text-white">
+          <div className="flex flex-col md:flex-row md:gap-4 text-white">
             <main className="flex-1 space-y-4">
               <Card className="border-[3px] border-[#30363D] rounded-[6px] bg-[#0D1117] max-w-full md:max-w-[920px] mx-auto">
                 <div className="p-4 md:p-6 space-y-4">
@@ -127,7 +127,6 @@ export default function Dashboard() {
                 </div>
               </Card>
             </main>
-
             <aside className="mt-6 lg:mt-0 lg:w-[400px] lg:mr-">
               <div className="border-zinc-800 bg-zinc-900/50 p-2">
                 <SidebarHeader>

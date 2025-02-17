@@ -25,9 +25,13 @@ const FAQ = () => {
                 className="w-full py-4 px-6 flex items-center text-xl font-semibold focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className={`transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}>
+                <span
+                  className={`transform transition-transform duration-300 ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
+                >
                   <span className="gradient-icon">
-                    {openIndex === index ? "-": "+"}
+                    {openIndex === index ? "-" : "+"}
                   </span>
                 </span>
                 <span className="flex items-center">
@@ -37,8 +41,13 @@ const FAQ = () => {
                 </span>
               </button>
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? "max-h-screen" : "max-h-0"}`}
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  openIndex === index ? "max-h-screen" : "max-h-0"
+                }`}
               >
+                <p className="px-6 pb-4 text-md md:text-lg text-[#76C3F1] ml-6">
+                  {item.answer}
+                </p>
                 <p className="px-6 pb-4 text-lg text-[#76C3F1] ml-12 font-sans code">{item.answer}</p>
               </div>
             </div>
