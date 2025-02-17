@@ -52,6 +52,8 @@ model User {
   attemptedQuestions AttempedQuestion[]
   attemptedTasks     AttemptedTask[]
 
+  quizSessions QuizSession[]
+
   portfolios Portfolio[]
 
   accounts Account[]
@@ -71,6 +73,9 @@ model AttempedQuestion {
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  quizSessionId String
+  quizSession   QuizSession @relation(fields: [quizSessionId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -151,6 +156,24 @@ model AttemptedDomain {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model QuizSession {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  domain    DomainType
+  status    QuizStatus @default(IN_PROGRESS)
+  answers   AttempedQuestion[]
+  startedAt DateTime @default(now())
+  completedAt DateTime?
+
+  @@unique([userId, domain])
+}
+
+enum QuizStatus {
+  IN_PROGRESS
+  COMPLETED
 }
 
 enum Gender {
