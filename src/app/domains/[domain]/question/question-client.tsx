@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/Navbar";
 import QuestionPanel from "@/components/questions-page/question-panel";
 import AnswerPanel from "@/components/questions-page/answer-panel";
-import { Button } from "@/components/ui/button";
 import { VscExtensions } from "react-icons/vsc";
 import { Question } from "@prisma/client";
 import { submitQuestion } from "@/app/actions/questions";
@@ -51,8 +50,22 @@ export default function QuestionsPage({
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter" && event.shiftKey) {
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentIndex, answers]);
+
   return (
-    <div className="bg-[#303132] min-h-screen flex flex-col">
+    <div className="bg-zinc-950 min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1 px-4 md:px-14 relative flex flex-col">
@@ -83,7 +96,7 @@ export default function QuestionsPage({
         </aside>
 
         {/* Mobile navigation icons - Visible only on mobile */}
-        <div className="flex md:hidden justify-center gap-4 py-4">
+        <div className="hidden  justify-center gap-4 py-4">
           {[
             "/explorer.webp",
             "/search.webp",
@@ -110,14 +123,14 @@ export default function QuestionsPage({
 
         {/* Main content with flex-grow */}
         <section className="flex flex-col md:flex-row gap-4 flex-grow">
-          <div className="flex flex-col flex-grow">
+          <div className="flex tab:flex-row mobile:flex-col flex-grow ">
             {/* Question Panel with min-height */}
             <div className="md:hidden mb-4 min-h-[150px] max-h-[300px] overflow-y-auto">
               <QuestionPanel question={questions[currentIndex].question} />
             </div>
 
             {/* Desktop Question Panel */}
-            <div className="hidden md:block">
+            <div className="hidden tab:flex">
               <QuestionPanel question={questions[currentIndex].question} />
             </div>
 
@@ -133,18 +146,44 @@ export default function QuestionsPage({
         </section>
 
         {/* Navigation buttons with dynamic positioning */}
-        <div className="sticky bottom-0 bg-[#303132] py-4 mt-auto">
+        <div className="sticky bottom-0  py-4 mt-auto w-full px-6">
           <div className="flex justify-between items-center px-2 md:px-0">
-            <Button
-              className="bg-[#9386E4] hover:bg-purple-300 hover:text-gray-800 px-4 py-2 md:px-12 md:py-5 text-sm md:text-xl rounded-full text-[#363960] font-bold transition-colors"
+            <button
+              style={{
+                display: "inline-block",
+                padding: "8px 16px",
+                textDecoration: "none",
+                borderRadius: "15px",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backdropFilter: "blur(30px)",
+                color: "rgba(255,255,255,0.8)",
+                fontSize: "14px",
+                letterSpacing: "2px",
+                cursor: "pointer",
+                textTransform: "uppercase",
+              }}
               onClick={handlePrevious}
               disabled={currentIndex === 0}
             >
               &gt;&gt; Previous
-            </Button>
+            </button>
 
-            <Button
-              className="bg-[#9386E4] hover:bg-purple-300 hover:text-gray-800 px-4 py-2 md:px-12 md:py-5 text-sm md:text-xl rounded-full text-[#363960] font-bold transition-colors"
+            <button
+              style={{
+                display: "inline-block",
+                padding: "8px 16px",
+                textDecoration: "none",
+                borderRadius: "15px",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backdropFilter: "blur(30px)",
+                color: "rgba(255,255,255,0.8)",
+                fontSize: "14px",
+                letterSpacing: "2px",
+                cursor: "pointer",
+                textTransform: "uppercase",
+              }}
               onClick={handleNext}
               disabled={
                 currentIndex === questions.length - 1 && !answers[currentIndex]
@@ -153,9 +192,10 @@ export default function QuestionsPage({
               {currentIndex === questions.length - 1
                 ? "Finish Quiz"
                 : "Next >>"}
-            </Button>
+            </button>
           </div>
         </div>
+        <Footer />
       </main>
     </div>
   );
