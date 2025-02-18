@@ -19,12 +19,14 @@ const MAX_DOMAIN_ATTEMPTS = 2;
 
 export default function DomainsPage() {
   const [selectedDomains, setSelectedDomains] = useState<AttemptedDomain[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchDomains() {
+      setLoading(true);
       const attmptedDomains = await getAttemptedDomains();
       setSelectedDomains(attmptedDomains?.data || []);
+      setLoading(false);
     }
     fetchDomains();
   }, []);
@@ -146,7 +148,7 @@ export default function DomainsPage() {
               key={domain.domainName}
               className="w-full max-w-[480px] mx-auto"
             >
-              <DomainCard {...domain} />
+              <DomainCard {...domain} loading={loading} />
             </div>
           ))}
         </div>
