@@ -91,7 +91,7 @@ const config: Config = {
     plugin(({ addUtilities }) => {
       addUtilities({
         ".glow-text": {
-          textShadow: "0 0 2px #B9B8EF, 0 0 10px #B9B8EF, 0 0 100px #B9B8EF",
+          textShadow: "0 0 2px #B9B8EF, 0 0 4px #B9B8EF60, 0 0 100px #B9B8EF",
         },
       });
     }),

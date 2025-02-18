@@ -11,20 +11,22 @@ const Globe = dynamic(() => import('../components/globe'), { ssr: true });
 
 export default function Home() {
   const { status } = useSession();
-
   return (
-    <main className="min-h-screen w-full bg-[#000000] relative overflow-hidden">
+    <main className="h-screen w-full bg-[#000000] relative overflow-hidden" style={{maxHeight:"100svh"}}>
+      
       <div className="absolute inset-0">
         <Particles
           className="relative top-0 left-0 w-screen h-screen"
           quantity={750}
         />
       </div>
+      <div className="w-[130vw] md:w-[50vw] h-[20vh] md:h-[50vw] absolute top-[-15vh] md:top-[-25vw] left-[-20vw] md:left-[-25vw] bg-[#B9B8EF70] blur-[50px] md:blur-[400px] rounded-full z-[1000] pointer-events-none"></div>
+      <div className="hidden md:block w-[50vw] aspect-square absolute bottom-[-25vw] right-[-25vw] bg-[#B9B8EF70] blur-[100px] md:blur-[400px] rounded-full z-[1000] pointer-events-none"></div>
 
       <div className="relative min-h-screen flex flex-col justify-between">
         <div className="tab:p-4 mobile:p-2 flex flex-col">
-          <nav className="flex flex-col sm:flex-row mobile:flex-row justify-between items-center gap-4 mb-6">
-            <div className="flex tab:items-center">
+          <nav className="flex flex-col sm:flex-row mobile:flex-row justify-end items-center gap-4 mb-6">
+            <div className="flex tab:items-center hidden">
               <svg
                 height="48"
                 aria-hidden="true"
@@ -41,29 +43,33 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex gap-2">
-                <button className="text-white px-3 sm:px-4 py-1  hover:bg-white/10 transition-colors text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px]">
+                <Link href="/about" className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium   bg-transparent whitespace-nowrap duration-500 rounded-[2px] group">
                   About us
-                </button>
+                  <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                </Link>
                 {status === "loading" ? (
                   <LoadingSpinner height={30} width={30} />
                 ) : status === "authenticated" ? (
                   <>
-                    <Link href="/dashboard" className="text-white px-3 sm:px-4 py-1 hover:bg-white/20 transition-colors text-sm sm:text-base font-medium bg-transparent whitespace-nowrap duration-500 rounded-[2px]">
-                      Dashboard
-                    </Link>
+                   <Link href="/dashboard" className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group">
+                   Dashboard
+                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                  </Link>
                     <button
                       onClick={() => signOut()}
-                      className="text-white px-3 sm:px-4 py-1 hover:bg-white/20 transition-colors text-sm sm:text-base font-medium bg-transparent whitespace-nowrap duration-500 rounded-[2px]"
+                     className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                     >
                       Sign out
+                      <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
                     </button>
                   </>
                 ) : (
                   <button
                     onClick={() => signIn('google')}
-                    className="text-white px-3 sm:px-4 py-1 hover:bg-white/20 transition-colors text-sm sm:text-base font-medium bg-transparent whitespace-nowrap duration-500 rounded-[2px]"
+                    className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                   >
                     Sign in
+                    <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
                   </button>
                 )}
               </div>
@@ -92,10 +98,8 @@ export default function Home() {
           <p className="text-3xl mobile:text-left mobile:w-full  max-w-xl text-[#B9B8EF] font-bold text-center tab:text-5xl sm:pr-[50px] glow-text mb-4 mobile:text-3xl">
             Welcome
           </p>
-          <p className="mobile:text-left mobile:text-md text-lg sm:text-xl md:text-2xl max-w-xl text-[#7675A1] text-center sm:text-left leading-relaxed">
-            Make sure to Sign Up and create an account to start your journey—
-            choose your domain, answer key questions and take the first step
-            toward joining our committee.
+          <p className="mobile:text-left mobile:text-sm text-sm sm:text-lg md:text-xl max-w-xl text-[#7675A1] text-center sm:text-left leading-relaxed">
+          Welcome, Make sure to sign up , choose your domain, answer a few key questions, and you're one step closer to launching into CSI—your adventure awaits!
           </p>
         </div>
 
