@@ -1,16 +1,12 @@
 "use client";
 
-import {auth, signIn} from "../auth";
-import {useRouter} from 'next/navigation';
+import { auth, signIn } from "../auth";
+import { redirect } from 'next/navigation';
 
 export default async function Signin() {
     const session = await auth();
-    const router = useRouter();
-
-    if (session?.user) {
-        return;
-    } else {
+    if (!session?.user) {
         await signIn("google");
-        router.push('/dashboard');
     }
+    redirect('/dashboard');
 }
