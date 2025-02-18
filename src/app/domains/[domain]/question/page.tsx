@@ -8,8 +8,9 @@ export default async function QuestionsListing({
 }: {
   params: { domain: string };
 }) {
-  const capitalizedDomain = params.domain.toUpperCase();
-
+  const domain = await params.domain;
+  const capitalizedDomain = domain.toUpperCase();
+  
   if (!capitalizedDomain || !(capitalizedDomain in DomainType)) {
     return <div>Invalid domain</div>;
   }
