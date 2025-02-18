@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer/footer";
+import { teamData } from "@/data/team";
 
 export default function Dashboard() {
   return (
@@ -93,7 +94,7 @@ export default function Dashboard() {
                     README.md
                   </h2>
                     <Image
-                      src="/test.png"
+                      src="/csi-banner-min.gif"
                       alt="Test Image"
                       width={1000}
                       height={600}
@@ -101,7 +102,7 @@ export default function Dashboard() {
                       style={{borderRadius:"5px"}}
                     />
                   <div className="w-full md:w-4/5 mx-auto">
-                    <h1 className="text-base md:text-[2rem] my-4 font-semibold text-center text-white font-sans-code">
+                    <h1 className="text-base md:text-[2rem] my-8 font-semibold text-center text-white font-sans-code">
                       Computer Society of India - VIT University
                     </h1>
                     <div className="w-full md:w-full mx-auto border-t-4 border-gray-800 my-4 mt-1 lg:mt-2 font-sans-code mb-6 md:mb-12"></div>
@@ -132,30 +133,34 @@ export default function Dashboard() {
                   <h2 className=" lg:mt-0 text-[1rem] lg:text-[1.325rem] font-sans-code text-white  font-semibold">Our Team</h2>
                 </SidebarHeader>
                 <SidebarContent>
-                <div className="-mt-2 lg:mt-[-12px] ml-[-10px] grid grid-cols-6 gap-y-2 md:gap-y-1  lg:gap-2 p-4">
-  {Array.from({ length: 15 }).map((_, i) => (
-    <div
-      key={i}
-      className="w-10 md:w-14 h-10 md:h-14 aspect-square rounded-full bg-[#D9D9D9]"
-    />
-  ))}
-</div>
+                  <div className="-mt-2 lg:mt-[-12px] ml-[-10px] grid grid-cols-6 gap-y-2 md:gap-y-1  lg:gap-2 p-4">
+                  {teamData.map((member) => <div className="w-8 md:w-12 h-8 md:h-12 aspect-square rounded-full overflow-hidden" key={member.alt}>
+                    <Image
+                      src={member.src}
+                      alt="Team Member"
+                      width={56}
+                      height={56}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>)}
+                  </div>
+                
                   <div className="w-[92%] ml-2 border-t-4 border-[#30363D] my-4 mt-[-2px] -mt-2 lg:mt-0 " ></div>
 
                   <SidebarGroup>
                     <SidebarGroupLabel className="text-[1rem] lg:text-[1.325rem] ml-[-8px] -mt-6 lg:mt-[-12px] font-sans-code font-[600]">
-                      Our Projects
+                      CSI Stack
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                       <div className="mt-2 w-full max-w-sm h-2.5 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1">
-                        <div className="flex-[5] bg-[#F5502A] rounded-l-[6px]"></div>
+                        <div className="flex-[6] bg-[#F5502A] rounded-l-[6px]"></div>
                         <div className="flex-[4] bg-[#6541B2]"></div>
                         <div className="flex-[3] bg-[#FFB249]"></div>
                         <div className="flex-[1] bg-[#54A3FF] rounded-r-[6px]"></div>
                       </div>
-                      <div className="flex flex-wrap mt-2 gap-y-2">
-                        {["Proj1", "Proj2", "Proj3", "Proj4"].map((proj, index) => (
-                          <div key={proj} className="flex items-center w-1/2">
+                      <div className="flex flex-wrap mt-2 gap-y-2 gap-[2%] w-full">
+                        {["Praying website doesn't crash","Fixing what we just broke", "Coding", "Planning"].map((proj, index) => (
+                          <div key={proj} className="flex items-center w-[49%]">
                             <span className="w-3 h-3 mr-2 rounded-full" 
                                   style={{
                                     backgroundColor: 
@@ -163,7 +168,7 @@ export default function Dashboard() {
                                       index === 1 ? "#6541B2" :
                                       index === 2 ? "#FFB249" : "#54A3FF"
                                   }}></span>
-                            <span className="text-sm text-[#9198A1] font-sans-code">{proj}</span>
+                            <span className="text-xs text-[#9198A1] font-sans-code">{proj}</span>
                           </div>
                         ))}
                       </div>

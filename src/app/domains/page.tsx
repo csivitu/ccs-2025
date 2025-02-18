@@ -68,7 +68,8 @@ export default function DomainsPage() {
     {
       domainName: "Tech",
       domainIcon: techLogo,
-      description: "Tech domain lorem ipsum...",
+      description:
+        "Docker, Node, Express, React—if these words mean anything to you, consider joining the Tech domain, the invisible team behind all our projects. Many sleepless nights of debugging await those who dare enter.",
       status: getDomainStatus("TECH"),
       get buttonLabel() {
         return getButtonLabel(this.status, "Let's Start Coding");
@@ -80,7 +81,8 @@ export default function DomainsPage() {
     {
       domainName: "Design",
       domainIcon: designLogo,
-      description: "Design domain lorem ipsum...",
+      description:
+        "Ever struggled to center a div? Or maybe Blender keeps crashing at the worst possible moment? Dive into design and learn the ins and outs of making things look good (without losing your mind). ",
       status: getDomainStatus("DESIGN"),
       get buttonLabel() {
         return getButtonLabel(this.status, "Dive Into Design");
@@ -92,7 +94,8 @@ export default function DomainsPage() {
     {
       domainName: "Management",
       domainIcon: managementLogo,
-      description: "Management domain lorem ipsum...",
+      description:
+        "The glue that holds everything together—where would we be without the Management domain? Want to organize events or enjoy the thrill of shouting at vendors (professionally, of course), this might be for you.",
       status: getDomainStatus("MANAGEMENT"),
       get buttonLabel() {
         return getButtonLabel(this.status, "Get those finances right");
@@ -104,7 +107,8 @@ export default function DomainsPage() {
     {
       domainName: "Video",
       domainIcon: videoLogo,
-      description: "Video domain lorem ipsum...",
+      description:
+        "Ready to unleash your inner director? Join the select few in Video who have mastered Adobe, crafting eye-catching reels and bringing stories to life. This is your stage to shine!",
       status: getDomainStatus("VIDEO"),
       get buttonLabel() {
         return getButtonLabel(this.status, "Live. Camera. Action.");
@@ -119,40 +123,39 @@ export default function DomainsPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 px-4 sm:px-6 lg:px-8 ">
-        <div className="flex flex-col items-center gap-4 sm:gap-6 my-8 sm:my-12 text-center">
+      <main className="flex-1 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">
           <Image
             src={csiLogo}
             alt="CSI Logo"
             width={480}
             height={92}
-            className="w-[280px] sm:w-[380px] md:w-[480px] mt-8 sm:mt-12"
+            className="w-52 md:w-80 mt-8 my-4 mb-8"
             priority
           />
-          <h1 className="text-white font-sans-code text-xl sm:text-2xl lg:text-[36px] font-semibold leading-normal sm:leading-relaxed px-2">
+          <h1 className="text-white font-sans-code text-lg sm:text-2xl lg:text-3xl font-semibold leading-normal sm:leading-relaxed px-2">
             Welcome to CSI! Let's get started.
           </h1>
-          <p className="text-[#9198A1] font-sans-code text-md -mt-4 sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-3xl px-2">
+          <p className="text-[#9198A1] font-sans-code text-sm -mt-4 sm:text-base lg:text-lg font-normal leading-relaxed max-w-3xl px-2">
             Choose your domains and start answering the questions. Remember once
             chosen you can't pause. Max 2 domains to be chosen.
           </p>
         </div>
 
-        <p className="text-lg -mt-4 sm:text-4xl text-[#9198A1] font-sans-code font-[600] text-center mb-4">
-          Choose a domain
+        <p className="text-lg  sm:text-3xl text-[#9198A1] font-sans-code font-[600] text-center my-8">
+          Select your domain.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-10 max-w-[1000px] mx-auto px-2 sm:px-4 mb-[-30px] sm:mb-12">
+        {/* Domains Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-10 max-w-[1000px] mx-auto px-2 sm:px-4 ">
           {content.map((domain) => (
-            <div
-              key={domain.domainName}
-              className="w-full max-w-[480px] mx-auto"
-            >
-              <DomainCard {...domain} loading={loading} />
-            </div>
+           
+                <DomainCard {...domain} loading={loading}  key={domain.domainName}/>
+    
           ))}
         </div>
       </main>
+
       <div className="mt-24">
         <Footer />
       </div>

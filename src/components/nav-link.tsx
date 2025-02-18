@@ -8,20 +8,22 @@ export default function NavLink({
   isActive,
   onLinkClick,
 }: navLinkProps) {
-  const style = `text-base flex items-center space-x-2  ${
+  const style = `text-base flex items-center space-x-2 gap-2 md:gap-0 ${
     isActive
       ? "text-[#C9D1D9]"
       : "text-[#C9D1D9] hover:text-white transition-colors"
   }`;
   return (
     <div className="relative ">
-      <a href={`#${id}`} className={style} onClick={onLinkClick}>
+      <div  className={style} onClick={onLinkClick}>
         <Image
           src={Icon}
           alt={id}
+          width={60} 
+          height={60}
           style={{ width: "1.25em", height: "1.25em" }}
           color={isActive ? "rgba(139, 148, 158, 1)" : "rgba(139, 148, 158, 1)"}
-          className="mr-1" // Added margin-right to the icon
+          className={`mr-1 ${id === "faq" && "invert-[70%]"}`} // Added margin-right to the icon
         />
         <span className="relative">
           {label}
@@ -33,7 +35,7 @@ export default function NavLink({
             }`}
           />
         </span>
-      </a>
+      </div>
     </div>
   );
 }

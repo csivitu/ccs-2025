@@ -12,7 +12,7 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
   loading
 }) => {
   return (
-    <div className="border-4 border-[#30363D] rounded-[6px] shadow-md p-4">
+    <div className="border-4 border-[#30363D] rounded-[6px] shadow-md p-4 flex flex-col h-full justify-between">
       <div className="flex items-center space-x-4 mb-4">
         <Image
           src={domainIcon}
@@ -36,7 +36,7 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
         ) : (
           <button
             disabled={disabled}
-            className={`mt-4 py-1.5 px-5 w-full lg:max-w-[200px] h-[40px] border border-[rgba(240,246,252,0.10)] rounded-[6px] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] font-sans font-medium leading-[20px] text-center
+            className={`mt-4 py-1.5 px-5 w-full h-[40px] border border-[rgba(240,246,252,0.10)] rounded-[6px] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] font-sans font-medium leading-[20px] text-center
               ${
                 disabled
                   ? "bg-[#21262D]/50 text-[#C9D1D9]/50 cursor-not-allowed hover:bg-[#21262D]/50"

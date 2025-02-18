@@ -4,16 +4,12 @@ interface FAQ {
 }
 
 const faq: FAQ[] = [
-    { question: "What is your return policy?", answer: "You can return items within 30 days of purchase with a valid receipt." },
-    { question: "Do you offer international shipping?", answer: "Yes, we ship to over 50 countries worldwide." },
-    { question: "How can I reset my password?", answer: "Click on 'Forgot Password' on the login page and follow the instructions." },
-    { question: "Do you have a mobile app?", answer: "Yes, our app is available on both iOS and Android." },
-    { question: "Can I track my order?", answer: "Yes, you will receive a tracking number once your order is shipped." },
-    { question: "What payment methods do you accept?", answer: "We accept credit/debit cards, PayPal, and UPI payments." },
-    { question: "Do you offer discounts for bulk orders?", answer: "Yes, we provide special pricing for bulk purchases. Contact our sales team for more details." },
-    { question: "How do I contact customer support?", answer: "You can reach us via email, phone, or live chat on our website." },
-    { question: "What are your business hours?", answer: "Our support team is available from 9 AM to 6 PM, Monday to Friday." },
-    { question: "Do you provide warranty on your products?", answer: "Yes, all our products come with a 1-year warranty against manufacturing defects." }
+    { question: "I don't have a tech background. Can I still join?", answer: "Absolutely! We don’t expect experts—just bring your curiosity, and we’ve got the rest covered." },
+    { question: "How do I stay in the loop?", answer: "Stay tuned to our socials, check your inbox, and join our WhatsApp community for real-time updates." },
+    { question: " Can I Google answers during activities?", answer: "Jesus is watching you." },
+    { question: "Can I explore multiple domains?", answer: "Of course! Start with one, and once you’re in, the tech world is yours to explore." },
+    { question: " What's in it for me?", answer: "You’ll pick up new skills, work on team projects, and organize events that people will actually remember. Plus, you’ll build connections that last beyond college. " },
+    { question: "What if I have more questions?", answer: "Easy! Reach out to us on our socials or ask any of our members. We don’t ghost—promise!" }
 ];
 
 export default faq;

@@ -3,7 +3,7 @@ import { StaticImageData } from "next/image";
 export interface navLinkProps {
   id: string;
   label: string;
-  Icon: StaticImageData;
+  Icon: string | StaticImageData;
   isActive: boolean;
   onLinkClick: ()=>void;
 }

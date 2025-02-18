@@ -11,18 +11,21 @@ import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg";
 
 import NavLink from "./nav-link";
 import { MenuIcon, X } from "lucide-react";
+import { FaQuestion } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
   { id: "projects", label: "Projects", Icon: LuTable, href: "/project" },
   { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/domains" },
   { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/alumni" },
+  { id: "faq", label: "FAQs", Icon: "/logos/navbar-logos/faq.png", href: "/faq" },
 ];
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-
+  const path = usePathname();
   function handleToggleNavbar() {
     setIsNavbarOpen(!isNavbarOpen);
   }
@@ -38,8 +41,7 @@ const Navbar = () => {
             >
               <MenuIcon className="text-slate-200 p-[2px]" />
             </button>
-
-            <a href="https://github.com/csivitu" className="flex gap-2 justify-center items-center">
+            <a href="https://github.com/csivitu" className="gap-2 justify-center items-center mobile:hidden md:flex">
               <Image
               src="/git.webp"
               width={35}
@@ -52,21 +54,22 @@ const Navbar = () => {
             </span>
             </a>
           </div>
-          <div className="hidden sm:flex items-center space-x-4">
+          {/* <div className="hidden sm:flex items-center space-x-4">
             <a href="#home" className="text-[#F0F6FC] font-sans-code text-[20px]  leading-[21px]">
               Home
             </a>
             <a href="/faq" className="text-[#F0F6FC] font-sans-code text-[20px]  leading-[21px]">
               FAQs
             </a>
-            <Image
+            
+          </div> */}
+          <Image
               src="/giticon.webp"
               width={45}
               height={45}
               alt="FAQs Icon"
-              className="flex-shrink-0 aspect-square w-[42px]"
+              className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
             />
-          </div>
         </div>
 
         {/* Navigation Links */}
@@ -80,6 +83,7 @@ const Navbar = () => {
                   onLinkClick={() => setActiveLink(item.id)}
                 />
               </Link>
+              
               {item.id === "domains" && (
                 <div
                   className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
@@ -95,9 +99,9 @@ const Navbar = () => {
 
       {/* Mobile Navbar */}
       <div
-        className={`sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-zinc-950 z-50 
+        className={`sm:hidden fixed top-0 left-0 w-2/3 h-screen bg-zinc-950 z-50 
           transform transition-transform duration-300 ease-in-out
-          border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-3xl border-slate-600
+          border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-xl border-slate-600
           ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
@@ -119,16 +123,18 @@ const Navbar = () => {
                   alt="FAQs Icon"
                   className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
                 />
+                {/* TODO@jrs : Replace with the actual username and photograph */}
                 <span>Username</span>
               </div>
-              <a href="#home" className="font-semibold text-lg mb-2">
+              {/* <a href="#home" className="font-semibold text-lg mb-2">
                 Home
               </a>
               <a href="#faqs" className="font-semibold text-lg mb-2">
                 FAQs
-              </a>
+              </a> */}
             </div>
 
+            <div className="w-full flex flex-col gap-2">
             {navLinks.map((item) => (
               <Link key={item.id} href={item.href} passHref>
                 <NavLink
@@ -138,9 +144,11 @@ const Navbar = () => {
                     setActiveLink(item.id);
                     setIsNavbarOpen(false);
                   }}
+                  
                 />
               </Link>
             ))}
+            </div>
           </nav>
         </div>
       </div>
