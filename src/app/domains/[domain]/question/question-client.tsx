@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { VscExtensions } from "react-icons/vsc";
 import { Question } from "@prisma/client";
 import { submitQuestion } from "@/app/actions/questions";
+import { redirect } from "next/navigation";
 
 export default function QuestionsPage({
   questions,
@@ -25,27 +26,30 @@ export default function QuestionsPage({
     }
   };
 
-    const [currentIndex, setCurrentIndex] = useState(() => {
-      // Find first unanswered question
-      const firstUnansweredIndex = initialAnswers.findIndex(
-        (answer) => !answer
-      );
-      return firstUnansweredIndex === -1 ? 0 : firstUnansweredIndex;
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    // Find first unanswered question
+    const firstUnansweredIndex = initialAnswers.findIndex((answer) => !answer);
+    return firstUnansweredIndex === -1 ? 0 : firstUnansweredIndex;
+  });
+  const [answers, setAnswers] = useState<string[]>(initialAnswers);
+
+  const handleNext = async () => {
+    await submitQuestion({
+      questionId: questions[currentIndex].id,
+      answer: answers[currentIndex],
+      sessionId,
     });
-    const [answers, setAnswers] = useState<string[]>(initialAnswers);
 
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
 
-   const handleNext = async () => {
-     await submitQuestion({
-       questionId: questions[currentIndex].id,
-       answer: answers[currentIndex],
-       sessionId,
-     });
-
-     if (currentIndex < questions.length - 1) {
-       setCurrentIndex(currentIndex + 1);
-     }
-   };
+    if (currentIndex === questions.length - 1) {
+      // TODO: @padhai-head
+      // toast.success("Quiz completed successfully!");
+      redirect(`/domains?completed=true`);
+    }
+  };
 
   return (
     <div className="bg-[#303132] min-h-screen flex flex-col">
@@ -142,9 +146,13 @@ export default function QuestionsPage({
             <Button
               className="bg-[#9386E4] hover:bg-purple-300 hover:text-gray-800 px-4 py-2 md:px-12 md:py-5 text-sm md:text-xl rounded-full text-[#363960] font-bold transition-colors"
               onClick={handleNext}
-              disabled={currentIndex === questions.length - 1}
+              disabled={
+                currentIndex === questions.length - 1 && !answers[currentIndex]
+              }
             >
-              Next &gt;&gt;
+              {currentIndex === questions.length - 1
+                ? "Finish Quiz"
+                : "Next >>"}
             </Button>
           </div>
         </div>

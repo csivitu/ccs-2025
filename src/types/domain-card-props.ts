@@ -5,6 +5,5 @@ export interface domainCardProps {
   domainIcon: StaticImageData;
   description: string;
   buttonLabel: string;
-  onClick: () => Promise<void>;  // Add onClick
   disabled: boolean; 
 }

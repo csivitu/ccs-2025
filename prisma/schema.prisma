@@ -4,8 +4,9 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "linux-musl-openssl-3.0.x"]
+  previewFeatures = ["driverAdapters"]
 }
 
 model Account {
@@ -38,10 +39,10 @@ model User {
   id String @id @default(cuid())
 
   // Provided by Google OAuth
-  name  String
-  email String @unique
+  name          String
+  email         String    @unique
   emailVerified DateTime?
-  image String?
+  image         String?
 
   // Additional details to ask
   phoneNumber String? @unique
@@ -65,9 +66,9 @@ model User {
 
 model AttempedQuestion {
   id String @id @default(cuid())
-  
-  answer     String?
-  
+
+  answer String?
+
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
@@ -80,7 +81,7 @@ model AttempedQuestion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-@@unique([userId,questionId])
+  @@unique([userId, questionId])
 }
 
 model Question {
@@ -94,7 +95,7 @@ model Question {
   difficulty QuestionDifficulty
   domain     DomainType
 
-  attempts AttempedQuestion[] 
+  attempts AttempedQuestion[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -111,18 +112,18 @@ model Task {
 
   domain    DomainType
   subDomain SubDomain
-  attempts AttemptedTask[]
+  attempts  AttemptedTask[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model AttemptedTask {
-  id        String    @id @default(cuid())
-  taskId   String
-  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
-  taskSubmission      String[]
-  userId String
+  id             String   @id @default(cuid())
+  taskId         String
+  task           Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskSubmission String[]
+  userId         String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -148,24 +149,26 @@ model AttemptedDomain {
   id     String     @id @default(cuid())
   domain DomainType
 
-  submitted Boolean @default(false)
-  status   EnrollmentStatus @default(QUESTION_ROUND)
+  submitted Boolean          @default(false)
+  status    EnrollmentStatus @default(QUESTION_ROUND)
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([userId, domain])
 }
 
 model QuizSession {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  domain    DomainType
-  status    QuizStatus @default(IN_PROGRESS)
-  answers   AttempedQuestion[]
-  startedAt DateTime @default(now())
+  id          String             @id @default(cuid())
+  userId      String
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  domain      DomainType
+  status      QuizStatus         @default(IN_PROGRESS)
+  answers     AttempedQuestion[]
+  startedAt   DateTime           @default(now())
   completedAt DateTime?
 
   @@unique([userId, domain])
@@ -224,5 +227,5 @@ enum EnrollmentStatus {
   QUESTION_ROUND
   QUALIFIED_FOR_TASKS
   ELIMINATED
-  COMPLETED
+  COMPLETED
 }

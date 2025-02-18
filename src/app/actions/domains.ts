@@ -1,3 +1,5 @@
+'use server'
+
 import { requestHandler } from "@/helpers/request-handler";
 import { DomainType } from "@prisma/client";
 import { prisma } from "@/lib/db";
@@ -9,7 +11,7 @@ import { redirect } from "next/navigation"
 // if not render button "start test"
 // when clicked on start test call selectDomain action and pass the domaintype selected
 
-export async function getUserDomains() {
+export async function getAttemptedDomains() {
     return requestHandler(async () => {
         const session = await auth()
         if (!session?.user) {
@@ -17,16 +19,13 @@ export async function getUserDomains() {
             //redirect("/unprotected");
             return;
         }
-        const user = await prisma.user.findUnique({
+        const attemptedDomains = await prisma.attemptedDomain.findMany({
             where: {
-                id: session.user.id
+                userId: session.user.id
             },
-            include: {
-                attemptedDomains: true
-            }
         })
 
-        return user?.attemptedDomains
+        return attemptedDomains
     })
 }
 
@@ -85,7 +84,7 @@ export async function getDomainStats() {
         if (!session?.user) {
             redirect("/");
         }
-        
+
         const user = await prisma.user.findUnique({
             where: {
                 id: session.user.id,

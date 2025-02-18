@@ -1,6 +1,6 @@
 "use server"
 
-import { DomainType } from '@prisma/client';
+import { DomainType, EnrollmentStatus } from '@prisma/client';
 import {
   questionIdSchema,
   submitSchema
@@ -52,6 +52,25 @@ export async function startOrResumeDomainQuiz(domain: DomainType) {
         include: {
           answers: true
         }
+      });
+
+      await prisma.attemptedDomain.upsert({
+        where: {
+          userId_domain: {
+            userId: session.user.id,
+            domain
+          }
+        },
+        update: {
+          status: EnrollmentStatus.QUESTION_ROUND,
+          submitted: false
+        },
+        create: {
+          userId: session.user.id,
+          domain,
+          status: EnrollmentStatus.QUESTION_ROUND,
+          submitted: false
+        },
       });
     }
 
@@ -140,6 +159,25 @@ export async function submitQuestion(data: { questionId: string, answer: string,
           status: 'COMPLETED',
           completedAt: new Date()
         }
+      });
+
+      await prisma.attemptedDomain.upsert({
+        where: {
+          userId_domain: {
+            userId: session.user.id,
+            domain: quizSession.domain
+          }
+        },
+        update: {
+          status: EnrollmentStatus.QUESTION_ROUND,
+          submitted: true
+        },
+        create: {
+          userId: session.user.id,
+          domain: quizSession.domain,
+          status: EnrollmentStatus.QUESTION_ROUND,
+          submitted: true
+        },
       });
     }
 
