@@ -2,8 +2,6 @@
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 import Particles from "@/components/particles";
-import Signin from "@/app/(auth)/actions/signin";
-import SignOut from "@/app/(auth)/actions/signout";
 import { useSession } from "next-auth/react";
 import { LoadingSpinner } from "./ui/loading-spinner";
 import { signIn, signOut } from "next-auth/react";
@@ -12,7 +10,7 @@ import Link from "next/link";
 const Globe = dynamic(() => import('../components/globe'), { ssr: true });
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   return (
     <main className="min-h-screen w-full bg-[#000000] relative overflow-hidden">
