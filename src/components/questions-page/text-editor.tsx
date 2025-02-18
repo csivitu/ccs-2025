@@ -18,7 +18,7 @@ export default function TextEditor({ currentIndex, answers, setAnswers }: { curr
   }, [answers[currentIndex]]);
 
   return (
-    <div className="flex w-full h-[93.5%] bg-[#23272f]">
+    <div className="flex w-full h-[93.5%] ">
       <div
         ref={lineNumbersRef}
         className="text-right px-2 py-2 text-gray-500 min-w-[40px] overflow-hidden"
