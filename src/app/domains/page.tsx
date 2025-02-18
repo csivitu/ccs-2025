@@ -13,6 +13,9 @@ import Footer from "@/components/footer/footer";
 import Navbar from "@/components/Navbar";
 import { getAttemptedDomains } from "@/app/actions/domains";
 import { AttemptedDomain } from "@prisma/client";
+import { DomainStatus } from "@/types/domain-card-props";
+
+const MAX_DOMAIN_ATTEMPTS = 2;
 
 export default function DomainsPage() {
   const [selectedDomains, setSelectedDomains] = useState<AttemptedDomain[]>([]);
@@ -26,68 +29,87 @@ export default function DomainsPage() {
     fetchDomains();
   }, []);
 
+  const getDomainStatus = (domainName: string): DomainStatus => {
+    const domainAttempt = selectedDomains.find(
+      (domain) => domain.domain === domainName
+    );
+
+    if (!domainAttempt) return DomainStatus.NOT_STARTED;
+    if (domainAttempt.submitted) return DomainStatus.COMPLETED;
+    return DomainStatus.IN_PROGRESS;
+  };
+
+  const getButtonLabel = (
+    status: DomainStatus,
+    defaultLabel: string
+  ): string => {
+    switch (status) {
+      case DomainStatus.IN_PROGRESS:
+        return "Continue Test";
+      case DomainStatus.COMPLETED:
+        return "Test Finished";
+      default:
+        return defaultLabel;
+    }
+  };
+
+  const isDisabled = (status: DomainStatus): boolean => {
+    return (
+      status === DomainStatus.COMPLETED ||
+      (selectedDomains.filter((d) => !d.submitted).length >=
+        MAX_DOMAIN_ATTEMPTS &&
+        status === DomainStatus.NOT_STARTED)
+    );
+  };
+
   const content: domainCardProps[] = [
     {
       domainName: "Tech",
       domainIcon: techLogo,
       description: "Tech domain lorem ipsum...",
-      buttonLabel:
-        selectedDomains.filter(
-          (domain) => domain.domain === "TECH" && domain.submitted === false
-        ).length > 0
-          ? "Continue Test"
-          : "Let's Start Coding",
-      disabled:
-        selectedDomains.filter(
-          (domain) => domain.domain === "TECH" && domain.submitted === true
-        ).length > 0 || selectedDomains.length >= 2,
+      status: getDomainStatus("TECH"),
+      get buttonLabel() {
+        return getButtonLabel(this.status, "Let's Start Coding");
+      },
+      get disabled() {
+        return isDisabled(this.status);
+      },
     },
     {
       domainName: "Design",
       domainIcon: designLogo,
       description: "Design domain lorem ipsum...",
-      buttonLabel:
-        selectedDomains.filter(
-          (domain) => domain.domain === "DESIGN" && domain.submitted === false
-        ).length > 0
-          ? "Continue Test"
-          : "Dive Into Design",
-      disabled:
-        selectedDomains.filter(
-          (domain) => domain.domain === "DESIGN" && domain.submitted === true
-        ).length > 0 || selectedDomains.length >= 2,
+      status: getDomainStatus("DESIGN"),
+      get buttonLabel() {
+        return getButtonLabel(this.status, "Dive Into Design");
+      },
+      get disabled() {
+        return isDisabled(this.status);
+      },
     },
     {
       domainName: "Management",
       domainIcon: managementLogo,
       description: "Management domain lorem ipsum...",
-      buttonLabel:
-        selectedDomains.filter(
-          (domain) =>
-            domain.domain === "MANAGEMENT" && domain.submitted === false
-        ).length > 0
-          ? "Continue Test"
-          : "Get those finances right",
-      disabled:
-        selectedDomains.filter(
-          (domain) =>
-            domain.domain === "MANAGEMENT" && domain.submitted === true
-        ).length > 0 || selectedDomains.length >= 2,
+      status: getDomainStatus("MANAGEMENT"),
+      get buttonLabel() {
+        return getButtonLabel(this.status, "Get those finances right");
+      },
+      get disabled() {
+        return isDisabled(this.status);
+      },
     },
     {
       domainName: "Video",
       domainIcon: videoLogo,
       description: "Video domain lorem ipsum...",
-      buttonLabel:
-        selectedDomains.filter(
-          (domain) => domain.domain === "VIDEO" && domain.submitted === false
-        ).length > 0
-          ? "Continue Test"
-          : "Live. Camera. Action.",
-      disabled:
-        selectedDomains.filter(
-          (domain) => domain.domain === "VIDEO" && domain.submitted === true
-        ).length > 0 || selectedDomains.length >= 2,
+      status: getDomainStatus("VIDEO"),
+      get buttonLabel() {
+        return getButtonLabel(this.status, "Live. Camera. Action.");
+      },
+      get disabled() {
+        return isDisabled(this.status);
+      },
     },
   ];
 

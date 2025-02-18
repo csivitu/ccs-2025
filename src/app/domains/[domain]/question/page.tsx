@@ -8,14 +8,16 @@ export default async function QuestionsListing({
 }: {
   params: { domain: string };
 }) {
-  const domain = await params.domain;
+  const { domain } = await params;
   const capitalizedDomain = domain.toUpperCase();
-  
+
   if (!capitalizedDomain || !(capitalizedDomain in DomainType)) {
     return <div>Invalid domain</div>;
   }
 
-  const response = await startOrResumeDomainQuiz(capitalizedDomain as DomainType);
+  const response = await startOrResumeDomainQuiz(
+    capitalizedDomain as DomainType
+  );
   if (response.error) {
     console.error("Error fetching questions:", response.error);
     throw response.error;
