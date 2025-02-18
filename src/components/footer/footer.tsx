@@ -24,7 +24,7 @@ export default function Footer() {
       Made with ❤️ by CSI VIT
       </p>
      </div>
-     <div className="flex w-full mobile:justify-between tab:justify-end">
+     <div className="tab:flex w-full mobile:justify-between tab:justify-end mobile:hidden">
      <SocialMediaLink
           name="@csivitu"
           href="https://x.com/csivitu"
