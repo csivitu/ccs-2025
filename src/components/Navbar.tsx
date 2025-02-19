@@ -11,7 +11,6 @@ import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg";
 
 import NavLink from "./nav-link";
 import { MenuIcon, X } from "lucide-react";
-import { FaQuestion } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { projects } from "@/data/projects";
 import { alumniData } from "@/data/alumni";
@@ -34,8 +33,11 @@ const navLinks = [
     href: "/dashboard/profile",
     },
 ];
+interface NavbarProps {
+username:String
+}
 
-const Navbar = () => {
+const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const path = usePathname();
@@ -81,13 +83,16 @@ const Navbar = () => {
             
           </div> */}
           <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] "><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
-          <Image
+          <a href="/dashboard/profile">
+            <Image
             src="/giticon.webp"
             width={45}
             height={45}
-            alt="FAQs Icon"
+            alt="Profile Icon"
             className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
           />
+          </a>
+          
         </div>
 
         {/* Navigation Links */}
@@ -143,7 +148,7 @@ const Navbar = () => {
                   className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
                 />
                 {/* TODO@jrs : Replace with the actual username and photograph */}
-                <span>Username</span>
+                <span>{username}</span>
               </div>
               {/* <a href="#home" className="font-semibold text-lg mb-2">
                 Home

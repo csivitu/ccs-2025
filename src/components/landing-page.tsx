@@ -22,8 +22,8 @@ export default function Home() {
           quantity={750}
         />
       </div>
-      <div className="w-[130vw] md:w-[50vw] h-[20vh] md:h-[50vw] absolute top-[-15vh] md:top-[-25vw] left-[-20vw] md:left-[-25vw] bg-[#B9B8EF70] blur-[50px] md:blur-[400px] rounded-full z-[1000] pointer-events-none" />
-      <div className="hidden md:block w-[50vw] aspect-square absolute bottom-[-25vw] right-[-25vw] bg-[#B9B8EF70] blur-[100px] md:blur-[400px] rounded-full z-[1000] pointer-events-none" />
+      <div className="w-[130vw] md:w-[50vw] h-[20vh] md:h-[50vw] absolute top-[-25vh] md:top-[-35vw] left-[-20vw] md:left-[-45vw] bg-[#B9B8EF70] blur-[50px] md:blur-[1000px] rounded-full z-[1000] pointer-events-none" />
+      <div className="hidden md:block w-[50vw] aspect-square absolute bottom-[-25vw] right-[-40vw] opacity-45 bg-[#B9B8EF70] blur-[1000px] md:blur-[1000px] rounded-full z-[1000] pointer-events-none" />
 
       <div className="relative min-h-screen flex flex-col justify-between">
         <div className="tab:p-4 mobile:p-2 flex flex-col">
@@ -45,13 +45,13 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex gap-2">
-                <Link
-                  href="/about"
+                {/* <Link
+                  href="/dashboard"
                   className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium   bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                 >
                   About us
                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white" />
-                </Link>
+                </Link> */}
                 {status === "loading" ? (
                   <LoadingSpinner className="w-6 h-6 mt-1" />
                 ) : status === "authenticated" ? (

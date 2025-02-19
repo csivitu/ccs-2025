@@ -64,7 +64,7 @@ export default function QuestionsPage({
   }, [currentIndex, answers]);
 
   return (
-    <main className="flex-1 px-4 md:px-14 relative flex flex-col">
+    <main className="flex-1 px-4 md:px-14 relative flex flex-col min-h-screen">
       {/* Sidebar - Hidden on mobile, visible on desktop */}
       <aside className="hidden md:flex flex-col gap-2 fixed left-1 z-10">
         {[
