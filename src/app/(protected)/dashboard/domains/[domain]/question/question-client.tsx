@@ -67,8 +67,6 @@ export default function QuestionsPage({
 
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col">
-      <Navbar />
-
       <main className="flex-1 px-4 md:px-14 relative flex flex-col">
         {/* Sidebar - Hidden on mobile, visible on desktop */}
         <aside className="hidden md:flex flex-col gap-2 fixed left-1 z-10">

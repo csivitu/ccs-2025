@@ -49,7 +49,6 @@ export default function TasksPage() {
 
   return (
     <>
-      <Navbar />
       <main className="flex sm:flex-row flex-col gap-20 m-6 justify-center">
         <ProfileCard
           name="YEEZUS"

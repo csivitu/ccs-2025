@@ -121,8 +121,6 @@ export default function DomainsPage() {
 
   return (
     <>
-      <Navbar />
-
       <main className="flex-1 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">
           <Image

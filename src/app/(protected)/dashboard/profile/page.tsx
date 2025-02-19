@@ -1,4 +1,4 @@
-import { getUserStats } from "../../actions/domains";
+import { getUserStats } from "../../../actions/domains";
 import { redirect } from "next/navigation";
 import ProfileClient from "./profile";
 

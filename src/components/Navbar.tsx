@@ -27,7 +27,7 @@ const navLinks = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({username}: {username: string}) => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const path = usePathname();
@@ -131,8 +131,7 @@ const Navbar = () => {
                   alt="FAQs Icon"
                   className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
                 />
-                {/* TODO@jrs : Replace with the actual username and photograph */}
-                <span>Username</span>
+                <span>{username}</span>
               </div>
               {/* <a href="#home" className="font-semibold text-lg mb-2">
                 Home
