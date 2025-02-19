@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "npx prisma generate && next build"
+    "vercel-build": "npx prisma generate && next build",
+    "seed:questions": "ts-node -P tsconfig.scripts.json src/scripts/seed-questions.ts",
+    "seed:tasks": "ts-node -P tsconfig.scripts.json src/scripts/seed-tasks.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
