@@ -75,13 +75,13 @@ export default function Dashboard() {
                     </span>
                   </a>
                   <a
-                    href="mailto:outreach@csivit.com"
+                    href="mailto:askcsivit@csivit.com"
                     className="hover:text-white transition-colors flex items-center gap-2"
                     aria-label="Email"
                   >
                     <Mail className="h-4 w-4" />
                     <span className="font-sans-code text-white text-[14px]">
-                      outreach@csivit.com
+                      askcsivit@csivit.com
                     </span>
                   </a>
                 </div>
