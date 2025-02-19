@@ -83,14 +83,14 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username,image}:NavbarPro
             </a>
             
           </div> */}
-          <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] "><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
+          <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] text-xs md:text-sm"><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
           <Link href="/dashboard/profile" className="rounded-[0.25rem] overflow-hidden">
             <Image
             src={image.length > 0 ? image : "/git.webp"}
             width={45}
             height={45}
             alt="Profile Icon"
-            className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[46px]"
+            className="flex-shrink-0 aspect-square w-20 md:w-[46px]"
           />
           </Link>
           

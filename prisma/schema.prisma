@@ -54,7 +54,7 @@ model User {
   quizSessions QuizSession[]
 
   portfolios Portfolio[]
-
+  
   accounts Account[]
   sessions Session[]
 

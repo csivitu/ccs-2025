@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { UserStats } from "../../actions/domains";
 import { titleCase } from "@/lib/utils";
 import { updateProfile } from "@/app/actions/profile";
-import { Gender } from "@prisma/client";
+import { Gender, PortfolioCategory } from "@prisma/client";
 
 interface ProfileClientProps {
   user: UserStats;
@@ -33,7 +33,6 @@ const ProfileClient = (props: ProfileClientProps) => {
     const result = await updateProfile(props.user.id, formData);
     if (result.success) {
       setIsEditing(false);
-      // You might want to refresh the page or update the UI here
     }
   };
 
@@ -49,7 +48,7 @@ const ProfileClient = (props: ProfileClientProps) => {
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-[296px] h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
+            className="w-full h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
             required
           />
         </div>
@@ -64,7 +63,7 @@ const ProfileClient = (props: ProfileClientProps) => {
             onChange={(e) =>
               setFormData({ ...formData, aboutUs: e.target.value })
             }
-            className="w-[296px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3 py-2"
+            className="w-full bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3 py-2"
             rows={3}
           />
         </div>
@@ -79,7 +78,7 @@ const ProfileClient = (props: ProfileClientProps) => {
             onChange={(e) =>
               setFormData({ ...formData, gender: e.target.value as Gender })
             }
-            className="w-[296px] h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
+            className="w-full h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
           >
             <option value="">Select Gender</option>
             {Object.values(Gender).map((gender) => (
@@ -101,21 +100,79 @@ const ProfileClient = (props: ProfileClientProps) => {
             onChange={(e) =>
               setFormData({ ...formData, phoneNumber: e.target.value })
             }
-            className="w-[296px] h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
+            className="w-full h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
           />
         </div>
-
+        <div>
+          <label className="block text-[18px] mb-2">
+            Portfolio/Project Links
+          </label>
+          {formData.portfolios.map((portfolio) => (
+            <div key={portfolio.id} className="flex gap-2 mb-2">
+              <input
+                type="url"
+                value={portfolio.link}
+                onChange={(e) => {
+                  const newPortfolios = formData.portfolios.map((p) =>
+                    p.id === portfolio.id
+                      ? { ...p, link: e.target.value }
+                      : p
+                  );
+                  setFormData({ ...formData, portfolios: newPortfolios });
+                }}
+                className="flex-1 h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
+                placeholder="https://example.com"
+              />
+              {formData.portfolios.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newPortfolios = formData.portfolios.filter(
+                      (p) => p.id !== portfolio.id
+                    );
+                    setFormData({ ...formData, portfolios: newPortfolios });
+                  }}
+                  className="h-[32px] px-2 bg-red-600 rounded-[6px] text-[14px] hover:bg-red-700"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setFormData({
+                ...formData,
+                portfolios: [
+                  ...formData.portfolios,
+                  {
+                    id: `temp-${Date.now()}`,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    category: PortfolioCategory.TECH,
+                    link: "",
+                    userId: props.user.id,
+                  },
+                ],
+              });
+            }}
+            className="mt-2 h-[32px] px-4 bg-[#238636] rounded-[6px] text-[14px] hover:bg-[#2ea043]"
+          >
+            Add Link
+          </button>
+        </div>
         <div className="flex gap-2 pt-2">
           <button
             type="submit"
-            className="w-[145px] h-[32px] bg-[#238636] border border-[#F0F6FC] border-opacity-10 rounded-[6px] text-[14px] hover:bg-[#2ea043]"
+            className="w-1/2 h-[32px] bg-[#238636] border border-[#F0F6FC] border-opacity-10 rounded-[6px] text-[14px] hover:bg-[#2ea043]"
           >
             Save Changes
           </button>
           <button
             type="button"
             onClick={() => setIsEditing(false)}
-            className="w-[145px] h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] text-[14px]"
+            className="w-1/2 h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] text-[14px]"
           >
             Cancel
           </button>
