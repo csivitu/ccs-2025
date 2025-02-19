@@ -45,13 +45,13 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex gap-2">
-                <Link
-                  href="/about"
+                {/* <Link
+                  href="/dashboard"
                   className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium   bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                 >
                   About us
                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white" />
-                </Link>
+                </Link> */}
                 {status === "loading" ? (
                   <LoadingSpinner className="w-6 h-6 mt-1" />
                 ) : status === "authenticated" ? (
