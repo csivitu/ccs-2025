@@ -25,3 +25,20 @@ export async function updateUserDetails(gender: Gender, aboutUs: string) {
         return user
     })
 }
+
+export async function getUserDetails() {
+    return requestHandler(async () => {
+        const session = await auth()
+        if (!session?.user) {
+            redirect("/");
+        }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: session.user.id
+            },
+        })
+        
+        return user
+    })
+}

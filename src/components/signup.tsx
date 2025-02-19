@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Navbar from '@/components/Navbar'
 import SlNavbar from './slNavbar';
 export default function Signup() {
   

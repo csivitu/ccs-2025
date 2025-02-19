@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer/footer";
-import faq from "../data/faq";
+import faq from "../../data/faq";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -14,7 +13,6 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-white relative flex flex-col justify-between">
       <div className="">
-      <Navbar />
       <div className="flex justify-center items-center flex-col px-4 py-12">
         <h1 className="text-2xl sm:text-2xl md:text-4xl lg:text-6xl font-bold my-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#A2FACF] to-[#64ACFF] font-sans code">
           CSI's Frequently Asked <br /> Questions

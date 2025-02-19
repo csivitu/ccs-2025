@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/footer/footer';
-import { getDomainStats } from '../actions/domains';
+import { getDomainStats } from '@/app/actions/domains'
 import SignOut from '../(auth)/actions/signout';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -29,7 +28,6 @@ const Profile = async () => {
 
   return (
     <div className="bg-[#0c1017] text-[#C9D1D9] font-sans min-h-screen flex flex-col">
-      <Navbar />
       <div className="container mx-auto py-8 px-4 flex-grow">
         <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
           <div className="col-span-1 md:col-span-3 flex flex-col items-center">

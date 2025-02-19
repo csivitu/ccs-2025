@@ -10,7 +10,6 @@ import videoLogo from "public/logos/videoLogo.svg";
 import managementLogo from "public/logos/managementLogo.svg";
 import csiLogo from "public/logos/csiLogoOnDark.svg";
 import Footer from "@/components/footer/footer";
-import Navbar from "@/components/Navbar";
 import { getAttemptedDomains } from "@/app/actions/domains";
 import { AttemptedDomain } from "@prisma/client";
 import { DomainStatus } from "@/types/domain-card-props";
@@ -121,7 +120,6 @@ export default function DomainsPage() {
 
   return (
     <>
-      <Navbar />
 
       <main className="flex-1 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">

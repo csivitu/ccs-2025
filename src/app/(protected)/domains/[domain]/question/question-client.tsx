@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Footer from "@/components/footer/footer";
-import Navbar from "@/components/Navbar";
 import QuestionPanel from "@/components/questions-page/question-panel";
 import AnswerPanel from "@/components/questions-page/answer-panel";
 import { VscExtensions } from "react-icons/vsc";
@@ -66,7 +65,6 @@ export default function QuestionsPage({
 
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col">
-      <Navbar />
 
       <main className="flex-1 px-4 md:px-14 relative flex flex-col">
         {/* Sidebar - Hidden on mobile, visible on desktop */}

@@ -1,5 +1,4 @@
 import Footer from "@/components/footer/footer";
-import Navbar from "@/components/Navbar";
 
 export default function TaskPage() {
   //fetch the task with taskid
@@ -18,7 +17,6 @@ export default function TaskPage() {
 
   return (
     <>
-      <Navbar />
       <main className="flex flex-col bg-hero items-center gap-8 sm:gap-12 md:gap-16 bg-gradient-to-b from-[#111341] to-[#22294A] pb-10 my-auto min-h-[90vh]">
         <section className="px-5 sm:px-24 md:px-36 py-5 sm:py-11 bg-[#6960A0] sm:mx-16 md:mx-20 flex flex-col items-center rounded-b-3xl bg-opacity-30 gap-3 max-w-7xl">
           <h1 className="font-bold capitalize sm:text-5xl text-3xl ">

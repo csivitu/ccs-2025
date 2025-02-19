@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import Footer from "@/components/footer/footer";
-import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/tasks-page/profile-card";
 import TaskCard, { taskCardProps } from "@/components/tasks-page/task-cark";
 
@@ -47,7 +46,6 @@ export default function TasksPage() {
 
   return (
     <>
-      <Navbar />
       <main className="flex sm:flex-row flex-col gap-20 m-6 justify-center">
         <ProfileCard
           name="YEEZUS"

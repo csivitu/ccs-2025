@@ -10,14 +10,12 @@ import {
   SidebarHeader,
   SidebarProvider,
 } from "@/components/ui/sidebar";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer/footer";
 import { teamData } from "@/data/team";
 
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-zinc-950">
-      <Navbar />
       <SidebarProvider>
         <div className="p-4 w-full md:w-4/5 mx-auto">
           {/* Header */}

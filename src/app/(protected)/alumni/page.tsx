@@ -1,18 +1,14 @@
 import React from "react";
 import { FaLinkedin } from 'react-icons/fa';
 //import { FaXTwitter } from "react-icons/fa6";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer/footer";
 import { alumniData } from "@/data/alumni";
 import Link from "next/link";
 
 const AlumniPage = () => {
   return (
-    <div className="min-h-screen w-full ">
-      <div className="fixed top-0 left-0 w-full  bg-opacity-90 z-50 backdrop-blur-md bg-zinc-950">
-        <Navbar />
-      </div>
-      <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44 bg-zinc-950">
+    <div className="min-h-screen w-full bg-[#0A0A0A]">
+      <div className="flex flex-col gap-8 md:gap-0 md:flex-row px-4 lg:px-10 mt-6 md:mt-12">
         <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 h-auto lg:h-screen mb-6 lg:mb-0">
           <h1 className="text-white font-sans-code text-[28px] lg:text-[36px] font-semibold leading-[30px] mb-2 lg:mb-4">
             Alumni
