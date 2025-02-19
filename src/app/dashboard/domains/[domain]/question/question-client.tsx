@@ -6,7 +6,7 @@ import { VscExtensions } from "react-icons/vsc";
 import type { Question } from "@prisma/client";
 import { submitQuestion } from "@/app/actions/questions";
 import { redirect } from "next/navigation";
-
+import Image from "next/image";
 export default function QuestionsPage({
   questions,
   answers: initialAnswers,
@@ -16,6 +16,7 @@ export default function QuestionsPage({
   answers: string[];
   sessionId: string;
 }) {
+  const [mutex, setMutex] = useState(false);
   const handlePrevious = () => {
     console.log(answers);
     if (currentIndex > 0) {
@@ -31,12 +32,14 @@ export default function QuestionsPage({
   const [answers, setAnswers] = useState<string[]>(initialAnswers);
 
   const handleNext = async () => {
+    setMutex(true);
     await submitQuestion({
       questionId: questions[currentIndex].id,
       answer: answers[currentIndex],
       sessionId,
     });
 
+    setMutex(false);
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
@@ -66,6 +69,9 @@ export default function QuestionsPage({
   return (
     <main className="flex-1 px-4 md:px-14 relative flex flex-col min-h-screen">
       {/* Sidebar - Hidden on mobile, visible on desktop */}
+      {mutex && <div className="w-full h-screen fixed top-0 left-0 bg-black/20 backdrop-blur-sm z-[900] flex items-center justify-center">
+        <Image src="/logos/navbar-logos/csi lotti.gif" width={400} height={400} alt="" className="w-20 md:w-44 aspect-square rounded-xl"/>
+      </div>}
       <aside className="hidden md:flex flex-col gap-2 fixed left-1 z-10">
         {[
           "/explorer.webp",
