@@ -29,7 +29,7 @@ const navLinks = [
   {
     id: "profile",
     label: "Profile",
-    Icon: "/profile.png",
+    Icon: "/logos/navbar-logos/profile.png",
     href: "/dashboard/profile",
     },
 ];
@@ -82,6 +82,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) =>
             </a>
             
           </div> */}
+          <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] "><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
           <a href="/dashboard/profile">
             <Image
             src="/giticon.webp"

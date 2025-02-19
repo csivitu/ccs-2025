@@ -4,11 +4,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer/footer";
 import { alumniData } from "@/data/alumni";
 import Link from "next/link";
-
+import Image from "next/image";
 const AlumniPage = () => {
   return (
     <div className="min-h-screen w-full ">
-      <div className="lg:flex px-4 lg:px-10 mt-24 lg:mt-44 bg-zinc-950">
+      <div className="lg:flex px-4 lg:px-10 my-12 bg-zinc-950">
         <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 h-auto lg:h-screen mb-6 lg:mb-0">
           <h1 className="text-white font-sans-code text-[28px] lg:text-[36px] font-semibold leading-[30px] mb-2 lg:mb-4">
             Alumni
@@ -39,7 +39,7 @@ const AlumniPage = () => {
                   <div className="flex-grow relative">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center p-2">
                       <div className="flex items-center gap-x-4">
-                        <div className="w-[60px] h-[60px] lg:w-[75px] lg:h-[75px] bg-[#D9D9D9] rounded-full flex-shrink-0 flex justify-center items-center" />
+                        <Image src={alumni.src} alt={alumni.name} width={200} height={200} className="w-[60px] h-[60px] lg:h-[75px] lg:w-[75px] aspect-square"/>
                         <div>
                           <div className="text-white font-sans-code text-[20px] lg:text-[24px] font-normal leading-[24px] lg:leading-[30px]">
                             {alumni.name}

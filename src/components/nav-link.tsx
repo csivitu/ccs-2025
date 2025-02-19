@@ -23,7 +23,7 @@ export default function NavLink({
           height={60}
           style={{ width: "1.25em", height: "1.25em" }}
           color={isActive ? "rgba(139, 148, 158, 1)" : "rgba(139, 148, 158, 1)"}
-          className={`mr-1 ${id === "faq" && "invert-[70%]"}`} // Added margin-right to the icon
+          className={`mr-1 ${(id === "faq" || id == "profile") && "invert-[70%]"}`} // Added margin-right to the icon
         />
         <span className="relative">
           {label}
