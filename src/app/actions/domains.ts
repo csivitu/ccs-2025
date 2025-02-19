@@ -1,7 +1,7 @@
 'use server'
 
 import { requestHandler } from "@/helpers/request-handler";
-import type { AttemptedDomain, AttemptedTask, DomainType, User } from "@prisma/client";
+import type { AttemptedDomain, AttemptedTask, AttempedQuestion, DomainType, User, QuizSession, Portfolio } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { auth } from "../(auth)/auth";
 import { redirect } from "next/navigation"
@@ -81,6 +81,8 @@ export async function selectDomain(domain: DomainType) {
 export interface UserStats extends User {
     attemptedTasks: AttemptedTask[]
     attemptedDomains: AttemptedDomain[]
+    quizSessions: QuizSession[]
+    portfolios: Portfolio[]
 }
 
 export async function getUserStats() {
@@ -97,6 +99,8 @@ export async function getUserStats() {
             include: {
                 attemptedTasks: true,
                 attemptedDomains: true,
+                quizSessions: true,
+                portfolios: true
             },
         });
 

@@ -49,7 +49,6 @@ model User {
   aboutUs     String?
 
   attemptedDomains   AttemptedDomain[]
-  attemptedQuestions AttempedQuestion[]
   attemptedTasks     AttemptedTask[]
 
   quizSessions QuizSession[]
@@ -71,16 +70,13 @@ model AttempedQuestion {
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   quizSessionId String
   quizSession   QuizSession @relation(fields: [quizSessionId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId, questionId])
+  @@unique([questionId, quizSessionId])
 }
 
 model Question {

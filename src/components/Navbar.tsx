@@ -25,6 +25,12 @@ const navLinks = [
     Icon: "/logos/navbar-logos/faq.png",
     href: "/dashboard/faq",
   },
+  {
+    id: "profile",
+    label: "Profile",
+    Icon: "/logos/navbar-logos/faq.png",
+    href: "/dashboard/profile",
+    },
 ];
 
 const Navbar = () => {
@@ -43,6 +49,7 @@ const Navbar = () => {
             <button
               className="sm:hidden mr-4 p-[2px] border-[1px] rounded-[6px] border-slate-600"
               onClick={handleToggleNavbar}
+              type="button"
             >
               <MenuIcon className="text-slate-200 p-[2px]" />
             </button>
@@ -117,6 +124,7 @@ const Navbar = () => {
           <button
             onClick={handleToggleNavbar}
             className="mb-8 p-[2px] border-[1px] rounded-[6px] border-slate-600"
+            type="button"
           >
             <X className="text-slate-200 p-[2px]" />
           </button>
@@ -165,6 +173,11 @@ const Navbar = () => {
         <div
           className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={handleToggleNavbar}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleToggleNavbar();
+            }
+          }}
         />
       )}
     </nav>

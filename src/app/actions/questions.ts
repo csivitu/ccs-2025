@@ -1,6 +1,6 @@
 "use server"
 
-import { DomainType, EnrollmentStatus } from '@prisma/client';
+import { type DomainType, EnrollmentStatus } from '@prisma/client';
 import {
   questionIdSchema,
   submitSchema
@@ -76,7 +76,7 @@ export async function startOrResumeDomainQuiz(domain: DomainType) {
 
     // Map existing answers
     const answers = questions.map(q => {
-      const existingAnswer = quizSession!.answers.find(a => a.questionId === q.id);
+      const existingAnswer = quizSession?.answers.find(a => a.questionId === q.id);
       return existingAnswer?.answer || "";
     });
 
@@ -129,9 +129,9 @@ export async function submitQuestion(data: { questionId: string, answer: string,
 
     const questionAttempt = await prisma.attempedQuestion.upsert({
       where: {
-        userId_questionId: {
+        questionId_quizSessionId: {
           questionId: data.questionId,
-          userId: session.user.id,
+          quizSessionId: data.sessionId,
         },
       },
       update: {
@@ -140,7 +140,6 @@ export async function submitQuestion(data: { questionId: string, answer: string,
       },
       create: {
         questionId: data.questionId,
-        userId: session.user.id,
         answer: data.answer,
         quizSessionId: data.sessionId
       },

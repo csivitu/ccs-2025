@@ -2,6 +2,7 @@
 //import localFont from "next/font/local";
 import "./globals.css";
 import { Noto_Sans } from "next/font/google";
+import { Toaster } from 'sonner'
 
 const notoSans = Noto_Sans({ 
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className= {`${notoSans.className} bg-zinc-950`}>
         <AuthProvider>{children}</AuthProvider>
+        <Toaster />
       </body>
     </html>
   );
