@@ -185,15 +185,6 @@ const ProfileClient = (props: ProfileClientProps) => {
         </div>
 
         <div className="col-span-1 md:col-span-7 text-left overflow-x-auto">
-          <div className="flex items-center justify-between w-[867px] mb-4">
-            <h2 className="text-[20px] font-semibold">
-              42 contributions in the last year
-            </h2>
-            <div className="flex items-center">
-              <span className="text-[18px]">Contribution settings</span>
-              <div className="w-[8px] h-[4px] bg-[#8B949E] ml-2 mr-2" />
-            </div>
-          </div>
           <div className="mb-6">
             <Image
               src="/contri.webp"
