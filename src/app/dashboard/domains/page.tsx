@@ -9,8 +9,6 @@ import designLogo from "public/logos/designLogo.svg";
 import videoLogo from "public/logos/videoLogo.svg";
 import managementLogo from "public/logos/managementLogo.svg";
 import csiLogo from "public/logos/csiLogoOnDark.svg";
-import Footer from "@/components/footer/footer";
-import Navbar from "@/components/Navbar";
 import { getAttemptedDomains } from "@/app/actions/domains";
 import type { AttemptedDomain } from "@prisma/client";
 import { DomainStatus } from "@/types/domain-card-props";
@@ -120,43 +118,35 @@ export default function DomainsPage() {
   ];
 
   return (
-    <>
-      <Navbar />
-
-      <main className="flex-1 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">
-          <Image
-            src={csiLogo}
-            alt="CSI Logo"
-            width={480}
-            height={92}
-            className="w-52 md:w-80 mt-8 my-4 mb-8"
-            priority
-          />
-          <h1 className="text-white font-sans-code text-lg sm:text-2xl lg:text-3xl font-semibold leading-normal sm:leading-relaxed px-2">
-            Welcome to CSI! Let's get started.
-          </h1>
-          <p className="text-[#9198A1] font-sans-code text-sm -mt-4 sm:text-base lg:text-lg font-normal leading-relaxed max-w-3xl px-2">
-            Choose your domains and start answering the questions. Remember once
-            chosen you can't pause. Max 2 domains to be chosen.
-          </p>
-        </div>
-
-        <p className="text-lg  sm:text-3xl text-[#9198A1] font-sans-code font-[600] text-center my-8">
-          Select your domain.
+    <main className="flex-1 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">
+        <Image
+          src={csiLogo}
+          alt="CSI Logo"
+          width={480}
+          height={92}
+          className="w-52 md:w-80 mt-8 my-4 mb-8"
+          priority
+        />
+        <h1 className="text-white font-sans-code text-lg sm:text-2xl lg:text-3xl font-semibold leading-normal sm:leading-relaxed px-2">
+          Welcome to CSI! Let's get started.
+        </h1>
+        <p className="text-[#9198A1] font-sans-code text-sm -mt-4 sm:text-base lg:text-lg font-normal leading-relaxed max-w-3xl px-2">
+          Choose your domains and start answering the questions. Remember once
+          chosen you can't pause. Max 2 domains to be chosen.
         </p>
-
-        {/* Domains Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-10 max-w-[1000px] mx-auto px-2 sm:px-4 ">
-          {content.map((domain) => (
-            <DomainCard {...domain} loading={loading} key={domain.domainName} />
-          ))}
-        </div>
-      </main>
-
-      <div className="mt-24">
-        <Footer />
       </div>
-    </>
+
+      <p className="text-lg  sm:text-3xl text-[#9198A1] font-sans-code font-[600] text-center my-8">
+        Select your domain.
+      </p>
+
+      {/* Domains Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-10 max-w-[1000px] mx-auto px-2 sm:px-4 ">
+        {content.map((domain) => (
+          <DomainCard {...domain} loading={loading} key={domain.domainName} />
+        ))}
+      </div>
+    </main>
   );
 }

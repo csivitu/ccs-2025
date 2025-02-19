@@ -1,17 +1,12 @@
 import React from "react";
 import { FaRegStar } from "react-icons/fa";
 import { IoMdGitNetwork } from "react-icons/io";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer/footer";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 
 const ProjectPage = () => {
   return (
     <div className="min-h-screen w-full bg-[#0A0A0A]">
-      <div className="sticky top-0 left-0 w-full  bg-opacity-90 z-50 backdrop-blur-md">
-        <Navbar />
-      </div>
       <div className="flex flex-col gap-8 md:gap-0 md:flex-row px-4 lg:px-10 mt-6 md:mt-12">
         <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 md:h-screen">
           <h1 className="text-white font-sans-code text-2xl lg:text-[36px] font-semibold leading-[30px] mb-2 lg:mb-4">
@@ -139,10 +134,6 @@ const ProjectPage = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-[360px] lg:mt-[180px]">
-        <Footer />
       </div>
     </div>
   );
