@@ -28,7 +28,7 @@ const navLinks = [
   {
     id: "profile",
     label: "Profile",
-    Icon: "/logos/navbar-logos/faq.png",
+    Icon: "/profile.png",
     href: "/dashboard/profile",
     },
 ];
@@ -78,13 +78,16 @@ const Navbar = () => {
             </a>
             
           </div> */}
-          <Image
+          <a href="/dashboard/profile">
+            <Image
             src="/giticon.webp"
             width={45}
             height={45}
-            alt="FAQs Icon"
+            alt="Profile Icon"
             className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
           />
+          </a>
+          
         </div>
 
         {/* Navigation Links */}
