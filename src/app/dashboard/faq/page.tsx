@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import faq from "../../data/faq";
+import faq from "../../../data/faq"
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
