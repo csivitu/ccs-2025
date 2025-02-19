@@ -30,16 +30,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         },
 
         async session({ session, user }) {
-            // if (session.user) {
-            //     const phoneNo = await getUserPhoneNumber(session.user.email);
-            //     if(!phoneNo) return session
-            //     await prisma.user.update({
-            //         where: { id: user.id },
-            //         data: {
-            //             phoneNumber: String(phoneNo),
-            //         }
-            //     });
-            // }
+            if (session.user) {
+                const phoneNo = await getUserPhoneNumber(session.user.email);
+                if(!phoneNo) return session
+                await prisma.user.update({
+                    where: { id: user.id },
+                    data: {
+                        phoneNumber: String(phoneNo.mobile_no),
+                    }
+                });
+            }
             return session;
         }
     }
