@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import type { UserStats } from "../../actions/domains";
@@ -156,25 +155,26 @@ const ProfileClient = (props: ProfileClientProps) => {
             </>
           )}
           <div className="w-[302px] h-[1px] bg-[#30363D] my-4" />
-          <h2 className="text-[20px] font-semibold self-start mx-12">
+
+          <div className="flex flex-col justify-center items-center mobile:w-full gap-4">
+          <h2 className="text-[20px] font-semibold self-start w-full text-center">
             Achievements
           </h2>
-          <div className="self-start my-2 mx-12">
             <Image
               src="/badge.webp"
               alt="Achievement Badge"
               width={70}
               height={70}
             />
+          <div className="border-[#1cec1c] border-[2px] rounded-full py-1 px-4 text-[12px] font-bold">
+            You chose CSI 
           </div>
-          <div className="w-[120px] h-[25px] border border-[#3FB950] text-[#3FB950] text-[15px] text-center rounded-full flex items-center justify-center self-start mx-12">
-            You chose CSI
           </div>
           <div className="w-[302px] h-[1px] bg-[#30363D] my-4" />
+          <div className="flex flex-col gap-4 justify-center items-center">
           <h2 className="text-[20px] font-semibold self-start mx-12">
             Organizations
           </h2>
-          <div className="w-[71px] h-[71px] self-start my-2 mx-12">
             <Image
               src="/org.webp"
               alt="Organization Logo"
@@ -191,14 +191,14 @@ const ProfileClient = (props: ProfileClientProps) => {
               width={878}
               height={162}
               alt="Contribution Chart"
-              className="rounded-t-[10px]"
+              className="rounded-t-[10px] mobile:hidden tab:block"
             />
           </div>
           <div className="mb-2">
             <h3 className="text-[20px] font-semibold">Contribution activity</h3>
             <div className="flex items-center mt-1">
               <span className="text-[18px]">{formattedDate}</span>
-              <div className="w-[461px] h-[3px] bg-[#30363D] ml-2" />
+              <div className="w-[302px] h-[1px] bg-[#30363D] my-4" />
             </div>
           </div>
           <div className="flex items-start mb-6">
@@ -216,7 +216,7 @@ const ProfileClient = (props: ProfileClientProps) => {
                     <h4 className="text-[18px] ">
                       Questions completed in {titleCase(domain?.domain)} Domain
                     </h4>
-                    <div className="w-[55px] h-[22px] border border-[#C9D1D9] rounded-full flex items-center justify-center text-[14px] ml-2">
+                    <div className="w-[55px] h-[22px] border border-[#C9D1D9] rounded-full flex items-center justify-center text-[14px] ml-2 py-1 px-[1rem]">
                       Public
                     </div>
                   </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg";
 import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg";
@@ -11,12 +11,13 @@ import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg";
 
 import NavLink from "./nav-link";
 import { MenuIcon, X } from "lucide-react";
-import { FaQuestion } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { projects } from "@/data/projects";
+import { alumniData } from "@/data/alumni";
 
 const navLinks = [
   { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
-  { id: "projects", label: "Projects", Icon: LuTable, href: "/dashboard/project" },
+  { id: "project", label: "Projects", Icon: LuTable, href: "/dashboard/project" },
   { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/dashboard/domains" },
   { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/dashboard/alumni" },
   {
@@ -28,12 +29,15 @@ const navLinks = [
   {
     id: "profile",
     label: "Profile",
-    Icon: "/logos/navbar-logos/faq.png",
+    Icon: "/profile.png",
     href: "/dashboard/profile",
     },
 ];
+interface NavbarProps {
+username:String
+}
 
-const Navbar = () => {
+const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const path = usePathname();
@@ -78,13 +82,16 @@ const Navbar = () => {
             </a>
             
           </div> */}
-          <Image
+          <a href="/dashboard/profile">
+            <Image
             src="/giticon.webp"
             width={45}
             height={45}
-            alt="FAQs Icon"
+            alt="Profile Icon"
             className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
           />
+          </a>
+          
         </div>
 
         {/* Navigation Links */}
@@ -94,17 +101,17 @@ const Navbar = () => {
               <Link href={item.href} passHref>
                 <NavLink
                   {...item}
-                  isActive={activeLink === item.id}
+                  isActive={(item.id === "about" && path == "/dashboard") ? true : path.includes(item.id)}
                   onLinkClick={() => setActiveLink(item.id)}
                 />
               </Link>
 
-              {item.id === "domains" && (
+              {(item.id === "domains" || item.id === "project" || item.id === "alumni") && (
                 <div
                   className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
                             text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
                 >
-                  4
+                  {item.id === "domains" ? 4 : item.id === "alumni" ? alumniData.length : projects.length}
                 </div>
               )}
             </div>
@@ -140,7 +147,7 @@ const Navbar = () => {
                   className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
                 />
                 {/* TODO@jrs : Replace with the actual username and photograph */}
-                <span>Username</span>
+                <span>{username}</span>
               </div>
               {/* <a href="#home" className="font-semibold text-lg mb-2">
                 Home
@@ -155,7 +162,7 @@ const Navbar = () => {
                 <Link key={item.id} href={item.href} passHref>
                   <NavLink
                     {...item}
-                    isActive={activeLink === item.id}
+                    isActive={path.split("/")[-1] === item.id}
                     onLinkClick={() => {
                       setActiveLink(item.id);
                       setIsNavbarOpen(false);

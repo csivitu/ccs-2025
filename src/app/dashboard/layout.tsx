@@ -15,7 +15,7 @@ export default async function DashboardLayout({
 
   return (
     <div>
-      <Navbar />
+      <Navbar username={session?.user.name}/>
       {children}
       <Footer />
     </div>
