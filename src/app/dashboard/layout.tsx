@@ -15,7 +15,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Navbar username={session?.user.name}/>
+      <Navbar username={session?.user.name} image={session.user.image || "" }/>
       {children}
       <Footer />
     </div>

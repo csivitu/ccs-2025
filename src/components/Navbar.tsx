@@ -35,9 +35,10 @@ const navLinks = [
 ];
 interface NavbarProps {
 username:String
+image: string
 }
 
-const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) => {
+const Navbar: React.FunctionComponent<NavbarProps> = ({username,image}:NavbarProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const path = usePathname();
@@ -62,7 +63,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) =>
               className="gap-2 justify-center items-center mobile:hidden md:flex"
             >
               <Image
-                src="/git.webp"
+                src={"/git.webp"}
                 width={35}
                 height={35}
                 alt="Logo"
@@ -83,15 +84,15 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username}:NavbarProps) =>
             
           </div> */}
           <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] "><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
-          <a href="/dashboard/profile">
+          <Link href="/dashboard/profile" className="rounded-[0.25rem] overflow-hidden">
             <Image
-            src="/giticon.webp"
+            src={image.length > 0 ? image : "/git.webp"}
             width={45}
             height={45}
             alt="Profile Icon"
-            className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
+            className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[46px]"
           />
-          </a>
+          </Link>
           
         </div>
 

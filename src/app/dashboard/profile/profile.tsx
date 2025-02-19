@@ -8,6 +8,7 @@ import { Gender } from "@prisma/client";
 
 interface ProfileClientProps {
   user: UserStats;
+  image: string;
 }
 
 const ProfileClient = (props: ProfileClientProps) => {
@@ -127,12 +128,13 @@ const ProfileClient = (props: ProfileClientProps) => {
     <div className="container mx-auto py-8 px-4 flex-grow">
       <div className="grid grid-cols-1 md:grid-cols-10 gap-8">
         <div className="col-span-1 md:col-span-3 flex flex-col items-center">
-          <div className="mb-4 w-[290px] h-[290px] overflow-hidden">
+          <div className="mb-4 w-[290px] h-[290px] rounded-2xl overflow-hidden">
             <Image
-              src="/profile.webp"
+              src={props.image.length > 0 ? props.image : "/profile.webp"}
               alt="Raju Rastogi"
               width={296}
               height={296}
+              
             />
           </div>
           {isEditing ? (
