@@ -30,7 +30,7 @@ const navLinks = [
   {
     id: "profile",
     label: "Profile",
-    Icon: "/logos/navbar-logos/faq.png",
+    Icon: "/logos/navbar-logos/profile.png",
     href: "/dashboard/profile",
     },
 ];
@@ -80,6 +80,7 @@ const Navbar = () => {
             </a>
             
           </div> */}
+          <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] "><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
           <Image
             src="/giticon.webp"
             width={45}

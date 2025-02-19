@@ -14,7 +14,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col justify-between">
       <Navbar />
       {children}
       <Footer />
