@@ -45,31 +45,33 @@ export default function Home() {
               <div className="flex gap-2">
                 <Link href="/about" className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium   bg-transparent whitespace-nowrap duration-500 rounded-[2px] group">
                   About us
-                  <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                  <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"/>
                 </Link>
                 {status === "loading" ? (
-                  <LoadingSpinner height={30} width={30} />
+                  <LoadingSpinner className="w-6 h-6 mt-1" />
                 ) : status === "authenticated" ? (
                   <>
                    <Link href="/dashboard" className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group">
                    Dashboard
-                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"/>
                   </Link>
                     <button
                       onClick={() => signOut()}
+                      type="button"
                      className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                     >
                       Sign out
-                      <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                        <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"/>
                     </button>
                   </>
                 ) : (
                   <button
                     onClick={() => signIn('google')}
+                    type="button"
                     className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                   >
                     Sign in
-                    <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"></span>
+                    <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white"/>
                   </button>
                 )}
               </div>
