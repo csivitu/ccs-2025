@@ -1,7 +1,7 @@
-import { FC } from "react";
+import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { domainCardProps } from "@/types/domain-card-props";
+import type{ domainCardProps } from "@/types/domain-card-props";
 
 const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
   domainName,
@@ -29,13 +29,14 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
         {description}
       </p>
       <Link
-        href={disabled ? "#" : `/domains/${domainName.toLowerCase()}/question`}
+        href={disabled ? "#" : `/dashboard/domains/${domainName.toLowerCase()}/question`}
       >
         {loading ? (
           <div className="mt-4 h-[40px] w-full lg:max-w-[200px] bg-gray-700 rounded-[6px] animate-pulse" />
         ) : (
           <button
             disabled={disabled}
+            type="button"
             className={`mt-4 py-1.5 px-5 w-full h-[40px] border border-[rgba(240,246,252,0.10)] rounded-[6px] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] font-sans font-medium leading-[20px] text-center
               ${
                 disabled

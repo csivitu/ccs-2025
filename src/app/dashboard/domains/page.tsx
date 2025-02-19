@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import DomainCard from "@/components/domain-page/domainCard";
-import { domainCardProps } from "@/types/domain-card-props";
+import type { domainCardProps } from "@/types/domain-card-props";
 import techLogo from "public/logos/techLogo.svg";
 import designLogo from "public/logos/designLogo.svg";
 import videoLogo from "public/logos/videoLogo.svg";
@@ -12,7 +12,7 @@ import csiLogo from "public/logos/csiLogoOnDark.svg";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/Navbar";
 import { getAttemptedDomains } from "@/app/actions/domains";
-import { AttemptedDomain } from "@prisma/client";
+import type { AttemptedDomain } from "@prisma/client";
 import { DomainStatus } from "@/types/domain-card-props";
 
 const MAX_DOMAIN_ATTEMPTS = 2;
@@ -149,9 +149,7 @@ export default function DomainsPage() {
         {/* Domains Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-10 max-w-[1000px] mx-auto px-2 sm:px-4 ">
           {content.map((domain) => (
-           
-                <DomainCard {...domain} loading={loading}  key={domain.domainName}/>
-    
+            <DomainCard {...domain} loading={loading} key={domain.domainName} />
           ))}
         </div>
       </main>

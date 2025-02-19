@@ -3,7 +3,9 @@ import Image from "next/image";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/tasks-page/profile-card";
-import TaskCard, { taskCardProps } from "@/components/tasks-page/task-cark";
+import TaskCard, {
+  type taskCardProps,
+} from "@/components/tasks-page/task-cark";
 
 import GitIcon from "public/giticon.webp";
 import PartyPopper from "public/party-popper.svg";
@@ -63,14 +65,18 @@ export default function TasksPage() {
             </h2>
             <ol className="list-decimal list-inside ml-2 sm:ml-4 md:ml-8">
               {generalInstructions.map((instruction) => {
-                return <li className="pb-1 font-light">{instruction}</li>;
+                return (
+                  <li key={instruction} className="pb-1 font-light">
+                    {instruction}
+                  </li>
+                );
               })}
             </ol>
           </div>
 
           <div className="border-t-4 border-[#30363D]">
             {tasks.map((task) => (
-              <TaskCard {...task} />
+              <TaskCard key={task.name} {...task} />
             ))}
           </div>
 

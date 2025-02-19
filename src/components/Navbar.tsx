@@ -16,10 +16,15 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
-  { id: "projects", label: "Projects", Icon: LuTable, href: "/project" },
-  { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/domains" },
-  { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/alumni" },
-  { id: "faq", label: "FAQs", Icon: "/logos/navbar-logos/faq.png", href: "/faq" },
+  { id: "projects", label: "Projects", Icon: LuTable, href: "/dashboard/project" },
+  { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/dashboard/domains" },
+  { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/dashboard/alumni" },
+  {
+    id: "faq",
+    label: "FAQs",
+    Icon: "/logos/navbar-logos/faq.png",
+    href: "/dashboard/faq",
+  },
 ];
 
 const Navbar = () => {
@@ -41,17 +46,20 @@ const Navbar = () => {
             >
               <MenuIcon className="text-slate-200 p-[2px]" />
             </button>
-            <a href="https://github.com/csivitu" className="gap-2 justify-center items-center mobile:hidden md:flex">
+            <a
+              href="https://github.com/csivitu"
+              className="gap-2 justify-center items-center mobile:hidden md:flex"
+            >
               <Image
-              src="/git.webp"
-              width={35}
-              height={35}
-              alt="Logo"
-              className="flex-shrink-0 mobile:w-[32px]"
-            />
-            <span className="text-[#C9D1D9] text-center font-[400] tab:text-xl mobile:hidden tab:block leading-[30px] font-sans-code ">
-              csivitu
-            </span>
+                src="/git.webp"
+                width={35}
+                height={35}
+                alt="Logo"
+                className="flex-shrink-0 mobile:w-[32px]"
+              />
+              <span className="text-[#C9D1D9] text-center font-[400] tab:text-xl mobile:hidden tab:block leading-[30px] font-sans-code ">
+                csivitu
+              </span>
             </a>
           </div>
           {/* <div className="hidden sm:flex items-center space-x-4">
@@ -64,12 +72,12 @@ const Navbar = () => {
             
           </div> */}
           <Image
-              src="/giticon.webp"
-              width={45}
-              height={45}
-              alt="FAQs Icon"
-              className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
-            />
+            src="/giticon.webp"
+            width={45}
+            height={45}
+            alt="FAQs Icon"
+            className="flex-shrink-0 aspect-square mobile:w-[32px] md:w-[42px]"
+          />
         </div>
 
         {/* Navigation Links */}
@@ -83,7 +91,7 @@ const Navbar = () => {
                   onLinkClick={() => setActiveLink(item.id)}
                 />
               </Link>
-              
+
               {item.id === "domains" && (
                 <div
                   className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
@@ -135,19 +143,18 @@ const Navbar = () => {
             </div>
 
             <div className="w-full flex flex-col gap-2">
-            {navLinks.map((item) => (
-              <Link key={item.id} href={item.href} passHref>
-                <NavLink
-                  {...item}
-                  isActive={activeLink === item.id}
-                  onLinkClick={() => {
-                    setActiveLink(item.id);
-                    setIsNavbarOpen(false);
-                  }}
-                  
-                />
-              </Link>
-            ))}
+              {navLinks.map((item) => (
+                <Link key={item.id} href={item.href} passHref>
+                  <NavLink
+                    {...item}
+                    isActive={activeLink === item.id}
+                    onLinkClick={() => {
+                      setActiveLink(item.id);
+                      setIsNavbarOpen(false);
+                    }}
+                  />
+                </Link>
+              ))}
             </div>
           </nav>
         </div>

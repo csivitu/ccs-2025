@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import QuestionPanel from "@/components/questions-page/question-panel";
 import AnswerPanel from "@/components/questions-page/answer-panel";
 import { VscExtensions } from "react-icons/vsc";
-import { Question } from "@prisma/client";
+import type { Question } from "@prisma/client";
 import { submitQuestion } from "@/app/actions/questions";
 import { redirect } from "next/navigation";
 
@@ -46,10 +46,11 @@ export default function QuestionsPage({
     if (currentIndex === questions.length - 1) {
       // TODO: @padhai-head
       // toast.success("Quiz completed successfully!");
-      redirect(`/domains?completed=true`);
+      redirect("/dashboard/domains?completed=true");
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Enter" && event.shiftKey) {
@@ -81,14 +82,14 @@ export default function QuestionsPage({
           ].map((src, index) =>
             src ? (
               <img
-                key={index}
+                key={src}
                 src={src}
-                alt={`Image ${index + 1}`}
+                alt={`${index + 1}`}
                 className="w-12 h-12 rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               />
             ) : (
               <VscExtensions
-                key={index}
+                key={src}
                 className="w-6 h-6 ml-3 mt-1 mb-1 text-zinc-500 cursor-pointer hover:text-zinc-400 transition-colors"
               />
             )
@@ -107,14 +108,14 @@ export default function QuestionsPage({
           ].map((src, index) =>
             src ? (
               <img
-                key={index}
+                key={src}
                 src={src}
-                alt={`Image ${index + 1}`}
+                alt={`${index + 1}`}
                 className="w-8 h-8 rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
               />
             ) : (
               <VscExtensions
-                key={index}
+                key={src}
                 className="w-6 h-6 text-zinc-500 cursor-pointer hover:text-zinc-400 transition-colors"
               />
             )
@@ -165,6 +166,7 @@ export default function QuestionsPage({
               }}
               onClick={handlePrevious}
               disabled={currentIndex === 0}
+              type="button"
             >
               &gt;&gt; Previous
             </button>
@@ -184,6 +186,7 @@ export default function QuestionsPage({
                 cursor: "pointer",
                 textTransform: "uppercase",
               }}
+              type="button"
               onClick={handleNext}
               disabled={
                 currentIndex === questions.length - 1 && !answers[currentIndex]

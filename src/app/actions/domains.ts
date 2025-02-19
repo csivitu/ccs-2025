@@ -1,7 +1,7 @@
 'use server'
 
 import { requestHandler } from "@/helpers/request-handler";
-import { DomainType } from "@prisma/client";
+import type { AttemptedDomain, AttemptedTask, DomainType, User } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { auth } from "../(auth)/auth";
 import { redirect } from "next/navigation"
@@ -78,28 +78,25 @@ export async function selectDomain(domain: DomainType) {
     })
 }
 
-export async function getDomainStats() {
+export interface UserStats extends User {
+    attemptedTasks: AttemptedTask[]
+    attemptedDomains: AttemptedDomain[]
+}
+
+export async function getUserStats() {
     return requestHandler(async () => {
         const session = await auth()
         if (!session?.user) {
             redirect("/");
         }
 
-        const user = await prisma.user.findUnique({
+        const user: UserStats | null = await prisma.user.findUnique({
             where: {
                 id: session.user.id,
             },
             include: {
-                attemptedQuestions: {
-                    include: {
-                        question: true,
-                    },
-                },
-                attemptedTasks: {
-                    include: {
-                        task: true,
-                    },
-                },
+                attemptedTasks: true,
+                attemptedDomains: true,
             },
         });
 
@@ -107,29 +104,6 @@ export async function getDomainStats() {
             throw new Error("User not found");
         }
 
-        const domains = await Promise.all(
-            Object.values(DomainType).map(async (domain) => {
-                const completedQuestions = user.attemptedQuestions.filter(
-                    (q) => q.question.domain === domain
-                ).length;
-
-                const totalQuestions = await prisma.question.count({
-                    where: {
-                        domain,
-                    },
-                });
-
-                return {
-                    name: domain,
-                    completed: completedQuestions,
-                    total: totalQuestions,
-                };
-            })
-        );
-        return {
-            username: user.name,
-            about: user.aboutUs,
-            stats: domains
-        };
+        return user
     })
 }

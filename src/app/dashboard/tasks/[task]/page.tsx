@@ -34,7 +34,7 @@ export default function TaskPage() {
             <h3 className="font-bold text-lg sm:text-2xl">Resources</h3>
             <ul className="list-decimal list-inside text-[#BABAC6]">
               {task.resources.map((resource) => (
-                <li>
+                <li key={resource}>
                   <a className="underline sm:text-base text-sm" href={resource}>
                     {resource}
                   </a>
@@ -57,7 +57,10 @@ export default function TaskPage() {
           </ul>
         </div>
 
-        <button className="uppercase bg-[#9386E4] rounded-full px-8 py-2 text-[#363960] font-semibold ">
+        <button
+          className="uppercase bg-[#9386E4] rounded-full px-8 py-2 text-[#363960] font-semibold "
+          type="button"
+        >
           Submit
         </button>
       </main>
