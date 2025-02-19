@@ -16,6 +16,14 @@ export const projects = [
       "repoLink": "https://github.com/csivitu/lasertag-gravitas-csi"
     },
     {
+      "projectTitle": "Kustom",
+      "projectDescription": "Customizable Form Builder - Forms on steroids",
+      "techDomain": "Webdev",
+      "language": "Next.js",
+      "builtBy": "Keshav Aneja",
+      "repoLink": "https://kustom.cc"
+    },
+    {
       "projectTitle": "Code Tester",
       "projectDescription": "A CLI designed to test user code against user defined inputs",
       "techDomain": "CLI-Tools",
