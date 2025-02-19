@@ -31,13 +31,13 @@ export const projects = [
       "builtBy": "Everyone",
       "repoLink": "https://github.com/csivitu/ArcadeGames"
     },
-    // TODO@jrs : Remove our names, and add the ccs tech jrs name
+    // @jrs : Remove our names, and add the ccs tech jrs name
     {
       "projectTitle": "Core Committee Selection",
       "projectDescription": "The Website you are looking at",
       "techDomain": "Webdev (Frontend)",
       "language": "Next.js, Javascript, CSS",
-      "builtBy": "Keshav Aneja, Manas Laud, Ishita Babar",
+      "builtBy": "Nidhi Karva, Tejas Ghatte, Ishita Babar, Harsh Shah, Neeladri Mullick, Aditi Saxena, Shreeyash Ugale, Harsat Ponnusamy, Adhavan",
       "repoLink": "https://github.com/csivitu/CCS-Frontend-2022"
     },
     {

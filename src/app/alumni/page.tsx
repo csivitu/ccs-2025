@@ -20,7 +20,7 @@ const AlumniPage = () => {
           <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-2 lg:mb-4" />
           <p className="text-[14px] lg:text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code lg:mb-6">
             {/* TODO@jrs : Replace this description ::D */}
-            Lorem ipsum about seniors and <br className="hidden lg:block" /> superseniors Lorem ipsum about <br className="hidden lg:block" /> seniors and superseniors
+            CSI VIT alumni continue to excel as <br className="hidden lg:block" /> innovators, leaders, and mentors, making <br className="hidden lg:block" /> significant contributions to the tech <br className="hidden lg:block" /> industry while maintaining strong ties with our community.    
           </p>
         </div>
         <div className="lg:w-[70%] mt-3 lg:mt-[-8px]">
@@ -51,12 +51,12 @@ const AlumniPage = () => {
                         </div>
                       </div>
                     </div>
-
-                    {/* Right Section (Social Icons) */}
-                    <Link href={alumni.linkedin} className="p-2 lg:p-8 mt-2 flex gap-x-3 text-[#727477] w-full lg:w-fit min-w-[160px] flex-grow-0 justify-center items-center">
+                    <Link
+                      href={alumni.linkedin}
+                      className="p-2 lg:p-8 mt-2 flex gap-x-3 text-[#727477] w-full lg:w-fit min-w-[160px] flex-grow-0 justify-center items-center"
+>
                       <span className="text-[14px] lg:text-[16px] cursor-pointer hover:text-[#0077B5] flex items-center gap-1">
-                        {/* TODO@jrs : Please replace this text with Linkedin Logo */}
-                        <span className="underline">LinkedIn</span> <span className="text-lg">→</span>
+                      <FaLinkedin className="text-[28px] lg:text-[36px] -mt-4 lg:-mt-2" /> 
                       </span>
                     </Link>
                   </div>

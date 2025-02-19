@@ -20,9 +20,7 @@ const ProjectPage = () => {
           <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-2 lg:mb-4" />
           <p className="text-[14px] lg:text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code mb-4 lg:mb-6">
             {/* TODO@jrs : Replace this content pleasssseee ::::D */}
-            Lorem ipsum about projects karo <br className="hidden lg:block" />
-            projects lorem nahi ipsum nahi projects <br className="hidden lg:block" />
-            lorem ipsumS
+            Our members work together to make <br className="hidden lg:block" /> projects both for events and for the sake <br className="hidden lg:block" /> of sharpening their skills. Here we have <br className="hidden lg:block" /> listed our finest works!
           </p>
         
           <div className="mt-2 lg:mt-2 w-[90%] lg:w-[85%] max-w-sm lg:max-w-4xl h-3 lg:h-2.5 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1">
