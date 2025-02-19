@@ -7,7 +7,6 @@ let db: Database;
 export async function connectDB() {
   if (!db) {
     const dbPath = path.join(process.cwd(), "src", "data", "csi-enrolled-students.db");
-    console.log(dbPath)
     db = await open({
       filename: dbPath,
       driver: sqlite3.Database,
