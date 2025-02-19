@@ -10,9 +10,22 @@ async function seedQuestions() {
   try {
     console.log("Reading questions from JSON file...");
     const questions = JSON.parse(fs.readFileSync(questionsFilePath, "utf-8"));
-    
+
     console.log("Seeding questions...");
     for (const question of questions) {
+      const existingQuestion = await prisma.question.findFirst({
+        where: {
+          question: question.question,
+        },
+      });
+
+      if (existingQuestion) {
+        console.log(
+          `Question "${question.question}" already exists. Skipping...`
+        );
+        continue;
+      }
+
       await prisma.question.create({
         data: question,
       });
@@ -26,8 +39,7 @@ async function seedQuestions() {
   }
 }
 
-seedQuestions()
-  .catch((error) => {
-    console.error("Error in seed function:", error);
-    process.exit(1);
-  });
+seedQuestions().catch((error) => {
+  console.error("Error in seed function:", error);
+  process.exit(1);
+});
