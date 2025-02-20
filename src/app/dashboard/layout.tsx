@@ -23,7 +23,7 @@ export default async function DashboardLayout({
   });
 
   const onboardingCompleted =
-    user?.gender != null && user?.aboutUs != null && user?.phoneNumber != null;
+    !user?.gender && !user?.aboutUs && !user?.phoneNumber;
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
