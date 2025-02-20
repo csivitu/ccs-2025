@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
-import { open, Database } from "sqlite";
-import path from "path";
+import { open, type Database } from "sqlite";
+import path from "node:path";
 
 let db: Database;
 

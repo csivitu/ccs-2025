@@ -6,6 +6,7 @@ export default function TextEditor({ currentIndex, answers, setAnswers }: { curr
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     // Calculate actual line count based on newline characters
     const newLines = answers[currentIndex].split('\n').length;
@@ -18,7 +19,7 @@ export default function TextEditor({ currentIndex, answers, setAnswers }: { curr
   }, [answers[currentIndex]]);
 
   return (
-    <div className="flex w-full h-[93.5%] ">
+    <div className="flex w-full">
       <div
         ref={lineNumbersRef}
         className="text-right px-2 py-2 text-gray-500 min-w-[40px] overflow-hidden"
@@ -34,7 +35,6 @@ export default function TextEditor({ currentIndex, answers, setAnswers }: { curr
         onChange={(e) => setAnswers(prevAnswers => {
           const newAnswers = [...prevAnswers];
           newAnswers[currentIndex] = e.target.value;
-          console.log(answers)
           return newAnswers;
         })}
         onScroll={(e) => {

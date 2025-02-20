@@ -252,7 +252,7 @@ export default function Dashboard() {
           Buckle up for some think tank period.
         </p>
         <a
-          href="/domains"
+          href="/dashboard/domains"
           className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 font-sans-code underline underline-offset-4"
         >
           Click here for taking the test

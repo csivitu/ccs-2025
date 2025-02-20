@@ -18,10 +18,11 @@ export default function QuestionsPage({
 }) {
   const [mutex, setMutex] = useState(false);
   const handlePrevious = () => {
-    console.log(answers);
+    setMutex(true);
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
+    setMutex(false);
   };
 
   const [currentIndex, setCurrentIndex] = useState(() => {
@@ -67,84 +68,79 @@ export default function QuestionsPage({
   }, [currentIndex, answers]);
 
   return (
-    <main className="flex-1 px-4 md:px-14 relative flex flex-col min-h-screen">
+    <main className="flex-1 relative flex flex-col min-h-screen">
       {/* Sidebar - Hidden on mobile, visible on desktop */}
-      {mutex && <div className="w-full h-screen fixed top-0 left-0 bg-black/20 backdrop-blur-sm z-[900] flex items-center justify-center">
-        <Image src="/logos/navbar-logos/csi lotti.gif" width={400} height={400} alt="" className="w-20 md:w-44 aspect-square rounded-xl"/>
-      </div>}
-      <aside className="hidden md:flex flex-col gap-2 fixed left-1 z-10">
-        {[
-          "/explorer.webp",
-          "/search.webp",
-          "/sourcecontrol.webp",
-          "/run.webp",
-          null,
-          "/settings.webp",
-        ].map((src, index) =>
-          src ? (
+      {mutex && (
+        <div className="w-full h-screen fixed top-0 left-0 bg-black/20 backdrop-blur-sm z-[900] flex items-center justify-center">
+          <Image
+            src="/logos/navbar-logos/csi lotti.gif"
+            width={400}
+            height={400}
+            alt=""
+            className="w-20 md:w-44 aspect-square rounded-xl"
+          />
+        </div>
+      )}
+      <section className="flex flex-row h-full">
+        <aside className="hidden md:flex flex-col gap-2 z-10">
+          {[
+            "/explorer.webp",
+            "/search.webp",
+            "/sourcecontrol.webp",
+            "/run.webp",
+            "/settings.webp",
+          ].map((src, index) => (
             <img
               key={src}
               src={src}
               alt={`${index + 1}`}
-              className="w-12 h-12 rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+              className="w-15 h-15 rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
             />
-          ) : (
-            <VscExtensions
-              key={src}
-              className="w-6 h-6 ml-3 mt-1 mb-1 text-zinc-500 cursor-pointer hover:text-zinc-400 transition-colors"
-            />
-          )
-        )}
-      </aside>
+          ))}
+        </aside>
 
-      {/* Mobile navigation icons - Visible only on mobile */}
-      <div className="hidden  justify-center gap-4 py-4">
-        {[
-          "/explorer.webp",
-          "/search.webp",
-          "/sourcecontrol.webp",
-          "/run.webp",
-          null,
-          "/settings.webp",
-        ].map((src, index) =>
-          src ? (
+        {/* Mobile navigation icons - Visible only on mobile */}
+        <div className="hidden justify-center gap-4 py-4">
+          {[
+            "/explorer.webp",
+            "/search.webp",
+            "/sourcecontrol.webp",
+            "/run.webp",
+            "/settings.webp",
+          ].map((src, index) => (
             <img
               key={src}
               src={src}
               alt={`${index + 1}`}
               className="w-8 h-8 rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
             />
-          ) : (
-            <VscExtensions
-              key={src}
-              className="w-6 h-6 text-zinc-500 cursor-pointer hover:text-zinc-400 transition-colors"
-            />
-          )
-        )}
-      </div>
-
-      {/* Main content with flex-grow */}
-      <section className="flex flex-col md:flex-row gap-4 flex-grow">
-        <div className="flex tab:flex-row mobile:flex-col flex-grow ">
-          {/* Question Panel with min-height */}
-          <div className="md:hidden mb-4 min-h-[150px] max-h-[300px] overflow-y-auto">
-            <QuestionPanel question={questions[currentIndex].question} />
-          </div>
-
-          {/* Desktop Question Panel */}
-          <div className="hidden tab:flex">
-            <QuestionPanel question={questions[currentIndex].question} />
-          </div>
-
-          {/* Answer Panel with flex-grow */}
-          <div className="flex-grow">
-            <AnswerPanel
-              currentIndex={currentIndex}
-              answers={answers}
-              setAnswers={setAnswers}
-            />
-          </div>
+          ))}
         </div>
+
+        {/* Main content with flex-grow */}
+        <section className="flex flex-col md:flex-row gap-4 flex-grow">
+          <div className="flex tab:flex-row mobile:flex-col flex-grow ">
+            {/* Question Panel with min-height */}
+            <div className="flex flex-col w-2/5">
+              <div className="md:hidden mb-4 min-h-[150px] max-h-[300px] overflow-y-auto">
+                <QuestionPanel question={questions[currentIndex].question} />
+              </div>
+
+              {/* Desktop Question Panel */}
+              <div className="hidden tab:flex">
+                <QuestionPanel question={questions[currentIndex].question} />
+              </div>
+            </div>
+            {/* Answer Panel with flex-grow */}
+            <div className="border-l border-gray-800 flex-grow">
+              <AnswerPanel
+                currentIndex={currentIndex}
+                answers={answers}
+                setAnswers={setAnswers}
+              />
+            </div>
+          </div>
+        </section>
       </section>
 
       {/* Navigation buttons with dynamic positioning */}
@@ -169,7 +165,7 @@ export default function QuestionsPage({
             disabled={currentIndex === 0}
             type="button"
           >
-            &gt;&gt; Previous
+            &lt;&lt; Previous
           </button>
 
           <button

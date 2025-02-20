@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg";
 import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg";
@@ -17,8 +17,18 @@ import { alumniData } from "@/data/alumni";
 
 const navLinks = [
   { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
-  { id: "project", label: "Projects", Icon: LuTable, href: "/dashboard/project" },
-  { id: "domains", label: "Domains", Icon: IoCubeOutline, href: "/dashboard/domains" },
+  {
+    id: "project",
+    label: "Projects",
+    Icon: LuTable,
+    href: "/dashboard/project",
+  },
+  {
+    id: "domains",
+    label: "Domains",
+    Icon: IoCubeOutline,
+    href: "/dashboard/domains",
+  },
   { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/dashboard/alumni" },
   {
     id: "faq",
@@ -31,14 +41,17 @@ const navLinks = [
     label: "Profile",
     Icon: "/logos/navbar-logos/profile.png",
     href: "/dashboard/profile",
-    },
+  },
 ];
 interface NavbarProps {
-username:String
-image: string
+  username: string;
+  image: string;
 }
 
-const Navbar: React.FunctionComponent<NavbarProps> = ({username,image}:NavbarProps) => {
+const Navbar: React.FunctionComponent<NavbarProps> = ({
+  username,
+  image,
+}: NavbarProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const path = usePathname();
@@ -83,17 +96,23 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username,image}:NavbarPro
             </a>
             
           </div> */}
-          <button className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] text-xs md:text-sm"><span className=" animate-pulse duration-[800]">Round 1 is Live!</span></button>
-          <Link href="/dashboard/profile" className="rounded-[0.25rem] overflow-hidden">
+          <div className=" font-apro font-semibold text-nowrap border-[1px] border-white/50 bg-black text-white px-8 py-2 rounded-[0.5rem] mr-4 shadow-[0px_0px_8px_#ffffff80] text-xs md:text-sm">
+            <span className=" animate-pulse duration-[800]">
+              Round 1 is Live!
+            </span>
+          </div>
+          <Link
+            href="/dashboard/profile"
+            className="rounded-[0.25rem] overflow-hidden"
+          >
             <Image
-            src={image.length > 0 ? image : "/git.webp"}
-            width={45}
-            height={45}
-            alt="Profile Icon"
-            className="flex-shrink-0 aspect-square w-20 md:w-[46px]"
-          />
+              src={image.length > 0 ? image : "/git.webp"}
+              width={45}
+              height={45}
+              alt="Profile Icon"
+              className="flex-shrink-0 aspect-square w-20 md:w-[46px]"
+            />
           </Link>
-          
         </div>
 
         {/* Navigation Links */}
@@ -103,17 +122,27 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({username,image}:NavbarPro
               <Link href={item.href} passHref>
                 <NavLink
                   {...item}
-                  isActive={(item.id === "about" && path == "/dashboard") ? true : path.includes(item.id)}
+                  isActive={
+                    item.id === "about" && path === "/dashboard"
+                      ? true
+                      : path.includes(item.id)
+                  }
                   onLinkClick={() => setActiveLink(item.id)}
                 />
               </Link>
 
-              {(item.id === "domains" || item.id === "project" || item.id === "alumni") && (
+              {(item.id === "domains" ||
+                item.id === "project" ||
+                item.id === "alumni") && (
                 <div
                   className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
                             text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
                 >
-                  {item.id === "domains" ? 4 : item.id === "alumni" ? alumniData.length : projects.length}
+                  {item.id === "domains"
+                    ? 4
+                    : item.id === "alumni"
+                    ? alumniData.length
+                    : projects.length}
                 </div>
               )}
             </div>
