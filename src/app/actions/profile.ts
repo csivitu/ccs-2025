@@ -3,6 +3,7 @@
 import { requestHandler } from "@/helpers/request-handler";
 import { prisma } from "@/lib/db";
 import type { Gender, PortfolioCategory } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 interface UpdateProfileData {
   name: string;
@@ -44,6 +45,7 @@ export async function updateProfile(userId: string, data: UpdateProfileData) {
       });
     }
 
+    revalidatePath("/dashboard/profile");
     return updatedUser;
   });
 }
