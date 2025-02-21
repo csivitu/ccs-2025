@@ -158,6 +158,9 @@ export const teamData = [
     {
         src:"https://i.ibb.co/gZdGpZQd/ashish.jpg",
         alt:"Ashish"
-
+    },
+    {
+        src:"https://i.ibb.co/FLYt2Nzn/vibhor.jpg",
+        alt:"Vibhor"
     },
 ];
