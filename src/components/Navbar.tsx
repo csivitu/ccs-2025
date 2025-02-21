@@ -60,7 +60,10 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
   }
 
   return (
-    <nav className="top-0 left-0 right-0 bg-black text-white py-2 px-4 sm:px-8 border-b-[2px] border-[#3c444c] sticky z-[1000]">
+    <nav
+      className="top-0 left-0 right-0 bg-black text-white py-2 px-4 sm:px-8 border-b-[2px] border-[#3c444c] sticky z-[1000]"
+      id="navbar-top"
+    >
       <div className="mx-auto flex flex-col">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-[8px] w-full justify-between">
