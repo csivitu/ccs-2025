@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 import { auth } from '../(auth)/auth'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/footer/footer'
 import { IoIosWarning } from 'react-icons/io'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { prisma } from '@/lib/db'
@@ -47,7 +46,6 @@ export default async function DashboardLayout({
         </div>
       )}
       {children}
-      <Footer />
     </div>
   )
 }
