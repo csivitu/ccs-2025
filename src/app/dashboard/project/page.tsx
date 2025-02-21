@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const ProjectPage = () => {
   return (
-    <div className="min-h-screen w-full bg-[#0A0A0A]">
+    <div className="h-fit min-h-screen w-full bg-[#0A0A0A]">
       <div className="flex flex-col gap-8 md:gap-0 md:flex-row px-4 lg:px-10 mt-6 md:mt-12">
-        <div className="ml-2 lg:w-1/4 text-white lg:sticky lg:top-0 md:h-screen">
+        <div className="ml-2 lg:w-1/4 text-white">
           <h1 className="text-white font-sans-code text-2xl lg:text-[36px] font-semibold leading-[30px] mb-2 lg:mb-4">
             Projects
           </h1>
@@ -58,7 +58,7 @@ const ProjectPage = () => {
           </div>
         </div>
 
-        <div className="lg:w-[70%]  lg:mt-[-8px] h-screen lg:h-[calc(100vh-10rem)]">
+        <div className="lg:w-[70%]  lg:mt-[-8px] min-h-screen lg:min-h-[calc(100vh-10rem)]">
           <div className="border-[3px] border-[#30363D] rounded-[6px] ">
             <div className="h-full">
               {projects.map((project, index) => (
