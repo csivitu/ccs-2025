@@ -1,24 +1,24 @@
-import React from "react";
-import { FaRegStar } from "react-icons/fa";
-import { IoMdGitNetwork } from "react-icons/io";
-import { projects, Languages } from "@/data/projects";
-import Link from "next/link";
+import React from 'react'
+import { FaRegStar } from 'react-icons/fa'
+import { IoMdGitNetwork } from 'react-icons/io'
+import { projects, Languages } from '@/data/projects'
+import Link from 'next/link'
 
 const ProjectPage = () => {
-   function getLanguageColor(language: string) {
-     switch (language) {
-       case Languages.JAVASCRIPT:
-         return "rgb(241, 224, 90)";
-       case Languages.TYPESCRIPT:
-         return "#3178c6";
-       case Languages.PYTHON:
-         return "rgb(53, 114, 165)";
-       case Languages.GO:
-         return "rgb(0, 173, 216)";
-       default:
-         return "rgba(255, 193, 7, 1)";
-     }
-   }
+  function getLanguageColor(language: string) {
+    switch (language) {
+      case Languages.JAVASCRIPT:
+        return 'rgb(241, 224, 90)'
+      case Languages.TYPESCRIPT:
+        return '#3178c6'
+      case Languages.PYTHON:
+        return 'rgb(53, 114, 165)'
+      case Languages.GO:
+        return 'rgb(0, 173, 216)'
+      default:
+        return 'rgba(255, 193, 7, 1)'
+    }
+  }
   return (
     <div className="min-h-screen w-full bg-[#0A0A0A]">
       <div className="flex flex-col gap-8 md:gap-0 md:flex-row px-4 lg:px-10 mt-6 md:mt-12">
@@ -29,8 +29,8 @@ const ProjectPage = () => {
           <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-2 lg:mb-4" />
           <p className="text-[14px] lg:text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code mb-4 lg:mb-6">
             {/* TODO@jrs : Replace this content pleasssseee ::::D */}
-            Our members work together to make <br className="hidden lg:block" />{" "}
-            projects both for events and for the sake{" "}
+            Our members work together to make <br className="hidden lg:block" />{' '}
+            projects both for events and for the sake{' '}
             <br className="hidden lg:block" /> of sharpening their skills. Here
             we have <br className="hidden lg:block" /> listed our finest works!
           </p>
@@ -79,7 +79,7 @@ const ProjectPage = () => {
                 <div
                   key={project.projectTitle}
                   className={`p-2 lg:p-3 relative border-gray-700 ${
-                    index !== 6 ? "border-b-2 lg:border-b-3 w-full" : ""
+                    index !== 6 ? 'border-b-2 lg:border-b-3 w-full' : ''
                   }`}
                 >
                   <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-2 lg:gap-3">
@@ -106,7 +106,11 @@ const ProjectPage = () => {
                         <div className="flex items-center">
                           <span
                             className="w-2 h-2 mr-1 rounded-full"
-                            style={{ backgroundColor: getLanguageColor(project.language) }}
+                            style={{
+                              backgroundColor: getLanguageColor(
+                                project.language,
+                              ),
+                            }}
                           />
                           <span className="text-[12px] text-[#8B949E] font-sans-code">
                             {project.language}
@@ -135,7 +139,7 @@ const ProjectPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectPage;
+export default ProjectPage

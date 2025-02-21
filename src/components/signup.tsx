@@ -1,11 +1,10 @@
-import Image from 'next/image';
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
-import SlNavbar from './slNavbar';
+import SlNavbar from './slNavbar'
 export default function Signup() {
-  
   return (
     <div className="h-screen bg-black sticky overflow-auto flex flex-col">
-      <div className="relative flex flex-col items-center pt-8 space-y-6 px-4 sm:px-0 flex-1">      
+      <div className="relative flex flex-col items-center pt-8 space-y-6 px-4 sm:px-0 flex-1">
         <div className="flex flex-col items-center space-y-3 text-center">
           <Image
             src="/git.webp"
@@ -29,7 +28,9 @@ export default function Signup() {
               />
             </div>
             <div className="flex flex-col">
-              <label className="text-white mb-2 text-lg">One Liner about you</label>
+              <label className="text-white mb-2 text-lg">
+                One Liner about you
+              </label>
               <input
                 type="text"
                 placeholder="One Liner about you"
@@ -51,5 +52,5 @@ export default function Signup() {
         </button>
       </div>
     </div>
-  );
+  )
 }

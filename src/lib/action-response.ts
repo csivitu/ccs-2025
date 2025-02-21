@@ -11,36 +11,35 @@
  */
 
 export default class ActionResponse<T = unknown> {
+  /** Indicates whether the request was successful. */
 
-    /** Indicates whether the request was successful. */
-  
-    public readonly success: boolean;
-  
-    /** HTTP status code of the response. */
-  
-    public readonly status: number;
-  
-    /** Response data (if successful). */
-  
-    private readonly _data: T | null;
-  
-    /** Message providing additional context for the response. */
-  
-    public message: string;
-  
-    /** Optional error message (only set when success is `false`). */
-  
-    public readonly error?: string;
-  
-    /** Stack trace for debugging (only available in non-production environments). */
-  
-    private _stackTrace?: string;
-  
-    /** Timestamp when the response was created (only available in non-production environments). */
-  
-    private _timestamp?: string;
-  
-    /**
+  public readonly success: boolean
+
+  /** HTTP status code of the response. */
+
+  public readonly status: number
+
+  /** Response data (if successful). */
+
+  private readonly _data: T | null
+
+  /** Message providing additional context for the response. */
+
+  public message: string
+
+  /** Optional error message (only set when success is `false`). */
+
+  public readonly error?: string
+
+  /** Stack trace for debugging (only available in non-production environments). */
+
+  private _stackTrace?: string
+
+  /** Timestamp when the response was created (only available in non-production environments). */
+
+  private _timestamp?: string
+
+  /**
   
      * Creates an instance of `ActionResponse`.
   
@@ -55,52 +54,42 @@ export default class ActionResponse<T = unknown> {
      * @param error - Optional error message (only for failed responses).
   
      */
-  
-    constructor(
-  
-      status: number,
-  
-      data: T | null,
-  
-      message?: string,
-  
-      error?: string
-  
-    ) {
-  
-      this.status = status;
-  
-      this.message = message || "";
-  
-      this._data = data;
-  
-      this.success = this.isSuccess();
-  
-      if (error) {
-  
-        this.error = error; // Store the error message if available
-  
-      }
-  
-      // Include stack trace only in non-production environments
-  
-      if (!this.success && process.env.NODE_ENV !== "production") {
-  
-        this._stackTrace = new Error().stack || "";
-  
-      }
-  
-      // Include timestamp only in non-production environments for debugging purposes
-  
-      if (process.env.NODE_ENV !== "production") {
-  
-        this._timestamp = new Date().toISOString();
-  
-      }
-  
+
+  constructor(
+    status: number,
+
+    data: T | null,
+
+    message?: string,
+
+    error?: string,
+  ) {
+    this.status = status
+
+    this.message = message || ''
+
+    this._data = data
+
+    this.success = this.isSuccess()
+
+    if (error) {
+      this.error = error // Store the error message if available
     }
-  
-    /**
+
+    // Include stack trace only in non-production environments
+
+    if (!this.success && process.env.NODE_ENV !== 'production') {
+      this._stackTrace = new Error().stack || ''
+    }
+
+    // Include timestamp only in non-production environments for debugging purposes
+
+    if (process.env.NODE_ENV !== 'production') {
+      this._timestamp = new Date().toISOString()
+    }
+  }
+
+  /**
   
      * Determines whether the response status indicates success.
   
@@ -109,14 +98,12 @@ export default class ActionResponse<T = unknown> {
      * @returns `true` if the status is between 200 and 299, otherwise `false`.
   
      */
-  
-    private isSuccess(): boolean {
-  
-      return this.status >= 200 && this.status < 300;
-  
-    }
-  
-    /**
+
+  private isSuccess(): boolean {
+    return this.status >= 200 && this.status < 300
+  }
+
+  /**
   
      * Retrieves the response timestamp.
   
@@ -125,14 +112,12 @@ export default class ActionResponse<T = unknown> {
      * @returns The timestamp if in a non-production environment, otherwise `undefined`.
   
      */
-  
-    public get timestamp(): string | undefined {
-  
-      return process.env.NODE_ENV !== "production" ? this._timestamp : undefined;
-  
-    }
-  
-    /**
+
+  public get timestamp(): string | undefined {
+    return process.env.NODE_ENV !== 'production' ? this._timestamp : undefined
+  }
+
+  /**
   
      * Retrieves the response data.
   
@@ -141,14 +126,12 @@ export default class ActionResponse<T = unknown> {
      * @returns The response data of type `T`, or `null` if an error occurred.
   
      */
-  
-    public get data(): T | null {
-  
-      return this._data;
-  
-    }
-  
-    /**
+
+  public get data(): T | null {
+    return this._data
+  }
+
+  /**
   
      * Retrieves the stack trace (only available in non-production environments).
   
@@ -157,14 +140,12 @@ export default class ActionResponse<T = unknown> {
      * @returns The stack trace string or `undefined`.
   
      */
-  
-    public get stackTrace(): string | undefined {
-  
-      return process.env.NODE_ENV !== "production" ? this._stackTrace : undefined;
-  
-    }
-  
-    /**
+
+  public get stackTrace(): string | undefined {
+    return process.env.NODE_ENV !== 'production' ? this._stackTrace : undefined
+  }
+
+  /**
   
      * Checks if the response represents an error.
   
@@ -173,14 +154,12 @@ export default class ActionResponse<T = unknown> {
      * @returns `true` if the response is an error, otherwise `false`.
   
      */
-  
-    public isError(): boolean {
-  
-      return !this.success;
-  
-    }
-  
-    /**
+
+  public isError(): boolean {
+    return !this.success
+  }
+
+  /**
   
      * Serializes the response into a plain object for JSON serialization.
   
@@ -191,30 +170,26 @@ export default class ActionResponse<T = unknown> {
      * @returns A plain object representation of the response.
   
      */
-  
-    public toJSON() {
-  
-      return {
-  
-        success: this.success,
-  
-        status: this.status,
-  
-        data: this._data,
-  
-        message: this.message,
-  
-        error: this.error, // Included only if it's an error
-  
-        stackTrace: this.stackTrace, // Only included in non-production environments
-  
-        timestamp: this.timestamp, // Only included in non-production environments
-  
-      };
-  
+
+  public toJSON() {
+    return {
+      success: this.success,
+
+      status: this.status,
+
+      data: this._data,
+
+      message: this.message,
+
+      error: this.error, // Included only if it's an error
+
+      stackTrace: this.stackTrace, // Only included in non-production environments
+
+      timestamp: this.timestamp, // Only included in non-production environments
     }
-  
-    /**
+  }
+
+  /**
   
      * Static method to create a successful response.
   
@@ -229,14 +204,12 @@ export default class ActionResponse<T = unknown> {
      * @returns An `ActionResponse` instance for success.
   
      */
-  
-    public static success<T>(data: T, status: number = 200, message?: string) {
-  
-      return new ActionResponse<T>(status, data, message).toJSON();
-  
-    }
-  
-    /**
+
+  public static success<T>(data: T, status: number = 200, message?: string) {
+    return new ActionResponse<T>(status, data, message).toJSON()
+  }
+
+  /**
   
      * Static method to create an error response.
   
@@ -251,22 +224,16 @@ export default class ActionResponse<T = unknown> {
      * @returns An `ActionResponse` instance for an error.
   
      */
-  
-    public static error(status: number, error: string, message?: string) {
-  
-      return new ActionResponse<null>(
-  
-        status,
-  
-        null,
-  
-        message || "Error",
-  
-        error
-  
-      ).toJSON();
-  
-    }
-  
+
+  public static error(status: number, error: string, message?: string) {
+    return new ActionResponse<null>(
+      status,
+
+      null,
+
+      message || 'Error',
+
+      error,
+    ).toJSON()
   }
-  
+}

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write .",
     "vercel-build": "npx prisma generate && next build",
     "seed:questions": "ts-node -P tsconfig.scripts.json src/scripts/seed-questions.ts",
     "seed:tasks": "ts-node -P tsconfig.scripts.json src/scripts/seed-tasks.ts"
@@ -43,7 +44,9 @@
     "@types/three": "^0.173.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
+    "eslint-config-prettier": "^10.0.1",
     "postcss": "^8",
+    "prettier": "^3.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }

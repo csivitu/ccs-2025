@@ -1,20 +1,20 @@
-"use client";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import Particles from "@/components/particles";
-import { useSession } from "next-auth/react";
-import { LoadingSpinner } from "./ui/loading-spinner";
-import { signIn, signOut } from "next-auth/react";
-import Link from "next/link";
+'use client'
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
+import Particles from '@/components/particles'
+import { useSession } from 'next-auth/react'
+import { LoadingSpinner } from './ui/loading-spinner'
+import { signIn, signOut } from 'next-auth/react'
+import Link from 'next/link'
 
-const Globe = dynamic(() => import("../components/globe"), { ssr: true });
+const Globe = dynamic(() => import('../components/globe'), { ssr: true })
 
 export default function Home() {
-  const { status } = useSession();
+  const { status } = useSession()
   return (
     <main
       className="h-screen w-full bg-[#000000] relative overflow-hidden"
-      style={{ maxHeight: "100svh" }}
+      style={{ maxHeight: '100svh' }}
     >
       <div className="absolute inset-0">
         <Particles
@@ -52,9 +52,9 @@ export default function Home() {
                   About us
                   <span className="block max-w-full md:max-w-0 group-hover:max-w-full transition-all duration-500 h-[1px] md:h-0.5 bg-white" />
                 </Link> */}
-                {status === "loading" ? (
+                {status === 'loading' ? (
                   <LoadingSpinner className="w-6 h-6 mt-1" />
-                ) : status === "authenticated" ? (
+                ) : status === 'authenticated' ? (
                   <>
                     <Link
                       href="/dashboard"
@@ -74,7 +74,7 @@ export default function Home() {
                   </>
                 ) : (
                   <button
-                    onClick={() => signIn("google")}
+                    onClick={() => signIn('google')}
                     type="button"
                     className="text-white px-3 sm:px-4 py-1 text-sm sm:text-base font-medium  bg-transparent whitespace-nowrap duration-500 rounded-[2px] group"
                   >
@@ -118,5 +118,5 @@ export default function Home() {
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[120px] sm:w-[200px] md:w-[250px] aspect-square" />
       </div>
     </main>
-  );
+  )
 }

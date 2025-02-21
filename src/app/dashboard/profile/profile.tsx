@@ -1,40 +1,40 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import type { UserStats } from "../../actions/domains";
-import { titleCase } from "@/lib/utils";
-import { updateProfile } from "@/app/actions/profile";
-import { Gender, PortfolioCategory } from "@prisma/client";
+'use client'
+import { useState } from 'react'
+import Image from 'next/image'
+import type { UserStats } from '../../actions/domains'
+import { titleCase } from '@/lib/utils'
+import { updateProfile } from '@/app/actions/profile'
+import { Gender, PortfolioCategory } from '@prisma/client'
 
 interface ProfileClientProps {
-  user: UserStats;
-  image: string;
+  user: UserStats
+  image: string
 }
 
 const ProfileClient = (props: ProfileClientProps) => {
-  const today = new Date();
+  const today = new Date()
   const formattedDate = today.toLocaleDateString(undefined, {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
     name: props.user.name,
-    aboutUs: props.user.aboutUs || "",
+    aboutUs: props.user.aboutUs || '',
     gender: props.user.gender || undefined,
-    phoneNumber: props.user.phoneNumber || "",
+    phoneNumber: props.user.phoneNumber || '',
     portfolios: props.user.portfolios || [],
-  });
+  })
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = await updateProfile(props.user.id, formData);
+    e.preventDefault()
+    const result = await updateProfile(props.user.id, formData)
     if (result.success) {
-      setIsEditing(false);
+      setIsEditing(false)
     }
-  };
+  }
 
   const EditForm = () => (
     <form onSubmit={handleSubmit} className="w-full">
@@ -74,7 +74,7 @@ const ProfileClient = (props: ProfileClientProps) => {
           </label>
           <select
             id="gender"
-            value={formData.gender || ""}
+            value={formData.gender || ''}
             onChange={(e) =>
               setFormData({ ...formData, gender: e.target.value as Gender })
             }
@@ -114,11 +114,9 @@ const ProfileClient = (props: ProfileClientProps) => {
                 value={portfolio.link}
                 onChange={(e) => {
                   const newPortfolios = formData.portfolios.map((p) =>
-                    p.id === portfolio.id
-                      ? { ...p, link: e.target.value }
-                      : p
-                  );
-                  setFormData({ ...formData, portfolios: newPortfolios });
+                    p.id === portfolio.id ? { ...p, link: e.target.value } : p,
+                  )
+                  setFormData({ ...formData, portfolios: newPortfolios })
                 }}
                 className="flex-1 h-[32px] bg-[#21262D] border border-[#F0F6FC] border-opacity-10 rounded-[6px] px-3"
                 placeholder="https://example.com"
@@ -128,9 +126,9 @@ const ProfileClient = (props: ProfileClientProps) => {
                   type="button"
                   onClick={() => {
                     const newPortfolios = formData.portfolios.filter(
-                      (p) => p.id !== portfolio.id
-                    );
-                    setFormData({ ...formData, portfolios: newPortfolios });
+                      (p) => p.id !== portfolio.id,
+                    )
+                    setFormData({ ...formData, portfolios: newPortfolios })
                   }}
                   className="h-[32px] px-2 bg-red-600 rounded-[6px] text-[14px] hover:bg-red-700"
                 >
@@ -151,11 +149,11 @@ const ProfileClient = (props: ProfileClientProps) => {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                     category: PortfolioCategory.TECH,
-                    link: "",
+                    link: '',
                     userId: props.user.id,
                   },
                 ],
-              });
+              })
             }}
             className="mt-2 h-[32px] px-4 bg-[#238636] rounded-[6px] text-[14px] hover:bg-[#2ea043]"
           >
@@ -179,7 +177,7 @@ const ProfileClient = (props: ProfileClientProps) => {
         </div>
       </div>
     </form>
-  );
+  )
 
   return (
     <div className="container mx-auto py-8 px-4 flex-grow">
@@ -187,11 +185,10 @@ const ProfileClient = (props: ProfileClientProps) => {
         <div className="col-span-1 md:col-span-3 flex flex-col items-center">
           <div className="mb-4 w-[290px] h-[290px] rounded-2xl overflow-hidden">
             <Image
-              src={props.image.length > 0 ? props.image : "/profile.webp"}
+              src={props.image.length > 0 ? props.image : '/profile.webp'}
               alt="Raju Rastogi"
               width={296}
               height={296}
-              
             />
           </div>
           {isEditing ? (
@@ -216,24 +213,24 @@ const ProfileClient = (props: ProfileClientProps) => {
           <div className="w-[302px] h-[1px] bg-[#30363D] my-4" />
 
           <div className="flex flex-col justify-center items-center mobile:w-full gap-4">
-          <h2 className="text-[20px] font-semibold self-start w-full text-center">
-            Achievements
-          </h2>
+            <h2 className="text-[20px] font-semibold self-start w-full text-center">
+              Achievements
+            </h2>
             <Image
               src="/badge.webp"
               alt="Achievement Badge"
               width={70}
               height={70}
             />
-          <div className="border-[#1cec1c] border-[2px] rounded-full py-1 px-4 text-[12px] font-bold">
-            You chose CSI 
-          </div>
+            <div className="border-[#1cec1c] border-[2px] rounded-full py-1 px-4 text-[12px] font-bold">
+              You chose CSI
+            </div>
           </div>
           <div className="w-[302px] h-[1px] bg-[#30363D] my-4" />
           <div className="flex flex-col gap-4 justify-center items-center">
-          <h2 className="text-[20px] font-semibold self-start mx-12">
-            Organizations
-          </h2>
+            <h2 className="text-[20px] font-semibold self-start mx-12">
+              Organizations
+            </h2>
             <Image
               src="/org.webp"
               alt="Organization Logo"
@@ -286,7 +283,7 @@ const ProfileClient = (props: ProfileClientProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileClient;
+export default ProfileClient

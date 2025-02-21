@@ -1,7 +1,7 @@
-import type { FC } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import type{ domainCardProps } from "@/types/domain-card-props";
+import type { FC } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import type { domainCardProps } from '@/types/domain-card-props'
 
 const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
   domainName,
@@ -9,7 +9,7 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
   description,
   buttonLabel,
   disabled,
-  loading
+  loading,
 }) => {
   return (
     <div className="border-4 border-[#30363D] rounded-[6px] shadow-md p-4 flex flex-col h-full justify-between">
@@ -29,7 +29,11 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
         {description}
       </p>
       <Link
-        href={disabled ? "#" : `/dashboard/domains/${domainName.toLowerCase()}/question`}
+        href={
+          disabled
+            ? '#'
+            : `/dashboard/domains/${domainName.toLowerCase()}/question`
+        }
       >
         {loading ? (
           <div className="mt-4 h-[40px] w-full lg:max-w-[200px] bg-gray-700 rounded-[6px] animate-pulse" />
@@ -40,8 +44,8 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
             className={`mt-4 py-1.5 px-5 w-full h-[40px] border border-[rgba(240,246,252,0.10)] rounded-[6px] transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 text-[13px] font-sans font-medium leading-[20px] text-center
               ${
                 disabled
-                  ? "bg-[#21262D]/50 text-[#C9D1D9]/50 cursor-not-allowed hover:bg-[#21262D]/50"
-                  : "bg-[#21262D] text-[#C9D1D9] hover:bg-gray-700"
+                  ? 'bg-[#21262D]/50 text-[#C9D1D9]/50 cursor-not-allowed hover:bg-[#21262D]/50'
+                  : 'bg-[#21262D] text-[#C9D1D9] hover:bg-gray-700'
               }`}
           >
             {buttonLabel}
@@ -49,7 +53,7 @@ const DomainCard: FC<domainCardProps & { loading: boolean }> = ({
         )}
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default DomainCard;
+export default DomainCard

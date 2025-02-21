@@ -1,10 +1,10 @@
-import React from "react";
-import { FaLinkedin } from "react-icons/fa";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer/footer";
-import { alumniData } from "@/data/alumni";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react'
+import { FaLinkedin } from 'react-icons/fa'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/footer/footer'
+import { alumniData } from '@/data/alumni'
+import Link from 'next/link'
+import Image from 'next/image'
 const AlumniPage = () => {
   return (
     <div className="min-h-screen w-full ">
@@ -16,7 +16,7 @@ const AlumniPage = () => {
           <hr className="w-[306.08px] h-[3px] bg-[#30363D] border-none mb-2 lg:mb-4" />
           <p className="text-[14px] lg:text-[16px] leading-[19px] text-[#9198A1] font-normal font-sans-code lg:mb-6">
             {/* TODO@jrs : Replace this description ::D */}
-            CSI VIT alumni continue to excel as{" "}
+            CSI VIT alumni continue to excel as{' '}
             <br className="hidden lg:block" /> innovators, leaders, and mentors,
             making <br className="hidden lg:block" /> significant contributions
             to the tech <br className="hidden lg:block" /> industry while
@@ -30,8 +30,8 @@ const AlumniPage = () => {
                 key={alumni.name}
                 className={`p-2 lg:p-4 relative border-gray-700 ${
                   index !== 6
-                    ? "border-b-2 lg:border-b-3 w-full"
-                    : "pb-4 lg:pb-8"
+                    ? 'border-b-2 lg:border-b-3 w-full'
+                    : 'pb-4 lg:pb-8'
                 }`}
               >
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-2 lg:gap-4">
@@ -39,7 +39,13 @@ const AlumniPage = () => {
                   <div className="flex-grow relative">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center p-2">
                       <div className="flex items-center gap-x-4">
-                        <Image src={alumni.src} alt={alumni.name} width={200} height={200} className="w-[60px] h-[60px] lg:h-[75px] lg:w-[75px] aspect-square"/>
+                        <Image
+                          src={alumni.src}
+                          alt={alumni.name}
+                          width={200}
+                          height={200}
+                          className="w-[60px] h-[60px] lg:h-[75px] lg:w-[75px] aspect-square"
+                        />
                         <div>
                           <div className="text-white font-sans-code text-[20px] lg:text-[24px] font-normal leading-[24px] lg:leading-[30px]">
                             {alumni.name}
@@ -69,7 +75,7 @@ const AlumniPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AlumniPage;
+export default AlumniPage

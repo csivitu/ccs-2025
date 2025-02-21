@@ -1,13 +1,13 @@
-"use client";
-import React, { useState } from "react";
-import faq from "../../../data/faq"
+'use client'
+import React, { useState } from 'react'
+import faq from '../../../data/faq'
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+    setOpenIndex(openIndex === index ? null : index)
+  }
 
   return (
     <div className="flex justify-center items-center flex-col px-4 py-12">
@@ -24,11 +24,11 @@ const FAQ = () => {
             >
               <span
                 className={`transform transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180" : ""
+                  openIndex === index ? 'rotate-180' : ''
                 }`}
               >
                 <span className="gradient-icon">
-                  {openIndex === index ? "-" : "+"}
+                  {openIndex === index ? '-' : '+'}
                 </span>
               </span>
               <span className="flex items-center">
@@ -39,7 +39,7 @@ const FAQ = () => {
             </button>
             <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                openIndex === index ? "max-h-screen" : "max-h-0"
+                openIndex === index ? 'max-h-screen' : 'max-h-0'
               }`}
             >
               <p className="px-6 pb-4 text-xs sm:text-sm md:text-lg text-[#76C3F1] ml-6">
@@ -50,7 +50,7 @@ const FAQ = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FAQ;
+export default FAQ

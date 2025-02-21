@@ -1,4 +1,4 @@
-import TextEditor from "./text-editor";
+import TextEditor from './text-editor'
 
 export default function AnswerPanel({
   currentIndex,
@@ -6,10 +6,10 @@ export default function AnswerPanel({
   setAnswers,
   topPosition,
 }: {
-  currentIndex: number;
-  answers: string[];
-  setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
-  topPosition: number;
+  currentIndex: number
+  answers: string[]
+  setAnswers: React.Dispatch<React.SetStateAction<string[]>>
+  topPosition: number
   // WHYYYYYY DOOO III HAVVVE TO DO THIS  😭
 }) {
   return (
@@ -28,5 +28,5 @@ export default function AnswerPanel({
         setAnswers={setAnswers}
       />
     </div>
-  );
+  )
 }

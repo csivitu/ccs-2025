@@ -1,24 +1,25 @@
 [
-    {
-      "question": "What is TypeScript?",
-      "images": [],
-      "links": ["https://www.typescriptlang.org/"],
-      "difficulty": "EASY",
-      "domain": "TECH"
-    },
-    {
-      "question": "Explain the concept of closures in JavaScript.",
-      "images": [],
-      "links": ["https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures"],
-      "difficulty": "MEDIUM",
-      "domain": "TECH"
-    },
-    {
-      "question": "What are the principles of UI/UX design?",
-      "images": [],
-      "links": ["https://www.interaction-design.org/literature/topics/ui-design"],
-      "difficulty": "HARD",
-      "domain": "DESIGN"
-    }
-  ]
-  
+  {
+    "question": "What is TypeScript?",
+    "images": [],
+    "links": ["https://www.typescriptlang.org/"],
+    "difficulty": "EASY",
+    "domain": "TECH"
+  },
+  {
+    "question": "Explain the concept of closures in JavaScript.",
+    "images": [],
+    "links": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures"
+    ],
+    "difficulty": "MEDIUM",
+    "domain": "TECH"
+  },
+  {
+    "question": "What are the principles of UI/UX design?",
+    "images": [],
+    "links": ["https://www.interaction-design.org/literature/topics/ui-design"],
+    "difficulty": "HARD",
+    "domain": "DESIGN"
+  }
+]

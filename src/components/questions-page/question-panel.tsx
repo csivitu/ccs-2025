@@ -1,4 +1,4 @@
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 export default function QuestionPanel({ question }: { question: string }) {
   return (
@@ -12,5 +12,5 @@ export default function QuestionPanel({ question }: { question: string }) {
 
       <p className="md:text-[16px] font-mono text-[#D4D4EB] p-4">{question}</p>
     </div>
-  );
+  )
 }

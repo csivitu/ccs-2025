@@ -1,11 +1,11 @@
-import { StaticImageData } from "next/image";
-import Image from "next/image";
+import { StaticImageData } from 'next/image'
+import Image from 'next/image'
 
 interface profileCardProps {
-  image: StaticImageData;
-  name: string;
-  regno: string;
-  domains: ("Tech" | "Design" | "Management" | "Video")[];
+  image: StaticImageData
+  name: string
+  regno: string
+  domains: ('Tech' | 'Design' | 'Management' | 'Video')[]
 }
 
 export default function ProfileCard({
@@ -42,5 +42,5 @@ export default function ProfileCard({
         ))}
       </ul>
     </section>
-  );
+  )
 }

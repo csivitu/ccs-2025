@@ -1,16 +1,16 @@
 //import type { Metadata } from "next";
 //import localFont from "next/font/local";
-import "./globals.css";
-import { Noto_Sans } from "next/font/google";
+import './globals.css'
+import { Noto_Sans } from 'next/font/google'
 import { Toaster } from 'sonner'
 
-const notoSans = Noto_Sans({ 
+const notoSans = Noto_Sans({
   subsets: ['latin'],
   display: 'swap',
 })
 
 // src/app/layout.tsx
-import { AuthProvider } from "@/components/authProvider";
+import { AuthProvider } from '@/components/authProvider'
 
 export default function RootLayout({
   children,
@@ -19,12 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className= {`${notoSans.className} bg-zinc-950`}>
+      <body className={`${notoSans.className} bg-zinc-950`}>
         <AuthProvider>{children}</AuthProvider>
         <Toaster />
       </body>
     </html>
-  );
+  )
 }
 /*
 const geistSans = localFont({

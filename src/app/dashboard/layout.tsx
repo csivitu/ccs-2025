@@ -1,33 +1,33 @@
-import { redirect } from "next/navigation";
-import { auth } from "../(auth)/auth";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/footer/footer";
-import { IoIosWarning } from "react-icons/io";
-import { RiErrorWarningLine } from "react-icons/ri";
-import { prisma } from "@/lib/db";
+import { redirect } from 'next/navigation'
+import { auth } from '../(auth)/auth'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/footer/footer'
+import { IoIosWarning } from 'react-icons/io'
+import { RiErrorWarningLine } from 'react-icons/ri'
+import { prisma } from '@/lib/db'
 
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const session = await auth();
+  const session = await auth()
   if (!session?.user) {
-    redirect("/");
+    redirect('/')
   }
 
   const user = await prisma.user.findUnique({
     where: {
       id: session.user.id,
     },
-  });
+  })
 
   const onboardingCompleted =
-    !!user?.gender && !!user?.aboutUs && !!user?.phoneNumber;
+    !!user?.gender && !!user?.aboutUs && !!user?.phoneNumber
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Navbar username={session?.user.name} image={session.user.image || ""} />
+      <Navbar username={session?.user.name} image={session.user.image || ''} />
       {!onboardingCompleted && (
         <div
           className="w-full py-3 bg-orange-400/20 border-orange-900/70 border-b px-4 md:px-8 font-apro flex items-center gap-4"
@@ -49,5 +49,5 @@ export default async function DashboardLayout({
       {children}
       <Footer />
     </div>
-  );
+  )
 }

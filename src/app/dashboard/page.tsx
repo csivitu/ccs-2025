@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { Github, Globe, Mail, MapPin, Users } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import Image from 'next/image'
+import { Github, Globe, Mail, MapPin, Users } from 'lucide-react'
+import { Card } from '@/components/ui/card'
 import {
   Sidebar,
   SidebarContent,
@@ -9,8 +9,8 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarProvider,
-} from "@/components/ui/sidebar";
-import { teamData } from "@/data/team";
+} from '@/components/ui/sidebar'
+import { teamData } from '@/data/team'
 
 export default function Dashboard() {
   return (
@@ -104,7 +104,7 @@ export default function Dashboard() {
                     width={1000}
                     height={600}
                     className=" w-full h-auto"
-                    style={{ borderRadius: "5px" }}
+                    style={{ borderRadius: '5px' }}
                   />
                   <div className="w-full md:w-4/5 mx-auto">
                     <h1 className="text-base md:text-[2rem] my-8 font-semibold text-center text-white font-sans-code">
@@ -122,13 +122,13 @@ export default function Dashboard() {
                     </p>
                     <div className="w-full md:w-full border-t-4 border-gray-800 my-4 mt-2 lg:mt-12" />
                     <p className="-mt-2 lg:mt-6 text-center text-sm md:text-xl">
-                      Visit{" "}
+                      Visit{' '}
                       <a
                         href="https://csivit.com"
                         className="underline text-blue-300 underline-offset-4"
                       >
                         csivit.com
-                      </a>{" "}
+                      </a>{' '}
                       to learn more!
                     </p>
                   </div>
@@ -176,9 +176,9 @@ export default function Dashboard() {
                       <div className="flex flex-wrap mt-2 gap-y-2 gap-[2%] w-full">
                         {[
                           "Praying website doesn't crash",
-                          "Fixing what we just broke",
-                          "Coding",
-                          "Planning",
+                          'Fixing what we just broke',
+                          'Coding',
+                          'Planning',
                         ].map((proj, index) => (
                           <div key={proj} className="flex items-center w-[49%]">
                             <span
@@ -186,12 +186,12 @@ export default function Dashboard() {
                               style={{
                                 backgroundColor:
                                   index === 0
-                                    ? "#F5502A"
+                                    ? '#F5502A'
                                     : index === 1
-                                    ? "#6541B2"
-                                    : index === 2
-                                    ? "#FFB249"
-                                    : "#54A3FF",
+                                      ? '#6541B2'
+                                      : index === 2
+                                        ? '#FFB249'
+                                        : '#54A3FF',
                               }}
                             />
                             <span className="text-xs text-[#9198A1] font-sans-code">
@@ -211,11 +211,11 @@ export default function Dashboard() {
                     <SidebarGroupContent>
                       <div className="flex flex-wrap gap-1 md:gap-2 mt-2">
                         {[
-                          "ForkThis!",
-                          "LaserTag",
-                          "DevSpace",
-                          "CodeBank",
-                          "Riddler",
+                          'ForkThis!',
+                          'LaserTag',
+                          'DevSpace',
+                          'CodeBank',
+                          'Riddler',
                         ].map((event) => (
                           <span
                             key={event}
@@ -259,5 +259,5 @@ export default function Dashboard() {
         </a>
       </div>
     </div>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import React, { useState } from "react";
+import Image from 'next/image'
+import React, { useState } from 'react'
 
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon, X } from 'lucide-react'
 
 const SlNavbar = () => {
-  const [activeLink, setActiveLink] = useState("");
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('')
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 
   function handleToggleNavbar() {
-    setIsNavbarOpen(!isNavbarOpen);
+    setIsNavbarOpen(!isNavbarOpen)
   }
 
   return (
@@ -59,7 +59,7 @@ const SlNavbar = () => {
             sm:hidden fixed top-0 left-0 w-1/2 h-screen bg-[#151b23] z-50 
             transform transition-transform duration-300 ease-in-out
             border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-3xl border-slate-600
-            ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
+            ${isNavbarOpen ? 'translate-x-0' : '-translate-x-full'}
           `}
         >
           <div className="p-4">
@@ -102,7 +102,7 @@ const SlNavbar = () => {
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default SlNavbar;
+export default SlNavbar

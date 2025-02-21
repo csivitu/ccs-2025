@@ -1,25 +1,31 @@
-import React from 'react';
-import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
-import { FaXTwitter } from "react-icons/fa6";
+import React from 'react'
+import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 
 const AlumniPage = () => {
   const profiles = Array(7).fill({
-    name: "Elon Musk",
-    position: "Chief Manager, NVidia",
-    location: "Based at Austin, Texas"
-  });
+    name: 'Elon Musk',
+    position: 'Chief Manager, NVidia',
+    location: 'Based at Austin, Texas',
+  })
 
   return (
     <div className="min-h-screen w-full bg-[#010409] flex flex-col lg:flex-row relative">
       <div className="p-6 text-white lg:fixed lg:left-12 lg:mt-36 w-full lg:w-auto">
-        <h1 className="text-3xl lg:text-4xl font-semibold mb-4 font-sans-code">Alumni</h1>
+        <h1 className="text-3xl lg:text-4xl font-semibold mb-4 font-sans-code">
+          Alumni
+        </h1>
         <hr className="border-t-[3px] border-[#30363D] mb-6 w-full lg:w-[108%]" />
         <p className="text-base font-semibold mb-6 text-[#9198A1] font-sans-code">
-          Lorem ipsum about seniors and<br />
-          superseniors Lorem ipsum about<br />
+          Lorem ipsum about seniors and
+          <br />
+          superseniors Lorem ipsum about
+          <br />
           seniors and superseniors
         </p>
-        <h2 className="text-xl lg:text-2xl mt-6 lg:mt-10 font-sans-code">Domains of our Alumni</h2>
+        <h2 className="text-xl lg:text-2xl mt-6 lg:mt-10 font-sans-code">
+          Domains of our Alumni
+        </h2>
 
         <div className="mt-5 w-full lg:w-[110%] max-w-4xl h-3 bg-gray-800 flex rounded-lg overflow-hidden gap-x-1">
           <div className="flex-[5] bg-[#F5502A]"></div>
@@ -54,15 +60,23 @@ const AlumniPage = () => {
             <div
               key={index}
               className={`p-3 lg:p-8 relative ${
-                index !== profiles.length - 1 ? 'border-b-2 border-[#30363D]' : ''
+                index !== profiles.length - 1
+                  ? 'border-b-2 border-[#30363D]'
+                  : ''
               }`}
             >
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 lg:gap-4">
                 <div className="w-14 h-14 lg:w-20 lg:h-20 rounded-full bg-gray-300 flex-shrink-0"></div>
                 <div className="flex-grow text-center sm:text-left">
-                  <h3 className="text-lg lg:text-2xl font-normal text-white font-sans-code">{profile.name}</h3>
-                  <p className="text-sm lg:text-base text-[#9198A1] font-sans-code">{profile.position}</p>
-                  <p className="text-sm lg:text-base text-[#9198A1] font-sans-code">{profile.location}</p>
+                  <h3 className="text-lg lg:text-2xl font-normal text-white font-sans-code">
+                    {profile.name}
+                  </h3>
+                  <p className="text-sm lg:text-base text-[#9198A1] font-sans-code">
+                    {profile.position}
+                  </p>
+                  <p className="text-sm lg:text-base text-[#9198A1] font-sans-code">
+                    {profile.location}
+                  </p>
                 </div>
 
                 <div className="flex gap-1.5 lg:gap-4">
@@ -88,7 +102,7 @@ const AlumniPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AlumniPage;
+export default AlumniPage

@@ -1,30 +1,30 @@
-"use client";
-import { useState, useRef, useEffect } from "react";
+'use client'
+import { useState, useRef, useEffect } from 'react'
 
 export default function TextEditor({
   currentIndex,
   answers,
   setAnswers,
 }: {
-  currentIndex: number;
-  answers: string[];
-  setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
+  currentIndex: number
+  answers: string[]
+  setAnswers: React.Dispatch<React.SetStateAction<string[]>>
 }) {
-  const [lines, setLines] = useState<number[]>([1]); // Start with line 1
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const [lines, setLines] = useState<number[]>([1]) // Start with line 1
+  const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const lineNumbersRef = useRef<HTMLDivElement>(null)
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     // Calculate actual line count based on newline characters
-    const newLines = answers[currentIndex].split("\n").length;
+    const newLines = answers[currentIndex].split('\n').length
 
     // Only update lines if the number of actual newline-separated lines has changed
     if (newLines !== lines.length) {
-      const newLinesArray = Array.from({ length: newLines }, (_, i) => i + 1);
-      setLines(newLinesArray);
+      const newLinesArray = Array.from({ length: newLines }, (_, i) => i + 1)
+      setLines(newLinesArray)
     }
-  }, [answers[currentIndex]]);
+  }, [answers[currentIndex]])
 
   return (
     <div className="flex w-full md:pt-10">
@@ -42,25 +42,25 @@ export default function TextEditor({
         value={answers[currentIndex]}
         onChange={(e) =>
           setAnswers((prevAnswers) => {
-            const newAnswers = [...prevAnswers];
-            newAnswers[currentIndex] = e.target.value;
-            return newAnswers;
+            const newAnswers = [...prevAnswers]
+            newAnswers[currentIndex] = e.target.value
+            return newAnswers
           })
         }
         onScroll={(e) => {
           if (lineNumbersRef.current) {
             lineNumbersRef.current.scrollTop = (
               e.target as HTMLTextAreaElement
-            ).scrollTop;
+            ).scrollTop
           }
         }}
         className="flex-1 p-2 outline-none  font-mono resize-none bg-inherit"
         style={{
-          lineHeight: "1.5rem",
-          whiteSpace: "pre-wrap",
-          wordWrap: "break-word",
+          lineHeight: '1.5rem',
+          whiteSpace: 'pre-wrap',
+          wordWrap: 'break-word',
         }}
       />
     </div>
-  );
+  )
 }

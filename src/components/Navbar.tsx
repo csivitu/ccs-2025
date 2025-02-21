@@ -1,62 +1,62 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
 
-import FaRegStar from "public/logos/navbar-logos/FaRegStar.svg";
-import IoBookOutline from "public/logos/navbar-logos/IoBookOutline.svg";
-import LuTable from "public/logos/navbar-logos/LuTable.svg";
-import IoCubeOutline from "public/logos/navbar-logos/IoCubeOutline.svg";
+import FaRegStar from 'public/logos/navbar-logos/FaRegStar.svg'
+import IoBookOutline from 'public/logos/navbar-logos/IoBookOutline.svg'
+import LuTable from 'public/logos/navbar-logos/LuTable.svg'
+import IoCubeOutline from 'public/logos/navbar-logos/IoCubeOutline.svg'
 
-import NavLink from "./nav-link";
-import { MenuIcon, X } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { projects } from "@/data/projects";
-import { alumniData } from "@/data/alumni";
+import NavLink from './nav-link'
+import { MenuIcon, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { projects } from '@/data/projects'
+import { alumniData } from '@/data/alumni'
 
 const navLinks = [
-  { id: "about", label: "About Us", Icon: IoBookOutline, href: "/dashboard" }, // Updated to link to Dashboard
+  { id: 'about', label: 'About Us', Icon: IoBookOutline, href: '/dashboard' }, // Updated to link to Dashboard
   {
-    id: "project",
-    label: "Projects",
+    id: 'project',
+    label: 'Projects',
     Icon: LuTable,
-    href: "/dashboard/project",
+    href: '/dashboard/project',
   },
   {
-    id: "domains",
-    label: "Domains",
+    id: 'domains',
+    label: 'Domains',
     Icon: IoCubeOutline,
-    href: "/dashboard/domains",
+    href: '/dashboard/domains',
   },
-  { id: "alumni", label: "Alumni", Icon: FaRegStar, href: "/dashboard/alumni" },
+  { id: 'alumni', label: 'Alumni', Icon: FaRegStar, href: '/dashboard/alumni' },
   {
-    id: "faq",
-    label: "FAQs",
-    Icon: "/logos/navbar-logos/faq.png",
-    href: "/dashboard/faq",
+    id: 'faq',
+    label: 'FAQs',
+    Icon: '/logos/navbar-logos/faq.png',
+    href: '/dashboard/faq',
   },
   {
-    id: "profile",
-    label: "Profile",
-    Icon: "/logos/navbar-logos/profile.png",
-    href: "/dashboard/profile",
+    id: 'profile',
+    label: 'Profile',
+    Icon: '/logos/navbar-logos/profile.png',
+    href: '/dashboard/profile',
   },
-];
+]
 interface NavbarProps {
-  username: string;
-  image: string;
+  username: string
+  image: string
 }
 
 const Navbar: React.FunctionComponent<NavbarProps> = ({
   username,
   image,
 }: NavbarProps) => {
-  const [activeLink, setActiveLink] = useState("");
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const path = usePathname();
+  const [activeLink, setActiveLink] = useState('')
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false)
+  const path = usePathname()
   function handleToggleNavbar() {
-    setIsNavbarOpen(!isNavbarOpen);
+    setIsNavbarOpen(!isNavbarOpen)
   }
 
   return (
@@ -79,7 +79,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
               className="gap-2 justify-center items-center mobile:hidden md:flex"
             >
               <Image
-                src={"/git.webp"}
+                src={'/git.webp'}
                 width={35}
                 height={35}
                 alt="Logo"
@@ -109,7 +109,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
             className="rounded-[0.25rem] overflow-hidden"
           >
             <Image
-              src={image.length > 0 ? image : "/git.webp"}
+              src={image.length > 0 ? image : '/git.webp'}
               width={45}
               height={45}
               alt="Profile Icon"
@@ -126,7 +126,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
                 <NavLink
                   {...item}
                   isActive={
-                    item.id === "about" && path === "/dashboard"
+                    item.id === 'about' && path === '/dashboard'
                       ? true
                       : path.includes(item.id)
                   }
@@ -134,18 +134,18 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
                 />
               </Link>
 
-              {(item.id === "domains" ||
-                item.id === "project" ||
-                item.id === "alumni") && (
+              {(item.id === 'domains' ||
+                item.id === 'project' ||
+                item.id === 'alumni') && (
                 <div
                   className="w-[24px] h-[24px] flex items-center justify-center rounded-full bg-[rgba(110,118,129,0.4)] 
                             text-[#C9D1D9] text-[12px] font-[500] leading-[18px] font-['Noto_Sans'] text-center "
                 >
-                  {item.id === "domains"
+                  {item.id === 'domains'
                     ? 4
-                    : item.id === "alumni"
-                    ? alumniData.length
-                    : projects.length}
+                    : item.id === 'alumni'
+                      ? alumniData.length
+                      : projects.length}
                 </div>
               )}
             </div>
@@ -158,7 +158,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
         className={`sm:hidden fixed top-0 left-0 w-2/3 h-screen bg-zinc-950 z-50 
           transform transition-transform duration-300 ease-in-out
           border-r-[1px] border-t-[1px] border-b-[1px] rounded-r-xl border-slate-600
-          ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"}
+          ${isNavbarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
         <div className="p-4">
@@ -196,10 +196,10 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
                 <Link key={item.id} href={item.href} passHref>
                   <NavLink
                     {...item}
-                    isActive={path.split("/")[-1] === item.id}
+                    isActive={path.split('/')[-1] === item.id}
                     onLinkClick={() => {
-                      setActiveLink(item.id);
-                      setIsNavbarOpen(false);
+                      setActiveLink(item.id)
+                      setIsNavbarOpen(false)
                     }}
                   />
                 </Link>
@@ -215,14 +215,14 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
           className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={handleToggleNavbar}
           onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              handleToggleNavbar();
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleToggleNavbar()
             }
           }}
         />
       )}
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

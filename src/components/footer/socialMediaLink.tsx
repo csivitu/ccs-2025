@@ -1,14 +1,14 @@
-import Image from "next/image";
-import { StaticImageData } from "next/image";
+import Image from 'next/image'
+import { StaticImageData } from 'next/image'
 
 export default function SocialMediaLink({
   name,
   href,
   icon,
 }: {
-  name: string;
-  href: string;
-  icon: StaticImageData;
+  name: string
+  href: string
+  icon: StaticImageData
 }) {
   return (
     <a
@@ -19,7 +19,9 @@ export default function SocialMediaLink({
       target="__blank"
     >
       <Image src={icon} alt="logo" width={37.447} height={37.447} />
-      <span className="text-[16px] text-[#a7aaaf] text-center font-[400] leading-[30px] font-sans-code">{name}</span>
+      <span className="text-[16px] text-[#a7aaaf] text-center font-[400] leading-[30px] font-sans-code">
+        {name}
+      </span>
     </a>
-  );
+  )
 }

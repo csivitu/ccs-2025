@@ -1,84 +1,84 @@
-"use client";
-import { useState, useEffect } from "react";
-import QuestionPanel from "@/components/questions-page/question-panel";
-import AnswerPanel from "@/components/questions-page/answer-panel";
-import { VscExtensions } from "react-icons/vsc";
-import type { Question } from "@prisma/client";
-import { submitQuestion } from "@/app/actions/questions";
-import { redirect } from "next/navigation";
-import Image from "next/image";
-import { ImSpinner2 } from "react-icons/im";
+'use client'
+import { useState, useEffect } from 'react'
+import QuestionPanel from '@/components/questions-page/question-panel'
+import AnswerPanel from '@/components/questions-page/answer-panel'
+import { VscExtensions } from 'react-icons/vsc'
+import type { Question } from '@prisma/client'
+import { submitQuestion } from '@/app/actions/questions'
+import { redirect } from 'next/navigation'
+import Image from 'next/image'
+import { ImSpinner2 } from 'react-icons/im'
 export default function QuestionsPage({
   questions,
   answers: initialAnswers,
   sessionId,
 }: {
-  questions: Question[];
-  answers: string[];
-  sessionId: string;
+  questions: Question[]
+  answers: string[]
+  sessionId: string
 }) {
-  const [mutex, setMutex] = useState(false);
+  const [mutex, setMutex] = useState(false)
   const handlePrevious = () => {
-    setMutex(true);
+    setMutex(true)
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(currentIndex - 1)
     }
-    setMutex(false);
-  };
+    setMutex(false)
+  }
 
   const [currentIndex, setCurrentIndex] = useState(() => {
     // Find first unanswered question
-    const firstUnansweredIndex = initialAnswers.findIndex((answer) => !answer);
-    return firstUnansweredIndex === -1 ? 0 : firstUnansweredIndex;
-  });
-  const [answers, setAnswers] = useState<string[]>(initialAnswers);
-  const [navbarHeight, setNavbarHeight] = useState(20);
+    const firstUnansweredIndex = initialAnswers.findIndex((answer) => !answer)
+    return firstUnansweredIndex === -1 ? 0 : firstUnansweredIndex
+  })
+  const [answers, setAnswers] = useState<string[]>(initialAnswers)
+  const [navbarHeight, setNavbarHeight] = useState(20)
   const handleNext = async () => {
-    setMutex(true);
+    setMutex(true)
     await submitQuestion({
       questionId: questions[currentIndex].id,
       answer: answers[currentIndex],
       sessionId,
-    });
+    })
 
-    setMutex(false);
+    setMutex(false)
     if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(currentIndex + 1)
     }
 
     if (currentIndex === questions.length - 1) {
       // TODO: @padhai-head
       // toast.success("Quiz completed successfully!");
-      redirect("/dashboard/domains?completed=true");
+      redirect('/dashboard/domains?completed=true')
     }
-  };
+  }
   useEffect(() => {
-    const banner = document.getElementById("profile-completion-banner");
+    const banner = document.getElementById('profile-completion-banner')
     if (banner) {
-      banner.style.display = "none";
+      banner.style.display = 'none'
     }
-    const navbar = document.getElementById("navbar-top");
+    const navbar = document.getElementById('navbar-top')
     if (navbar) {
-      const navbarHeightPx = navbar.offsetHeight;
-      const navbarHeightVh = (navbarHeightPx / window.innerHeight) * 100;
-      setNavbarHeight(navbarHeightVh);
+      const navbarHeightPx = navbar.offsetHeight
+      const navbarHeightVh = (navbarHeightPx / window.innerHeight) * 100
+      setNavbarHeight(navbarHeightVh)
     }
     //god save me from these hacky fixes!!!!!!!!!!!!!!!!!
-  }, []);
+  }, [])
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Enter" && event.shiftKey) {
-        handleNext();
+      if (event.key === 'Enter' && event.shiftKey) {
+        handleNext()
       }
-    };
+    }
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [currentIndex, answers]);
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [currentIndex, answers])
   return (
     <main className="flex-1 relative flex flex-col min-h-screen">
       {/* Sidebar - Hidden on mobile, visible on desktop */}
@@ -99,11 +99,11 @@ export default function QuestionsPage({
           className={`hidden md:flex flex-col gap-2 h-full z-10 fixed left-0 top-[${navbarHeight}vh] bg-[#09090b]`}
         >
           {[
-            "/explorer.webp",
-            "/search.webp",
-            "/sourcecontrol.webp",
-            "/run.webp",
-            "/settings.webp",
+            '/explorer.webp',
+            '/search.webp',
+            '/sourcecontrol.webp',
+            '/run.webp',
+            '/settings.webp',
           ].map((src, index) => (
             <img
               key={src}
@@ -152,18 +152,18 @@ export default function QuestionsPage({
         <div className="flex justify-between items-center px-2 md:px-0 gap-2">
           <button
             style={{
-              display: "inline-block",
-              padding: "8px 16px",
-              textDecoration: "none",
-              borderRadius: "15px",
-              backgroundColor: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              backdropFilter: "blur(30px)",
-              color: "rgba(255,255,255,0.8)",
-              fontSize: "14px",
-              letterSpacing: "2px",
-              cursor: "pointer",
-              textTransform: "uppercase",
+              display: 'inline-block',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              borderRadius: '15px',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(30px)',
+              color: 'rgba(255,255,255,0.8)',
+              fontSize: '14px',
+              letterSpacing: '2px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
             }}
             className="w-1/2 md:w-1/6"
             onClick={handlePrevious}
@@ -175,18 +175,18 @@ export default function QuestionsPage({
 
           <button
             style={{
-              display: "inline-block",
-              padding: "8px 16px",
-              textDecoration: "none",
-              borderRadius: "15px",
-              backgroundColor: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              backdropFilter: "blur(30px)",
-              color: "rgba(255,255,255,0.8)",
-              fontSize: "14px",
-              letterSpacing: "2px",
-              cursor: "pointer",
-              textTransform: "uppercase",
+              display: 'inline-block',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              borderRadius: '15px',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(30px)',
+              color: 'rgba(255,255,255,0.8)',
+              fontSize: '14px',
+              letterSpacing: '2px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
             }}
             type="button"
             className="w-1/2 md:w-1/6"
@@ -195,10 +195,10 @@ export default function QuestionsPage({
               currentIndex === questions.length - 1 && !answers[currentIndex]
             }
           >
-            {currentIndex === questions.length - 1 ? "Finish Quiz" : "Next >>"}
+            {currentIndex === questions.length - 1 ? 'Finish Quiz' : 'Next >>'}
           </button>
         </div>
       </div>
     </main>
-  );
+  )
 }

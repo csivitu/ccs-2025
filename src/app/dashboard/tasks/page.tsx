@@ -1,49 +1,47 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import ProfileCard from "@/components/tasks-page/profile-card";
-import TaskCard, {
-  type taskCardProps,
-} from "@/components/tasks-page/task-cark";
+import ProfileCard from '@/components/tasks-page/profile-card'
+import TaskCard, { type taskCardProps } from '@/components/tasks-page/task-cark'
 
-import GitIcon from "public/giticon.webp";
-import PartyPopper from "public/party-popper.svg";
+import GitIcon from 'public/giticon.webp'
+import PartyPopper from 'public/party-popper.svg'
 
 const generalInstructions = [
-  "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
-  "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
-  "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
-  "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
-];
+  'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+  'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+  'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+  'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+]
 export default function TasksPage() {
   //fetch Tasks on this array
   const tasks: taskCardProps[] = [
     {
-      name: "E-commerce website",
-      subtitle: "something something something",
-      domain: "Tech",
+      name: 'E-commerce website',
+      subtitle: 'something something something',
+      domain: 'Tech',
       deadline: new Date(),
       description:
-        "make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road",
+        'make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road',
     },
     {
-      name: "E-commerce website",
-      subtitle: "something something something",
-      domain: "Tech",
+      name: 'E-commerce website',
+      subtitle: 'something something something',
+      domain: 'Tech',
       deadline: new Date(),
       isCompleted: true,
       description:
-        "make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road",
+        'make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road',
     },
     {
-      name: "E-commerce website",
-      subtitle: "something something something",
-      domain: "Tech",
+      name: 'E-commerce website',
+      subtitle: 'something something something',
+      domain: 'Tech',
       deadline: new Date(),
       isCompleted: false,
       description:
-        "make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road",
+        'make amazon but it should look like flipkart but it actually is ebay or sum and also allow everything like silk road',
     },
-  ];
+  ]
 
   return (
     <main className="flex sm:flex-row flex-col gap-20 m-6 justify-center">
@@ -51,7 +49,7 @@ export default function TasksPage() {
         name="YEEZUS"
         image={GitIcon}
         regno="23bds0338"
-        domains={["Tech", "Design"]}
+        domains={['Tech', 'Design']}
       />
 
       <section className="flex flex-col sm:gap-12 gap-4">
@@ -65,7 +63,7 @@ export default function TasksPage() {
                 <li key={instruction} className="pb-1 font-light">
                   {instruction}
                 </li>
-              );
+              )
             })}
           </ol>
         </div>
@@ -88,5 +86,5 @@ export default function TasksPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

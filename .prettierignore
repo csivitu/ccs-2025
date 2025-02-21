@@ -1,0 +1,34 @@
+# node_modules and build output
+node_modules
+.next
+out
+dist
+
+# lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# prisma client-generated files
+prisma/generated/
+prisma/migrations/
+
+# environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# VS Code settings
+.vscode
+
+# log files and cache
+npm-debug.log
+yarn-error.log
+.pnp
+.pnp.js
+turbo
+
+# typeScript build output
+*.d.ts
