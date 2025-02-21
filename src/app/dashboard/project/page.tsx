@@ -8,13 +8,13 @@ const ProjectPage = () => {
    function getLanguageColor(language: string) {
      switch (language) {
        case Languages.JAVASCRIPT:
-         return "rgba(218, 91, 11, 1)";
+         return "rgb(241, 224, 90)";
        case Languages.TYPESCRIPT:
-         return "rgba(0, 122, 209, 1)";
+         return "#3178c6";
        case Languages.PYTHON:
-         return "rgba(255, 193, 7, 1)";
+         return "rgb(53, 114, 165)";
        case Languages.GO:
-         return "rgba(0, 122, 209, 1)";
+         return "rgb(0, 173, 216)";
        default:
          return "rgba(255, 193, 7, 1)";
      }
